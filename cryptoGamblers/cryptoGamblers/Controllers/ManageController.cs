@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using cryptoGamblers.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace cryptoGamblers.Controllers
 {
@@ -64,6 +65,7 @@ namespace cryptoGamblers.Controllers
                 : "";
 
             var userId = User.Identity.GetUserId();
+
             var model = new IndexViewModel
             {
                 HasPassword = HasPassword(),
@@ -333,7 +335,41 @@ namespace cryptoGamblers.Controllers
             base.Dispose(disposing);
         }
 
-#region Helpers
+
+        //
+        // GET: /Manage/ManageBalance
+        public ActionResult ManageBalance()
+        {
+            return View();
+        }
+
+        //
+        // POST: /Manage/ManageBalance
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ManageBalance(ChangeBalanceViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                //add the value to the balance
+                var currentUserId = User.Identity.GetUserId();
+                var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+                var currentUser = manager.FindById(User.Identity.GetUserId());
+                currentUser.Balance = currentUser.Balance + model.AddBalance;
+
+                return View(model);
+            }
+            else
+            {
+                return View(model);
+            }
+
+        }
+
+
+
+
+        #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 

@@ -58,6 +58,13 @@ namespace cryptoGamblers.Models
         public string ConfirmPassword { get; set; }
     }
 
+    public class ChangeBalanceViewModel
+    {
+        [Required]
+        [Display(Name = "Add Balance")]
+        public int AddBalance { get; set; }
+    }
+
     public class AddPhoneNumberViewModel
     {
         [Required]

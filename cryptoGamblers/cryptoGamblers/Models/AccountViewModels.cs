@@ -64,6 +64,11 @@ namespace cryptoGamblers.Models
 
     public class RegisterViewModel
     {
+        [Required(ErrorMessage = "bobobobob den skal udfyldes yo")]
+        [StringLength(50, MinimumLength = 4, ErrorMessage = "den skal være mellem 4 og 50 yo")]
+        [Display(Name = "A possibly not unique username")]
+        public string Username { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]

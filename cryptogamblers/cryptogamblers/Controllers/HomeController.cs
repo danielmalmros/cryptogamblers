@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,6 +12,7 @@ namespace cryptoGamblers.Controllers
     {
         public ActionResult Index()
         {
+
             return View();
         }
 
