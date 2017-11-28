@@ -203,6 +203,10 @@
     <Compile Include="Migrations\201711271805490_Balance.Designer.cs">
       <DependentUpon>201711271805490_Balance.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711281038240_Outcomment.cs" />
+    <Compile Include="Migrations\201711281038240_Outcomment.Designer.cs">
+      <DependentUpon>201711281038240_Outcomment.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -256,7 +260,6 @@
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
     <Content Include="Views\Manage\ChangePassword.cshtml" />
     <Content Include="Views\Manage\Index.cshtml" />
-    <Content Include="Views\Manage\SetPassword.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Manage\ManageBalance.cshtml" />
@@ -283,6 +286,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711271805490_Balance.resx">
       <DependentUpon>201711271805490_Balance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711281038240_Outcomment.resx">
+      <DependentUpon>201711281038240_Outcomment.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
