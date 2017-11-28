@@ -22,6 +22,9 @@ _UpgradeReport_Files/
 ###############
 # Directories #
 ###############
+
+.vs/
+cryptogamblers/.vs/
 bin/
 obj/
 TestResults/
