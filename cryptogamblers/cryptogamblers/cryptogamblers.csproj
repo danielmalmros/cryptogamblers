@@ -218,6 +218,10 @@
     <Compile Include="Migrations\201711301016057_MatchTables.Designer.cs">
       <DependentUpon>201711301016057_MatchTables.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711301037468_avatar added to user.cs" />
+    <Compile Include="Migrations\201711301037468_avatar added to user.Designer.cs">
+      <DependentUpon>201711301037468_avatar added to user.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -279,7 +283,8 @@
     <Content Include="Views\Manage\ManageBalance.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Folder Include="App_Data\uploads\" />
+    <Folder Include="Content\uploads\" />
     <Folder Include="Views\Queue\" />
   </ItemGroup>
   <ItemGroup>
@@ -307,6 +312,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711301016057_MatchTables.resx">
       <DependentUpon>201711301016057_MatchTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711301037468_avatar added to user.resx">
+      <DependentUpon>201711301037468_avatar added to user.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
