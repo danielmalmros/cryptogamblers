@@ -214,6 +214,10 @@
     <Compile Include="Migrations\201711281038240_Outcomment.Designer.cs">
       <DependentUpon>201711281038240_Outcomment.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711301016057_MatchTables.cs" />
+    <Compile Include="Migrations\201711301016057_MatchTables.Designer.cs">
+      <DependentUpon>201711301016057_MatchTables.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -300,6 +304,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711281038240_Outcomment.resx">
       <DependentUpon>201711281038240_Outcomment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711301016057_MatchTables.resx">
+      <DependentUpon>201711301016057_MatchTables.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -8,6 +8,23 @@ namespace cryptoGamblers.Models
 {
     public class QueueIn
     {
-        public Guid[] Queue { get; set; }
+        public int Id { get; set; }
+        public string Opponent1 { get; set; }
+        public string Opponent2 { get; set; }
     }
+    public class Match
+    {
+        public int MatchId { get; set; }
+        public string Opponent1 { get; set; }
+        public string Opponent2 { get; set; }
+    }
+    public class AfterMatch
+    {
+        public int AfterMatchId { get; set; }
+        public DateTime GameDate { get; set; }
+        public string GameWinner { get; set; }
+    }
+
+
+
 }
