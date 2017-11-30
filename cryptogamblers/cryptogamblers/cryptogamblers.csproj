@@ -227,6 +227,8 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\QueueModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\IQueueService.cs" />
+    <Compile Include="Services\QueueService.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -282,7 +284,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Services\" />
     <Folder Include="Views\Queue\" />
   </ItemGroup>
   <ItemGroup>

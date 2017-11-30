@@ -1,4 +1,5 @@
-﻿using System;
+﻿using cryptoGamblers.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -18,7 +19,8 @@ namespace cryptoGamblers.Controllers
         public ActionResult QueueMe() {
             var userName = this.User.Identity.Name;
 
-            //service.findopponent(userName)
+            var service = new QueueService();
+            service.findOpponent(userName);
             
             return View();
         }
