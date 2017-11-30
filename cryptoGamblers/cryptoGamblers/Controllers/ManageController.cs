@@ -57,9 +57,10 @@ namespace cryptoGamblers.Controllers
                 //: message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
                 //: message == ManageMessageId.SetTwoFactorSuccess ? "Your two-factor authentication provider has been set."
                 : message == ManageMessageId.Error ? "An error has occurred."
-                //: message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
-                //: message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
-                : "";
+				: message == ManageMessageId.ChangeBalanceSuccess ? "Your balance has succesfully been boosted"
+				//: message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
+				//: message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
+				: "";
 
             
             return View();
@@ -362,17 +363,25 @@ namespace cryptoGamblers.Controllers
         // POST: /Manage/ManageBalance
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ManageBalance(ChangeBalanceViewModel model)
+        public async Task<ActionResult> ManageBalance(ChangeBalanceViewModel model)
         {
             if (ModelState.IsValid)
             {
-                //add the value to the balance
-                var currentUserId = User.Identity.GetUserId();
-                var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
-                var currentUser = manager.FindById(User.Identity.GetUserId());
-                currentUser.Balance = currentUser.Balance + model.AddBalance;
-
-                return View(model);
+				//add the value to the balance
+				var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+				var currentUser = manager.FindById(User.Identity.GetUserId());
+				currentUser.Balance = currentUser.Balance + model.AddBalance;
+				var result = await manager.UpdateAsync(currentUser);
+				//var currentUserId = User.Identity.GetUserId();
+				//var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+				//var currentUser = manager.FindById(User.Identity.GetUserId());
+				//currentUser.Balance = currentUser.Balance + model.AddBalance;
+				if (result.Succeeded)
+				{
+					return RedirectToAction("Index", new { Message = ManageMessageId.ChangeBalanceSuccess });
+				}
+			
+				return View(model);
             }
             else
             {
@@ -428,6 +437,7 @@ namespace cryptoGamblers.Controllers
         {
             //AddPhoneSuccess,
             ChangePasswordSuccess,
+			ChangeBalanceSuccess,
             //SetTwoFactorSuccess,
             //SetPasswordSuccess,
             //RemoveLoginSuccess,
