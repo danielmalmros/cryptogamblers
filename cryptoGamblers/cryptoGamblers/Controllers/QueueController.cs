@@ -9,7 +9,7 @@ namespace cryptoGamblers.Controllers
 {
     public class QueueController : Controller
     {
-
+        
 
         public QueueController()
         {
