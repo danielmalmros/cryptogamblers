@@ -4,13 +4,10 @@
     ViewBag.Title = "Log in";
     Layout = null;
 }
-
-
 @Styles.Render("~/Content/css")
 @Scripts.Render("~/bundles/modernizr")
-tttrr
-<h2>@ViewBag.Title.</h2>
-<div class="row">
+<!--h2>@ViewBag.Title.</!--h2>
+<div-- class="row">
     <div class="col-md-8">
         <section id="loginForm">
             @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
@@ -49,16 +46,13 @@ tttrr
                 <p>
                     @Html.ActionLink("Register as a new user", "Register")
                 </p>
-                @* Enable this once you have account confirmation enabled for password reset functionality
-                    <p>
-                        @Html.ActionLink("Forgot your password?", "ForgotPassword")
-                    </p>*@
             }
         </section>
     </div>
-    <div class="col-md-4">
-        @*<section id="socialLoginForm">
-            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-        </section>*@
+</!--div-->
+
+<div class="body">
+    <div class="loginWrapper">
+        Hey
     </div>
 </div>
