@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using cryptoGamblers.Models;
+using System.IO;
 
 namespace cryptoGamblers.Controllers
 {
@@ -151,7 +152,19 @@ namespace cryptoGamblers.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Username, Email = model.Email, Balance = 100 };
+				//Avatar
+				if (Request.Files.Count > 0)
+				{
+					HttpPostedFileBase file = Request.Files[0];
+					if (file.ContentLength > 0)
+					{
+						var fileName = Path.GetFileName(file.FileName);
+						model.Avatar = Path.Combine(Server.MapPath("~/App_Data/uploads"), fileName);
+						file.SaveAs(model.Avatar);
+					}
+				}
+
+				var user = new ApplicationUser { UserName = model.Username, Email = model.Email, Balance = 100, Avatar = model.Avatar };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

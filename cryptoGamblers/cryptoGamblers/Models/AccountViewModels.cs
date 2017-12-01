@@ -50,6 +50,7 @@ namespace cryptoGamblers.Models
     {
         [Required]
         [Display(Name = "UserName")]
+        [EmailAddress]
         public string UserName{ get; set; }
 
         [Required]
@@ -83,6 +84,9 @@ namespace cryptoGamblers.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+		
+		[Display(Name = "Profile picture")]
+		public string Avatar { get; set; }
     }
 
     public class ResetPasswordViewModel
