@@ -299,6 +299,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Manage\ManageBalance.cshtml" />
     <Content Include="Views\Queue\QueueMe.cshtml" />
+    <Content Include="Views\Manage\ChangeAvatar.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

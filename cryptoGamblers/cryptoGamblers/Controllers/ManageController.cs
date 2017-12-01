@@ -2,6 +2,8 @@
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
+using System;
+using System.IO;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -58,11 +60,11 @@ namespace cryptoGamblers.Controllers
                 //: message == ManageMessageId.SetTwoFactorSuccess ? "Your two-factor authentication provider has been set."
                 : message == ManageMessageId.Error ? "An error has occurred."
 				: message == ManageMessageId.ChangeBalanceSuccess ? "Your balance has succesfully been boosted"
+                : message == ManageMessageId.ChangeAvatarSuccess ? "Your avatar has successfully been changed"
 				//: message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
 				//: message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
 				: "";
 
-            
             return View();
         }
 
@@ -390,6 +392,48 @@ namespace cryptoGamblers.Controllers
 
         }
 
+        // GET: /Manage/ChangeAvatar
+        public ActionResult ChangeAvatar()
+        {
+            return View();
+        }
+
+        //
+        // POST: /Manage/ChangeAvatar
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ChangeAvatar(ChangeAvatarViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                //Change avatar
+                if (Request.Files.Count > 0)
+                {
+                    var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+                    var currentUser = manager.FindById(User.Identity.GetUserId());
+                    HttpPostedFileBase file = Request.Files[0];
+                    if (file.ContentLength > 0)
+                    {
+                        string fileNameRandomExt = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+                        string uploadResult = Path.Combine(Server.MapPath("~/Content/uploads"), fileNameRandomExt);
+                        file.SaveAs(uploadResult);
+                        currentUser.Avatar = fileNameRandomExt;
+                        var result = await manager.UpdateAsync(currentUser);
+                        if (result.Succeeded)
+                        {
+                            return RedirectToAction("Index", new { Message = ManageMessageId.ChangeAvatarSuccess });
+                        }
+                    }
+                }
+                return View(model);
+            }
+            else
+            {
+                return View(model);
+            }
+
+        }
+
 
 
 
@@ -438,6 +482,7 @@ namespace cryptoGamblers.Controllers
             //AddPhoneSuccess,
             ChangePasswordSuccess,
 			ChangeBalanceSuccess,
+            ChangeAvatarSuccess,
             //SetTwoFactorSuccess,
             //SetPasswordSuccess,
             //RemoveLoginSuccess,
