@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using cryptoGamblers.Models;
+using cryptoGamblers.Services;
 
 namespace cryptoGamblers.Controllers
 {
@@ -17,15 +18,15 @@ namespace cryptoGamblers.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private IQueueService _queueservice;
 
-        public AccountController()
-        {
-        }
+        public AccountController() { }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, IQueueService queueservice )
         {
             UserManager = userManager;
             SignInManager = signInManager;
+            _queueservice = queueservice;
         }
 
         public ApplicationSignInManager SignInManager
