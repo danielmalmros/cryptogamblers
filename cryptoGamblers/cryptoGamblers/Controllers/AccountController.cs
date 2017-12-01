@@ -151,10 +151,9 @@ namespace cryptoGamblers.Controllers
                     HttpPostedFileBase file = Request.Files[0];
                     if (file.ContentLength > 0)
                     {
-                        //string fileName = Path.GetTempPath() + Guid.NewGuid().ToString() + ".jpg";
-                        string fileName = Path.GetFileName(file.FileName);
-                        string uploadResult = Path.Combine(Server.MapPath("~/Content/uploads"), fileName);
-                        model.Avatar = fileName;
+                        string fileNameRandomExt = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+                        string uploadResult = Path.Combine(Server.MapPath("~/Content/uploads"), fileNameRandomExt);
+                        model.Avatar = fileNameRandomExt;
                         file.SaveAs(uploadResult);
                     }
                 }
