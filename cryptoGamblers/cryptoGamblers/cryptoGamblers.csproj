@@ -224,6 +224,14 @@
     <Compile Include="Migrations\201711281038240_Outcomment.Designer.cs">
       <DependentUpon>201711281038240_Outcomment.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711301016057_MatchTables.cs" />
+    <Compile Include="Migrations\201711301016057_MatchTables.Designer.cs">
+      <DependentUpon>201711301016057_MatchTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711301037468_avatar added to user.cs" />
+    <Compile Include="Migrations\201711301037468_avatar added to user.Designer.cs">
+      <DependentUpon>201711301037468_avatar added to user.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -235,6 +243,8 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\uploads\tf_loghouse_alpine_1920.jpg" />
+    <Content Include="App_Data\uploads\tf_loghouse_alpine_2560.jpg" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Login\LoginForm.css" />
@@ -284,11 +294,9 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Manage\ManageBalance.cshtml" />
+    <Content Include="Views\Queue\QueueMe.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-    <Folder Include="Views\Queue\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
   </ItemGroup>
@@ -311,6 +319,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711281038240_Outcomment.resx">
       <DependentUpon>201711281038240_Outcomment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711301016057_MatchTables.resx">
+      <DependentUpon>201711301016057_MatchTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711301037468_avatar added to user.resx">
+      <DependentUpon>201711301037468_avatar added to user.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
