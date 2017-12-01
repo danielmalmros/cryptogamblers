@@ -37,8 +37,7 @@
         <dt>Balance:</dt>
         <dd>@currentUser.Balance @Html.ActionLink("Manage","ManageBalance")</dd>
 
-        <dt>Avatar:</dt>
-        <dd></dd>
+        
 
         <dt>Winstreak:</dt>
         <dd></dd>
@@ -98,5 +97,10 @@
                     }
                 }*@
         @*</dd>*@
+
+        <dt>Avatar:</dt>
+        <dd>
+            <img src="../Content/uploads/@currentUser.Avatar" style="width: 200px" />
+        </dd>
     </dl>
 </div>

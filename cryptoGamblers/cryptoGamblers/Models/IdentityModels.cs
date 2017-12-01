@@ -32,5 +32,10 @@ namespace cryptoGamblers.Models
         {
             return new ApplicationDbContext();
         }
+
+        public DbSet<QueueIn> queueIn { get; set; }
+        public DbSet<Match> Match { get; set; }
+        public DbSet<AfterMatch> AfterMatch { get; set; }
+
     }
 }

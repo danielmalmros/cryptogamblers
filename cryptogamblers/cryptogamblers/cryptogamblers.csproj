@@ -218,6 +218,10 @@
     <Compile Include="Migrations\201711301016057_MatchTables.Designer.cs">
       <DependentUpon>201711301016057_MatchTables.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711301037468_avatar added to user.cs" />
+    <Compile Include="Migrations\201711301037468_avatar added to user.Designer.cs">
+      <DependentUpon>201711301037468_avatar added to user.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -229,8 +233,12 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\uploads\tf_loghouse_alpine_1920.jpg" />
+    <Content Include="App_Data\uploads\tf_loghouse_alpine_2560.jpg" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\uploads\53esv.jpg" />
+    <Content Include="Content\uploads\cow.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -279,9 +287,7 @@
     <Content Include="Views\Manage\ManageBalance.cshtml" />
     <Content Include="Views\Queue\QueueMe.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
   </ItemGroup>
@@ -307,6 +313,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711301016057_MatchTables.resx">
       <DependentUpon>201711301016057_MatchTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711301037468_avatar added to user.resx">
+      <DependentUpon>201711301037468_avatar added to user.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
