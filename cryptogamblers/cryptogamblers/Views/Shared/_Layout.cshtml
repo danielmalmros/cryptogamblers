@@ -1,9 +1,11 @@
-﻿<!DOCTYPE html>
+﻿@using cryptoGamblers.Extensions;
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - CryptoGamblers</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -17,19 +19,21 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("CryptoGamblers", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionImage("/", new { id = "Index" }, "~/Content/Images/cryptogamblers.png", "CryptoGamblers")
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     @if (Context.User.Identity.IsAuthenticated)
                     {
-                       <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                       <li>@Html.ActionLink("About", "Index", "About")</li>
+                       <li>@Html.ActionLink("Hall of Fame", "Index", "HallofFame")</li>
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
+
     <div class="container body-content">
         @RenderBody()
         <hr />
