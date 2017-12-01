@@ -1,4 +1,6 @@
-﻿@{
+﻿@using cryptoGamblers.Models
+@model IEnumerable<ApplicationUser>
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -9,5 +11,20 @@
 </div>
 
 <div class="row">
-    
+    <h2>Hall of Winstreak Fame</h2>
+    <p>Showing the top 3 users with the highest winstreak</p>
+    <table class="table table-striped">
+        <tr>
+            <th>Username:</th>
+            <th>Winstreak:</th>
+        </tr>
+        @foreach (ApplicationUser user in Model)
+        {
+            <tr>
+                <td>@user.UserName</td>
+                <td>@user.WinStreakMax</td>
+            </tr>
+            
+        }
+    </table>
 </div>

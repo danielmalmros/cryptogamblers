@@ -5,6 +5,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
+using cryptoGamblers.Models;
+using cryptoGamblers.App_Start;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace cryptoGamblers.Controllers
 {
@@ -15,8 +19,8 @@ namespace cryptoGamblers.Controllers
 
         public ActionResult Index()
         {
-
-            return View();
+            IEnumerable<ApplicationUser> allUsers = UserManager.Users.OrderByDescending(u => u.WinStreakMax).Take(3).ToList();
+            return View(allUsers);
         }
 
         public ActionResult About()
@@ -31,6 +35,15 @@ namespace cryptoGamblers.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+
+        private ApplicationUserManager UserManager
+        {
+            get
+            {
+                return HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
         }
     }
 }
