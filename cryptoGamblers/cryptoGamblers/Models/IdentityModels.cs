@@ -11,6 +11,7 @@ namespace cryptoGamblers.Models
     public class ApplicationUser : IdentityUser
     {
         public double Balance { get; set; }
+		public string Avatar { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -31,5 +32,10 @@ namespace cryptoGamblers.Models
         {
             return new ApplicationDbContext();
         }
+
+        public DbSet<QueueIn> queueIn { get; set; }
+        public DbSet<Match> Match { get; set; }
+        public DbSet<AfterMatch> AfterMatch { get; set; }
+
     }
 }

@@ -10,7 +10,7 @@ namespace cryptoGamblers.Services
         public Guid findOpponent(string userName)
         {
             return Guid.NewGuid();   
-
+           
         }
     }
 }
