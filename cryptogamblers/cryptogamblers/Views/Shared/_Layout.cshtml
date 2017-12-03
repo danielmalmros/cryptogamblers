@@ -1,6 +1,4 @@
-﻿@using cryptoGamblers.Extensions;
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -19,7 +17,9 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionImage("/", new { id = "Index" }, "~/Content/Images/cryptogamblers.png", "CryptoGamblers")
+                <a href="@Url.Action("Index", "Home", new { area = "" })">
+                    <img src="@Url.Content("~/Content/Images/logo.png")" />
+                </a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -34,10 +34,9 @@
         </div>
     </div>
 
-    <div class="container body-content">
+    <div class="page-wrapper">
         @RenderBody()
-        <hr />
-        <footer>
+        <footer class="footer">
             <p>&copy; @DateTime.Now.Year - CryptoGamblers</p>
         </footer>
     </div>
