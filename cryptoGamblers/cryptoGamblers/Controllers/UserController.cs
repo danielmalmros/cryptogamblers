@@ -54,19 +54,30 @@ namespace cryptoGamblers.Controllers
         public async Task<ActionResult> UserProfile()
         {
             string userName = Request.QueryString["username"];
-            var user = await UserManager.FindByNameAsync(userName);
 
-            UserProfileViewModel model = new UserProfileViewModel()
-            {
-                Username = user.UserName,
-                AvatarPath = user.Avatar,
-                ProfileDescription = user.ProfileDescription
-            };
+            if(userName != null) { 
+                try { 
+                var user = await UserManager.FindByNameAsync(userName);
 
-            //ViewBag.Username = user.UserName;
-            //ViewBag.Avatar = user.Avatar;
+                    UserProfileViewModel model = new UserProfileViewModel()
+                    {
+                        Username = user.UserName,
+                        AvatarPath = user.Avatar,
+                        ProfileDescription = user.ProfileDescription
+                    };
 
-            return View(model);
+                    //ViewBag.Username = user.UserName;
+                    //ViewBag.Avatar = user.Avatar;
+
+                    return View(model);
+                } catch (Exception e)
+                {
+                    return HttpNotFound();
+                }
+
+            }
+            //If user can't be found
+            return HttpNotFound();
         }
     }
 }
