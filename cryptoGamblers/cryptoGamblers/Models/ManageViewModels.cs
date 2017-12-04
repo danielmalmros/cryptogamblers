@@ -73,6 +73,13 @@ namespace cryptoGamblers.Models
         public string AvatarPath { get; set; }
     }
 
+	public class ChangeDescriptionViewModel
+	{
+		[Display(Name = "Change Profile Text")]
+		[System.Web.Mvc.AllowHtml]
+		public string ProfileDescription { get; set; }
+	}
+
     //public class AddPhoneNumberViewModel
     //{
     //    [Required]
