@@ -102,7 +102,12 @@
             <dd>
                 <img src="../Content/uploads/@currentUser.Avatar" style="width: 200px" />
             <dd>@Html.ActionLink("Change Avatar", "ChangeAvatar")</dd>
-            </dd>
+            
+            @using (Html.BeginForm("Delete", "Manage", new { id = User.Identity.GetUserId() }))
+            {
+                <button class="btn btn-danger btn-xs" type="submit">Delete</button>
+            }
+
         </dl>
     </div>
 
