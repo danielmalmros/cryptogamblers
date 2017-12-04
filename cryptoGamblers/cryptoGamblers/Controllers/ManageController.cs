@@ -434,9 +434,32 @@ namespace cryptoGamblers.Controllers
 
         }
 
+        [HttpPost]
+        public async Task<ActionResult> Delete(string id)
+        {
+            ApplicationUser user = await UserManager.FindByIdAsync(id);
+            if (user != null)
+            {
+                IdentityResult result = await UserManager.DeleteAsync(user);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("DeleteConfirm");
+                }
+                else
+                {
+                    return View("Error", result.Errors);
+                }
+            }
+            else
+            {
+                return View("Error", new string[] { "User Not Found" });
+            }
+        }
 
-
-
+        public ActionResult DeleteConfirm()
+        {
+            return View();
+        }
         #region Helpers
         // Used for XSRF protection when adding external logins
         //private const string XsrfKey = "XsrfId";
