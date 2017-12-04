@@ -56,6 +56,7 @@ namespace cryptoGamblers.Controllers
 				: message == ManageMessageId.Error ? "An error has occurred."
 				: message == ManageMessageId.ChangeBalanceSuccess ? "Your balance has succesfully been boosted"
 				: message == ManageMessageId.ChangeAvatarSuccess ? "Your avatar has successfully been changed"
+				: message == ManageMessageId.ChangeDescriptionSuccess ? "Your profile text has been changed"
 				//: message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
 				//: message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
 				: "";
@@ -428,6 +429,46 @@ namespace cryptoGamblers.Controllers
 			}
 		}
 
+		//
+		// GET: /Manage/ManageDescription
+		public ActionResult ChangeDescription()
+		{
+			var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+			var currentUser = manager.FindById(User.Identity.GetUserId());
+			var model = new ChangeDescriptionViewModel()
+			{
+				ProfileDescription = currentUser.ProfileDescription
+			};
+
+			return View(model);
+		}
+
+		//
+		// POST: /Manage/ManageDescription
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public async Task<ActionResult> ChangeDescription(ChangeDescriptionViewModel model)
+		{
+			if (ModelState.IsValid)
+			{
+				//add the value to the balance
+				var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+				var currentUser = manager.FindById(User.Identity.GetUserId());
+				currentUser.ProfileDescription = model.ProfileDescription;
+				var result = await manager.UpdateAsync(currentUser);
+				if (result.Succeeded)
+				{
+					return RedirectToAction("Index", new { Message = ManageMessageId.ChangeDescriptionSuccess });
+				}
+				return View(model);
+			}
+			else
+			{
+				return View(model);
+			}
+
+		}
+
 		[HttpPost]
 		public async Task<ActionResult> Delete(string id)
 		{
@@ -500,6 +541,7 @@ namespace cryptoGamblers.Controllers
 			ChangePasswordSuccess,
 			ChangeBalanceSuccess,
 			ChangeAvatarSuccess,
+			ChangeDescriptionSuccess,
 			//SetTwoFactorSuccess,
 			//SetPasswordSuccess,
 			//RemoveLoginSuccess,

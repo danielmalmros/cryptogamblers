@@ -12,6 +12,7 @@ namespace cryptoGamblers.Models
     {
         public double Balance { get; set; }
 		public string Avatar { get; set; }
+		public string ProfileDescription { get; set; }
         public int WinStreak { get; set; }
         public int WinStreakMax { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)

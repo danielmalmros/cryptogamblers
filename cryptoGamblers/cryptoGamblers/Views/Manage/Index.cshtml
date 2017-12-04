@@ -98,6 +98,11 @@
                 }*@
             @*</dd>*@
 
+			<dt>Profile text:</dt>
+			<dd>
+				<p>@currentUser.ProfileDescription</p>
+			<dd>@Html.ActionLink("Change Description", "ChangeDescription")</dd>
+
             <dt>Avatar:</dt>
             <dd>
                 <img src="../Content/uploads/@currentUser.Avatar" style="width: 200px" />
