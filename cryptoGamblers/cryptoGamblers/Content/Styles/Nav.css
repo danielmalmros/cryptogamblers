@@ -1,0 +1,17 @@
+﻿#nav--profile-img {
+	border-radius: 50px;
+	width: 45px;
+	height: 45px;
+	object-fit: cover;
+	margin-right: 7px;
+}
+
+#nav--profile-name {
+	display: inline;
+	font-weight: 700;
+}
+
+.menu-items li {
+	float: none;
+	display: inline-block;
+}
