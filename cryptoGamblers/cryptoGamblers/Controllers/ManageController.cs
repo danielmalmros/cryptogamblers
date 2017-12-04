@@ -6,6 +6,7 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Management;
 using System.Web.Mvc;
 
 namespace cryptoGamblers.Controllers
@@ -368,15 +369,10 @@ namespace cryptoGamblers.Controllers
 				var currentUser = manager.FindById(User.Identity.GetUserId());
 				currentUser.Balance = currentUser.Balance + model.AddBalance;
 				var result = await manager.UpdateAsync(currentUser);
-				//var currentUserId = User.Identity.GetUserId();
-				//var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
-				//var currentUser = manager.FindById(User.Identity.GetUserId());
-				//currentUser.Balance = currentUser.Balance + model.AddBalance;
 				if (result.Succeeded)
 				{
 					return RedirectToAction("Index", new { Message = ManageMessageId.ChangeBalanceSuccess });
 				}
-
 				return View(model);
 			}
 			else
@@ -424,7 +420,7 @@ namespace cryptoGamblers.Controllers
 						}
 					}
 				}
-				return View(model);
+				return RedirectToAction("Index", new { Message = ManageMessageId.Error });
 			}
 			else
 			{
