@@ -12,7 +12,7 @@ namespace cryptoGamblers.Models
         [Display(Name = "Profile picture")]
         public string AvatarPath { get; set; }
 
-        [Display(Name = "Profile picture")]
+        [Display(Name = "Profile description")]
         public string ProfileDescription { get; set; }
     }
 }

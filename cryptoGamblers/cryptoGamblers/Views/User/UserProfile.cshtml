@@ -4,12 +4,7 @@
 @model cryptoGamblers.Models.UserProfileViewModel
 
 @{
-    ViewBag.Title = "User Profile";
-
-    var currentUserId = User.Identity.GetUserId();
-    var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
-    var currentUser = manager.FindById(User.Identity.GetUserId());
-
+    ViewBag.Title = "User - " + Model.Username;
 }
 
 
