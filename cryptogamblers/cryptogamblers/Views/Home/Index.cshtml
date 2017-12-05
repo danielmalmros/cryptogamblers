@@ -1,13 +1,39 @@
-﻿@{
+﻿@using cryptoGamblers.Models
+@model IEnumerable<ApplicationUser>
+@{
     ViewBag.Title = "Home Page";
 }
-
 <div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    @Html.ActionLink("Queue me the fuck up", "QueueMe", "Queue", new { @class = "btn btn-primary"})
+    <div class="container body-content">
+        <h1 class="display-3">CryptoGamblers</h1>
+        <p class="lead">CryptoGamblers is the leading bitcoin gambling site for onion users.</p>
+        <hr class="my-4">
+        <p>Gamble all your bitcoins here!</p>
+        <p class="lead">
+            @Html.ActionLink("Queue me the fuck up!", "QueueMe", "Queue", new { Area = "" }, new { })
+            
+        </p>
+    </div>
 </div>
 
-<div class="row">
-    
+
+<div class="container body-content">
+    <div class="row row--modified">
+        <h2>Hall of Winstreak Fame</h2>
+        <p>Showing the top 3 users with the highest winstreak</p>
+        <table class="table table-striped table-borderless">
+            <tr class="winstreak-header">
+                <th>Username</th>
+                <th>Winstreak</th>
+            </tr>
+            @foreach (ApplicationUser user in Model)
+            {
+                <tr class="winstreak-users">
+                    <td>@user.UserName</td>
+                    <td>@user.WinStreakMax</td>
+                </tr>
+            
+            }
+        </table>
+    </div>
 </div>

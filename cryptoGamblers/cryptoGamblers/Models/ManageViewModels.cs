@@ -66,6 +66,20 @@ namespace cryptoGamblers.Models
         public double AddBalance { get; set; }
     }
 
+    public class ChangeAvatarViewModel
+    {
+        [Required]
+        [Display(Name = "Change Avatar")]
+        public string AvatarPath { get; set; }
+    }
+
+	public class ChangeDescriptionViewModel
+	{
+		[Display(Name = "Change Profile Text")]
+		[System.Web.Mvc.AllowHtml]
+		public string ProfileDescription { get; set; }
+	}
+
     //public class AddPhoneNumberViewModel
     //{
     //    [Required]

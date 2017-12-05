@@ -1,6 +1,9 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+﻿@import 'Home/Home.css';
+
+
+body {
+    background: #1D2127;
+    color: #fff;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -9,6 +12,9 @@
     padding-right: 15px;
 }
 
+#cryptogamblers-logo {
+    width: 30%;
+}
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
@@ -21,4 +27,76 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+.navbar-inverse {
+    background: #353940;
+    border: none;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+}
+
+.navbar {
+    padding: 10px 0;
+    margin: 0;
+}
+.navbar-header {
+    position: relative;
+    width: 5%;
+}
+
+.navbar-header img {
+    width: 100%;
+}
+.page-wrapper {
+    padding-top: 77px;
+}
+
+
+.table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
+    background-color: #272A31;
+}
+
+.table-borderless > tbody > tr > td,
+.table-borderless > tbody > tr > th,
+.table-borderless > tfoot > tr > td,
+.table-borderless > tfoot > tr > th,
+.table-borderless > thead > tr > td,
+.table-borderless > thead > tr > th {
+    border: none;
+}
+
+.row--modified {
+    margin: 0;
+}
+
+.winstreak-header th {
+    font-weight: bold;
+}
+
+.winstreak-users td {
+    font-style: italic;
+}
+
+.footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    background-color: #272A31;
+    text-align: center;
+}
+
+.footer p {
+    margin: 0;
+}
+
+.container .jumbotron {
+    border-radius: 0;
+}
+
+.jumbotron {
+    background-image: url('https://www.bitcoin.co.id/homev2-assets/img/p2pbg.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }

@@ -26,7 +26,8 @@ namespace cryptoGamblers
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
-                      "~/Content/Login/LoginForm.css"));
+                      "~/Content/Login/LoginForm.css",
+					  "~/Content/Styles/Nav.css"));
         }
     }
 }

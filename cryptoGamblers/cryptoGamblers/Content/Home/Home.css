@@ -1,0 +1,9 @@
+﻿.hero-block {
+    position: relative;
+    width: 100%;
+    height: 300px;
+}
+.jumbotron {
+    background: #272A31;
+    border-radius: 0;
+}

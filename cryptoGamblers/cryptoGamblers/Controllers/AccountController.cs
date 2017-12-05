@@ -22,32 +22,26 @@ namespace cryptoGamblers.Controllers
 
         public AccountController() { }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
         }
 
-        public ApplicationSignInManager SignInManager
-        {
-            get
-            {
+        public ApplicationSignInManager SignInManager {
+            get {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set {
+                _signInManager = value;
             }
         }
 
-        public ApplicationUserManager UserManager
-        {
-            get
-            {
+        public ApplicationUserManager UserManager {
+            get {
                 return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
             }
-            private set
-            {
+            private set {
                 _userManager = value;
             }
         }
@@ -151,24 +145,25 @@ namespace cryptoGamblers.Controllers
         {
             if (ModelState.IsValid)
             {
-				//Avatar
-				if (Request.Files.Count > 0)
-				{
-					HttpPostedFileBase file = Request.Files[0];
-					if (file.ContentLength > 0)
-					{
-						var fileName = Path.GetFileName(file.FileName);
-						model.Avatar = Path.Combine(Server.MapPath("~/App_Data/uploads"), fileName);
-						file.SaveAs(model.Avatar);
-					}
-				}
+                //Avatar - check for uploaded files
+                if (Request.Files.Count > 0)
+                {
+                    HttpPostedFileBase file = Request.Files[0];
+                    if (file.ContentLength > 0)
+                    {
+                        string fileNameRandomExt = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+                        string uploadResult = Path.Combine(Server.MapPath("~/Content/uploads"), fileNameRandomExt);
+                        model.Avatar = fileNameRandomExt;
+                        file.SaveAs(uploadResult);
+                    }
+                }
 
-				var user = new ApplicationUser { UserName = model.Username, Email = model.Email, Balance = 100, Avatar = model.Avatar };
+                var user = new ApplicationUser { UserName = model.Username, Email = model.Email, Balance = 100, Avatar = model.Avatar };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
@@ -439,10 +434,8 @@ namespace cryptoGamblers.Controllers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
-        private IAuthenticationManager AuthenticationManager
-        {
-            get
-            {
+        private IAuthenticationManager AuthenticationManager {
+            get {
                 return HttpContext.GetOwinContext().Authentication;
             }
         }

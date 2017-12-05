@@ -1,0 +1,22 @@
+﻿@using Microsoft.AspNet.Identity
+@using Microsoft.AspNet.Identity.EntityFramework
+@using cryptoGamblers.Models
+@model cryptoGamblers.Models.UserProfileViewModel
+
+@{
+    ViewBag.Title = "Profile: " + Model.Username + " - ";
+}
+
+
+
+<div class="container body-content" style="margin-top:40px">
+    <div class="col-md-4">
+        <img src="~/Content/uploads/@Model.AvatarPath" class="img-rounded"  style="max-width: 350px"/>
+    </div>
+    <div class="col-md-4">
+        <h1>
+            Username: @Model.Username
+        </h1>
+        <p class=""><strong>Profile description: </strong>@Model.ProfileDescription</p>
+    </div>
+</div>
