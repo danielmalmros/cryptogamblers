@@ -20,44 +20,24 @@ namespace cryptoGamblers.Controllers
         public ActionResult QueueMe() {
             var userName = User.Identity.GetUserName();
             var userId = User.Identity.GetUserId();
-            
 
-            //var service = new QueueService();
-            //service.findOpponent(userName);
-
-            var queue = db.queueIn.FirstOrDefault(d => d.Opponent1 == userName);
+            var queue = db.queueIn.FirstOrDefault(d => d.Opponent2 == null);
 
             if (queue == null)
             {
-                System.Diagnostics.Debug.WriteLine(userName.ToString());
                 queue = db.queueIn.Create();
                 queue.Opponent1 = userName;
-                
+                db.queueIn.AddOrUpdate(queue);
             } else
             {
-                queue = db.queueIn.FirstOrDefault(d => d.Opponent2 == userName);
-
-
-
-
-                //db.queueIn.Attach(queue);
-                //db.Entry(queue).CurrentValues.SetValues(userName);
-
-                if (queue == null)
+                if (queue.Opponent1 != userName)
                 {
-                    //queue = db.queueIn.Find(userId);
-                    queue = db.queueIn.Create();
                     queue.Opponent2 = userName;
+                    db.queueIn.AddOrUpdate(queue);
                 }
-                //db.queueIn.AddOrUpdate(queue);
-
-
-
             }
-            db.queueIn.AddOrUpdate(queue);
             db.SaveChanges();
             return View();
-            
         }
     }
 }
