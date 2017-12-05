@@ -236,6 +236,10 @@
     <Compile Include="Migrations\201712011341309_Winstreak and winstreakmax.Designer.cs">
       <DependentUpon>201712011341309_Winstreak and winstreakmax.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712041957547_user.cs" />
+    <Compile Include="Migrations\201712041957547_user.Designer.cs">
+      <DependentUpon>201712041957547_user.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -337,6 +341,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712011341309_Winstreak and winstreakmax.resx">
       <DependentUpon>201712011341309_Winstreak and winstreakmax.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712041957547_user.resx">
+      <DependentUpon>201712041957547_user.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
