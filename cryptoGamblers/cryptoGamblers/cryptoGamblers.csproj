@@ -232,6 +232,14 @@
     <Compile Include="Migrations\201711301037468_avatar added to user.Designer.cs">
       <DependentUpon>201711301037468_avatar added to user.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712011341309_Winstreak and winstreakmax.cs" />
+    <Compile Include="Migrations\201712011341309_Winstreak and winstreakmax.Designer.cs">
+      <DependentUpon>201712011341309_Winstreak and winstreakmax.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712041957547_user.cs" />
+    <Compile Include="Migrations\201712041957547_user.Designer.cs">
+      <DependentUpon>201712041957547_user.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -248,6 +256,10 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Login\LoginForm.css" />
+    <Content Include="Content\uploads\1ea4447d-1498-4f3c-9f81-0bea923e5c40.jpg" />
+    <Content Include="Content\uploads\421d849c-5a73-4b0b-a77e-611dcf178790.jpg" />
+    <Content Include="Content\uploads\53esv.jpg" />
+    <Content Include="Content\uploads\cow.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -295,6 +307,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Manage\ManageBalance.cshtml" />
     <Content Include="Views\Queue\QueueMe.cshtml" />
+    <Content Include="Views\Manage\ChangeAvatar.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -325,6 +338,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711301037468_avatar added to user.resx">
       <DependentUpon>201711301037468_avatar added to user.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712011341309_Winstreak and winstreakmax.resx">
+      <DependentUpon>201712011341309_Winstreak and winstreakmax.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712041957547_user.resx">
+      <DependentUpon>201712041957547_user.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
