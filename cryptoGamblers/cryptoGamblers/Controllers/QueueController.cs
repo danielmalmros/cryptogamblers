@@ -21,7 +21,8 @@ namespace cryptoGamblers.Controllers
             var userName = User.Identity.GetUserName();
             var userId = User.Identity.GetUserId();
 
-            var queue = db.queueIn.FirstOrDefault(d => d.Opponent2 == null);
+            var queue = db.queueIn.FirstOrDefault(u => u.Opponent2 == null);
+            bool queueContains = db.queueIn.Any(t => t.Opponent1 != null && t.Opponent2 != null);
 
             if (queue == null)
             {
@@ -37,6 +38,12 @@ namespace cryptoGamblers.Controllers
                 }
             }
             db.SaveChanges();
+
+            if (queueContains)
+            {
+                System.Diagnostics.Debug.WriteLine("WE HAVE A MATCH FUCKERS!");
+            }
+
             return View();
         }
     }
