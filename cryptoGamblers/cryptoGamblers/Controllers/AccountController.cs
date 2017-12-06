@@ -51,6 +51,10 @@ namespace cryptoGamblers.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            if (HttpContext.User.Identity.IsAuthenticated)
+            {
+                return View("Error");
+            }
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }

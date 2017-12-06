@@ -106,4 +106,18 @@ namespace cryptoGamblers
             return new ApplicationSignInManager(context.GetUserManager<ApplicationUserManager>(), context.Authentication);
         }
     }
+
+
+    // The role manager 
+    public class ApplicationRoleManager : RoleManager<AppRole>, IDisposable
+    {
+        public ApplicationRoleManager(RoleStore<AppRole> store) : base(store) { }
+
+        public static ApplicationRoleManager Create(IdentityFactoryOptions<ApplicationRoleManager> options, IOwinContext context)
+        {
+            var manager = new ApplicationRoleManager(new RoleStore<AppRole>(context.Get<ApplicationDbContext>()));
+            return manager;
+            //return new ApplicationRoleManager(new RoleStore<AppRole>(context.Get<ApplicationDbContext>()));
+        }
+    }
 }
