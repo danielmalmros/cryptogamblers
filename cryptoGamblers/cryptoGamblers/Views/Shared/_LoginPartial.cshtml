@@ -16,7 +16,7 @@
         <li>
             @*@Html.ActionLink(User.Identity.GetUserName(), "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })*@
 
-            <a href="@Url.Action("Index", "Manage", new { area = "" })"><img src="~/Content/Uploads/@currentUser.Avatar" id="nav--profile-img"/><p id="nav--profile-name">@currentUser.UserName</p></a>
+            <a href="@Url.Action("Index", "Manage", new { area = "" })"><img src="~/Content/uploads/@currentUser.Avatar" id="nav--profile-img"/><p id="nav--profile-name">@currentUser.UserName</p></a>
         </li>
         <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
     </ul>
