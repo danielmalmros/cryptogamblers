@@ -63,11 +63,10 @@ namespace cryptoGamblers.Controllers
                     {
                         Username = user.UserName,
                         AvatarPath = user.Avatar,
-                        ProfileDescription = user.ProfileDescription
+                        ProfileDescription = user.ProfileDescription,
+                        WinStreak = user.WinStreak,
+                        WinStreakMax = user.WinStreakMax
                     };
-
-                    //ViewBag.Username = user.UserName;
-                    //ViewBag.Avatar = user.Avatar;
 
                     return View(model);
                 } catch (Exception e)
