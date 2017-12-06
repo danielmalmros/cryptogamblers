@@ -30,6 +30,10 @@ namespace cryptoGamblers.Models
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
+        static ApplicationDbContext()
+        {
+            Database.SetInitializer<ApplicationDbContext>(new IdentityDbInit());
+        }
 
         public static ApplicationDbContext Create()
         {
@@ -39,6 +43,10 @@ namespace cryptoGamblers.Models
         public DbSet<QueueIn> queueIn { get; set; }
         public DbSet<Match> Match { get; set; }
         public DbSet<AfterMatch> AfterMatch { get; set; }
+
+    }
+    public class IdentityDbInit : NullDatabaseInitializer<ApplicationDbContext>
+    {
 
     }
 }
