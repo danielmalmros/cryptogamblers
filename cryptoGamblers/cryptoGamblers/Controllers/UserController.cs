@@ -51,13 +51,12 @@ namespace cryptoGamblers.Controllers
             return View();
         }
 
-        public async Task<ActionResult> UserProfile()
+        public async Task<ActionResult> UserProfile( string id )
         {
-            string userName = Request.QueryString["username"];
+            if(id != null) { 
 
-            if(userName != null) { 
                 try { 
-                var user = await UserManager.FindByNameAsync(userName);
+                var user = await UserManager.FindByNameAsync(id);
 
                     UserProfileViewModel model = new UserProfileViewModel()
                     {
