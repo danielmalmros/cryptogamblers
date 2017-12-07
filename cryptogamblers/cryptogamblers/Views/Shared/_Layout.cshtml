@@ -30,6 +30,10 @@
                     {
                        <li>@Html.ActionLink("About", "Index", "About")</li>
                        <li>@Html.ActionLink("Hall of Fame", "Index", "HallofFame")</li>
+                        if (User.IsInRole("Admin"))
+                        {
+                            <li>@Html.ActionLink("Admin Panel", "Index", "Admin")</li>
+                        }
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")

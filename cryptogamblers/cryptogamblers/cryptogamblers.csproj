@@ -238,6 +238,10 @@
     <Compile Include="Migrations\201712011341309_Winstreak and winstreakmax.Designer.cs">
       <DependentUpon>201712011341309_Winstreak and winstreakmax.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712041957547_user.cs" />
+    <Compile Include="Migrations\201712041957547_user.Designer.cs">
+      <DependentUpon>201712041957547_user.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\201712051025139_admincontroller.cs" />
     <Compile Include="Migrations\201712051025139_admincontroller.Designer.cs">
       <DependentUpon>201712051025139_admincontroller.cs</DependentUpon>

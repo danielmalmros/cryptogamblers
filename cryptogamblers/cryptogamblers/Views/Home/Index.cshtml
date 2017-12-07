@@ -29,7 +29,7 @@
             @foreach (ApplicationUser user in Model)
             {
                 <tr class="winstreak-users">
-                    <td>@Html.ActionLink(user.UserName, "UserProfile", "User", new { username = user.UserName }, null) </td>
+                    <td>@Html.ActionLink(user.UserName, "UserProfile", "User", new { id = user.UserName }, null) </td>
                     <td>@user.WinStreakMax</td>
                 </tr>
             }
