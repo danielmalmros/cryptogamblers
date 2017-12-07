@@ -22,8 +22,6 @@ namespace cryptoGamblers.Controllers
             var userId = User.Identity.GetUserId();
 
             var queue = db.queueIn.FirstOrDefault(u => u.Opponent2 == null);
-            bool queueContains = db.queueIn.Any(t => t.Opponent1 != null && t.Opponent2 != null);
-
             if (queue == null)
             {
                 queue = db.queueIn.Create();
@@ -39,17 +37,19 @@ namespace cryptoGamblers.Controllers
             }
             db.SaveChanges();
 
+            bool queueContains = db.queueIn.Any(t => t.Opponent1 != null && t.Opponent2 != null);
             if (queueContains)
             {
-                System.Diagnostics.Debug.WriteLine("WE HAVE A MATCH FUCKERS!");
                 QueueIn queueData = db.queueIn.Where(x => x.Opponent1 == userName || x.Opponent2 == userName).Select(x => x).FirstOrDefault();
                 Match newMatch = new Match { Opponent1 = queueData.Opponent1, Opponent2 = queueData.Opponent2 };
                 db.Match.AddOrUpdate(newMatch);
-                // TODO: Slet data fra queuetabellen
+
+
+                db.queueIn.Remove(queue);
 
                 db.SaveChanges();
             }
-
+            
             return View();
         }
     }
