@@ -17,7 +17,7 @@ namespace cryptoGamblers.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Queue
-        public ActionResult QueueMe() {
+        public Models.ActionResult<Match> QueueMe() {
             var userName = User.Identity.GetUserName();
             var userId = User.Identity.GetUserId();
 
@@ -38,19 +38,26 @@ namespace cryptoGamblers.Controllers
             db.SaveChanges();
 
             bool queueContains = db.queueIn.Any(t => t.Opponent1 != null && t.Opponent2 != null);
+            Match newMatch = null;
+
             if (queueContains)
             {
                 QueueIn queueData = db.queueIn.Where(x => x.Opponent1 == userName || x.Opponent2 == userName).Select(x => x).FirstOrDefault();
-                Match newMatch = new Match { Opponent1 = queueData.Opponent1, Opponent2 = queueData.Opponent2 };
+                 newMatch = new Match { Opponent1 = queueData.Opponent1, Opponent2 = queueData.Opponent2 };
                 db.Match.AddOrUpdate(newMatch);
+
+                newMatch = db.Match.FirstOrDefault(x => x.Opponent1 == newMatch.Opponent1 && x.Opponent2 == newMatch.Opponent2);
 
 
                 db.queueIn.Remove(queue);
 
                 db.SaveChanges();
             }
-            
-            return View();
+
+            return  new Models.ActionResult<Match>{
+                Object = newMatch,
+                Status = new HttpStatusCodeResult(200)
+            };
         }
     }
 }
