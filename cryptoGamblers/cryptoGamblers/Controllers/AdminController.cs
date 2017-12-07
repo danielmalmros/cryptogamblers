@@ -36,7 +36,6 @@ namespace cryptoGamblers.Controllers
             return View();
         }
 
-
         //
         // POST: /Admin/CreateUser
         [HttpPost]

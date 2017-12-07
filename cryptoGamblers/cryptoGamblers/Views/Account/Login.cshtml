@@ -23,7 +23,7 @@
                                 @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
                                 @Html.PasswordFor(m => m.Password, new { @class = "form-control loginInput", @placeholder = "Password" })
                                 @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                                <input type="submit" value="Let me in" class="btn btn-default loginInput   " />
+                                <input type="submit" value="Let me in" class="btn btn-default loginInput" />
                                 @Html.ActionLink("Register as a new user", "Register", new { @class = "loginInput" })
                             </div>
                         </div>
