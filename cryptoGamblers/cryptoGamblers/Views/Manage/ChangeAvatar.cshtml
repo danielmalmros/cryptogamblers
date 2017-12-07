@@ -1,11 +1,17 @@
-﻿@model cryptoGamblers.Models.ChangeAvatarViewModel
+﻿@using Microsoft.AspNet.Identity
+@using Microsoft.AspNet.Identity.EntityFramework
+@using cryptoGamblers.Models
+@model cryptoGamblers.Models.ChangeAvatarViewModel
 @{
-    ViewBag.Title = "Change Avatar";
+	ViewBag.Title = "Change Avatar";
+		var currentUserId = User.Identity.GetUserId();
+		var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+		var currentUser = manager.FindById(User.Identity.GetUserId());
 }
 
 <div class="container body-content">
     <h2>@ViewBag.Title</h2>
-
+	<img src="../Content/uploads/@currentUser.Avatar" style="width: 200px" />
     @using (Html.BeginForm("ChangeAvatar", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form", data_ajax = "false", enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
