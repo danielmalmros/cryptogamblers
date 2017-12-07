@@ -209,6 +209,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MatchController.cs" />
     <Compile Include="Controllers\QueueController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -236,10 +237,6 @@
     <Compile Include="Migrations\201712011341309_Winstreak and winstreakmax.cs" />
     <Compile Include="Migrations\201712011341309_Winstreak and winstreakmax.Designer.cs">
       <DependentUpon>201712011341309_Winstreak and winstreakmax.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201712041030150_added profile description.cs" />
-    <Compile Include="Migrations\201712041030150_added profile description.Designer.cs">
-      <DependentUpon>201712041030150_added profile description.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201712051025139_admincontroller.cs" />
     <Compile Include="Migrations\201712051025139_admincontroller.Designer.cs">
@@ -271,6 +268,7 @@
     <Content Include="Content\uploads\421d849c-5a73-4b0b-a77e-611dcf178790.jpg" />
     <Content Include="Content\uploads\53esv.jpg" />
     <Content Include="Content\uploads\cow.png" />
+    <Content Include="Content\_loginPartial\_loginPartial.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -325,7 +323,9 @@
     <Content Include="Views\Admin\Edit.cshtml" />
     <Content Include="Views\Admin\EditRole.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\Match\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
   </ItemGroup>
@@ -360,9 +360,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712041957547_user.resx">
       <DependentUpon>201712041957547_user.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712041030150_added profile description.resx">
-      <DependentUpon>201712041030150_added profile description.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712051025139_admincontroller.resx">
       <DependentUpon>201712051025139_admincontroller.cs</DependentUpon>
