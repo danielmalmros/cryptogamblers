@@ -109,6 +109,96 @@ namespace cryptoGamblers.Controllers
             }
         }
 
+        //
+        // POST: Edit
+        [HttpPost]
+        public async Task<ActionResult> Edit(string id, string email, string password, double balance, string profiledescription, string avatar)
+        {
+            ApplicationUser user = await UserManager.FindByIdAsync(id);
+            if (user != null)
+            {
+                user.Email = email;
+                IdentityResult validEmail = await UserManager.UserValidator.ValidateAsync(user);
+                if (!validEmail.Succeeded)
+                {
+                    return View("Error", validEmail.Errors);
+                }
+
+                IdentityResult validPass = null;
+                if (password != string.Empty)
+                {
+                    validPass = await UserManager.PasswordValidator.ValidateAsync(password);
+                    if (validPass.Succeeded)
+                    {
+                        user.PasswordHash = UserManager.PasswordHasher.HashPassword(password);
+                    }
+                    else
+                    {
+                        return View("Error", validPass.Errors);
+                    }
+                }
+
+                user.Balance = balance;
+                IdentityResult validBalance = await UserManager.UserValidator.ValidateAsync(user);
+                if (!validBalance.Succeeded)
+                {
+                    return View("Error", validEmail.Errors);
+                }
+
+                user.ProfileDescription = profiledescription;
+                IdentityResult validDescription = await UserManager.UserValidator.ValidateAsync(user);
+                if (!validDescription.Succeeded)
+                {
+                    return View("Error", validEmail.Errors);
+                }
+
+                user.Avatar = avatar;
+                IdentityResult validAvatar = await UserManager.UserValidator.ValidateAsync(user);
+                if (Request.Files.Count > 0)
+                {
+                    HttpPostedFileBase file = Request.Files[0];
+                    //Check for image size
+                    if (file.ContentLength > 0 && file.ContentLength < 4000000)
+                    {
+                        if (file.ContentType.Contains("image/jpeg") || file.ContentType.Contains("image/png") || file.ContentType.Contains("image/gif"))
+                        {
+                            //Create random name & save with path
+                            string fileNameRandomExt = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+                            string uploadResult = Path.Combine(Server.MapPath("~/Content/uploads"), fileNameRandomExt);
+                            file.SaveAs(uploadResult);
+                            avatar = fileNameRandomExt;
+                            if (!validAvatar.Succeeded)
+                            {
+                                return View("Error", validAvatar.Errors);
+                            }
+                        }
+                    }
+                }
+                
+
+
+                if ((validEmail.Succeeded && validPass == null && validBalance.Succeeded && validDescription.Succeeded && validAvatar.Succeeded) || (validEmail.Succeeded && password != string.Empty && validPass.Succeeded && validBalance.Succeeded && validDescription.Succeeded && validAvatar.Succeeded))
+                {
+                    IdentityResult result = await UserManager.UpdateAsync(user);
+                    if (result.Succeeded)
+                    {
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        return View("Error", result.Errors);
+                    }
+                }
+            }
+            else
+            {
+                ModelState.AddModelError("", "User Not Found");
+            }
+            return View(user);
+        }
+
+
+
 
         //
         // CreateRole
