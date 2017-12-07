@@ -2,6 +2,7 @@
 @model IEnumerable<ApplicationUser>
 @{
     ViewBag.Title = "Home Page";
+    ViewBag.UserprofileLink = "/User/UserProfile?username=";
 }
 <div class="jumbotron">
     <div class="container body-content">
@@ -29,7 +30,7 @@
             @foreach (ApplicationUser user in Model)
             {
                 <tr class="winstreak-users">
-                    <td>@user.UserName</td>
+                    <td>@Html.ActionLink(user.UserName, "UserProfile", "User", new { username = user.UserName }, null) </td>
                     <td>@user.WinStreakMax</td>
                 </tr>
             

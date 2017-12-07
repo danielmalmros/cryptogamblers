@@ -51,6 +51,10 @@ namespace cryptoGamblers.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            if (HttpContext.User.Identity.IsAuthenticated)
+            {
+                return View("Error");
+            }
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -155,6 +159,10 @@ namespace cryptoGamblers.Controllers
                         string uploadResult = Path.Combine(Server.MapPath("~/Content/uploads"), fileNameRandomExt);
                         model.Avatar = fileNameRandomExt;
                         file.SaveAs(uploadResult);
+                    } else
+                    { if (file.ContentLength == 0) {
+                            model.Avatar = "placeholder_profile_picture.jpg";
+                        }
                     }
                 }
 

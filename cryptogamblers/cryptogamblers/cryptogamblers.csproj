@@ -206,6 +206,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\QueueController.cs" />
@@ -236,12 +237,22 @@
     <Compile Include="Migrations\201712011341309_Winstreak and winstreakmax.Designer.cs">
       <DependentUpon>201712011341309_Winstreak and winstreakmax.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712041030150_added profile description.cs" />
+    <Compile Include="Migrations\201712041030150_added profile description.Designer.cs">
+      <DependentUpon>201712041030150_added profile description.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712051025139_admincontroller.cs" />
+    <Compile Include="Migrations\201712051025139_admincontroller.Designer.cs">
+      <DependentUpon>201712051025139_admincontroller.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\201712041957547_user.cs" />
     <Compile Include="Migrations\201712041957547_user.Designer.cs">
       <DependentUpon>201712041957547_user.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AdminIndexViewModel.cs" />
+    <Compile Include="Models\AppRole.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\QueueModels.cs" />
@@ -308,6 +319,11 @@
     <Content Include="Views\Manage\ManageBalance.cshtml" />
     <Content Include="Views\Queue\QueueMe.cshtml" />
     <Content Include="Views\Manage\ChangeAvatar.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\CreateUser.cshtml" />
+    <Content Include="Views\Admin\CreateRole.cshtml" />
+    <Content Include="Views\Admin\Edit.cshtml" />
+    <Content Include="Views\Admin\EditRole.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -344,6 +360,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712041957547_user.resx">
       <DependentUpon>201712041957547_user.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712041030150_added profile description.resx">
+      <DependentUpon>201712041030150_added profile description.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712051025139_admincontroller.resx">
+      <DependentUpon>201712051025139_admincontroller.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

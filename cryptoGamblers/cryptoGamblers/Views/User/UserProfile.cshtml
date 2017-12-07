@@ -8,15 +8,61 @@
 }
 
 
+<div class="container">
+    <div class="userprofile-wrapper">
+        <div class="userprofile-item">
+            <img src="~/Content/uploads/@Model.AvatarPath" class="img-rounded" style="max-width: 250px" />
+        </div>
+        <div class="userprofile-item">
+            <h1>
+                @Model.Username
+            </h1>
+            <p>@Model.ProfileDescription</p>
+            <hr class="userprofile-hr" />
+            @{if (Model.WinStreak > 0)
+                {
+                    <p><strong>🚨 @Model.Username is currently on a winstreak! 🚨 </strong></p>
+                }
+            }
+            <p id="winstreak" data-winstreak="@Model.WinStreak">
+            <strong>Current winstreak:</strong> @Model.WinStreak
+            </p>
+            <p id="maxWinstreak" data-maxwinstreak="@Model.WinStreakMax">
+                <strong>All-Time Winstreak:</strong> @Model.WinStreakMax
+            </p>
 
-<div class="container body-content" style="margin-top:40px">
-    <div class="col-md-4">
-        <img src="~/Content/uploads/@Model.AvatarPath" class="img-rounded"  style="max-width: 350px"/>
-    </div>
-    <div class="col-md-4">
-        <h1>
-            Username: @Model.Username
-        </h1>
-        <p class=""><strong>Profile description: </strong>@Model.ProfileDescription</p>
+            <div class="circle" id="circles-1"></div>
+
+        </div>
     </div>
 </div>
+
+
+
+@Scripts.Render("~/bundles/circles")
+
+<script>
+    var winstreak = document.getElementById("winstreak").dataset.winstreak;
+    var maxWinstreak = document.getElementById("maxWinstreak").dataset.maxwinstreak;
+
+    if (maxWinstreak > 0) {
+        var myCircle = Circles.create({
+            id: 'circles-1',
+            radius: 40,
+            value: winstreak,
+            maxValue: maxWinstreak,
+            width: 12,
+            text: function (value) {
+                return value + '/' + this.getMaxValue()
+            },
+            colors: ['rgb(0, 202, 254)', 'rgb(31, 172, 208)'],
+            duration: 600,
+            wrpClass: 'circles-wrp',
+            textClass: 'circles-text',
+            valueStrokeClass: 'circles-valueStroke',
+            maxValueStrokeClass: 'circles-maxValueStroke',
+            styleWrapper: true,
+            styleText: false
+        });
+    }
+</script>

@@ -14,5 +14,11 @@ namespace cryptoGamblers.Models
 
         [Display(Name = "Profile description")]
         public string ProfileDescription { get; set; }
+
+        [Display(Name = "Profile description")]
+        public int WinStreak {get; set;}
+
+        [Display(Name = "Profile description")]
+        public int WinStreakMax {get; set;}
     }
 }
