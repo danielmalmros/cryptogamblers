@@ -149,27 +149,7 @@ namespace cryptoGamblers.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				//Avatar - check for uploaded files
-				if (Request.Files.Count > 0)
-				{
-					HttpPostedFileBase file = Request.Files[0];
-					if (file.ContentLength > 0)
-					{
-						string fileNameRandomExt = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
-						string uploadResult = Path.Combine(Server.MapPath("~/Content/uploads"), fileNameRandomExt);
-						model.Avatar = fileNameRandomExt;
-						file.SaveAs(uploadResult);
-					}
-					else
-					{
-						if (file.ContentLength == 0)
-						{
-							model.Avatar = "placeholder_profile_picture.jpg";
-						}
-					}
-				}
-
-				var user = new ApplicationUser { UserName = model.Username, Email = model.Email, Balance = 100, Avatar = model.Avatar };
+				var user = new ApplicationUser { UserName = model.Username, Email = model.Email, Balance = 100, Avatar = "placeholder_profile_picture.jpg" };
 				var result = await UserManager.CreateAsync(user, model.Password);
 				if (result.Succeeded)
 				{
