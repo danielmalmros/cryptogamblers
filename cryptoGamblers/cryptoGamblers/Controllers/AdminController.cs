@@ -13,7 +13,7 @@ using System.Web.Mvc;
 
 namespace cryptoGamblers.Controllers
 {
-	[Authorize(Roles = "Admin")]
+	[Authorize]
 	public class AdminController : Controller
 	{
 		// GET: Admin
