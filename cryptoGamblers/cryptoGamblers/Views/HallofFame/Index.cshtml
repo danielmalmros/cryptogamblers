@@ -1,9 +1,27 @@
-﻿
+﻿@using cryptoGamblers.Models
+@model IEnumerable<ApplicationUser>
 @{
     ViewBag.Title = "Hall of Fame";
+    ViewBag.UserprofileLink = "/User/UserProfile?username=";
 }
 
 <div class="container body-content">
-    <h2>Hall of Fame</h2>
-</div>
+    <div class="row row--modified">
+        <h2>Hall of Winstreak Top 100 Fame</h2>
+        <p>Showing the top 100 users with the highest winstreak</p>
+        <table class="table table-striped table-borderless">
+            <tr class="winstreak-header">
+                <th>Username</th>
+                <th>Winstreak</th>
+            </tr>
+            @foreach (ApplicationUser user in Model)
+            {
+                <tr class="winstreak-users">
+                    <td>@Html.ActionLink(user.UserName, "UserProfile", "User", new { id = user.UserName }, null) </td>
+                    <td>@user.WinStreakMax</td>
+                </tr>
 
+            }
+        </table>
+    </div>
+</div>
