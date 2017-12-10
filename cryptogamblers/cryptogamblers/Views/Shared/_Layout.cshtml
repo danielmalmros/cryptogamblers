@@ -7,7 +7,10 @@
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700" rel="stylesheet">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <link href="" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top custom-nav">
@@ -46,6 +49,7 @@
         </footer>
     </div>
 
+<<<<<<< HEAD
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
@@ -56,5 +60,8 @@
             ]('scrolled');
         });
     </script>
+=======
+
+>>>>>>> d8de7151f097d96da75b409357dee40ffe265527
 </body>
 </html>

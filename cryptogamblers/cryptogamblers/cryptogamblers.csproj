@@ -209,6 +209,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MatchController.cs" />
     <Compile Include="Controllers\QueueController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -245,8 +246,13 @@
     <Compile Include="Migrations\201712051025139_admincontroller.Designer.cs">
       <DependentUpon>201712051025139_admincontroller.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712080848465_date added to match.cs" />
+    <Compile Include="Migrations\201712080848465_date added to match.Designer.cs">
+      <DependentUpon>201712080848465_date added to match.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ActionResult.cs" />
     <Compile Include="Models\AdminIndexViewModel.cs" />
     <Compile Include="Models\AppRole.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -267,6 +273,7 @@
     <Content Include="Content\uploads\421d849c-5a73-4b0b-a77e-611dcf178790.jpg" />
     <Content Include="Content\uploads\53esv.jpg" />
     <Content Include="Content\uploads\cow.png" />
+    <Content Include="Content\_loginPartial\_loginPartial.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -287,14 +294,18 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -321,7 +332,9 @@
     <Content Include="Views\Admin\Edit.cshtml" />
     <Content Include="Views\Admin\EditRole.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\Match\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
   </ItemGroup>
@@ -359,6 +372,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712051025139_admincontroller.resx">
       <DependentUpon>201712051025139_admincontroller.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712080848465_date added to match.resx">
+      <DependentUpon>201712080848465_date added to match.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

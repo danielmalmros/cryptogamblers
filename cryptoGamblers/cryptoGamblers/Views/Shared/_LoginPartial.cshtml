@@ -7,12 +7,13 @@
     var currentUser = manager.FindById(User.Identity.GetUserId());
 }
 @if (Request.IsAuthenticated)
-{
+{  <button id="button" class="btn btn-default loginInput">Queue me up</button>   <div id="loader" class="loader"></div>  
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
     @Html.AntiForgeryToken()
-
+      
     <ul class="nav navbar-nav navbar-right menu-items">
+<<<<<<< HEAD
         <li class="nav-game-find">@Html.ActionLink("Find Game", "QueueMe", "Queue", new { Area = "" }, new { })</li>
         <li class="dropdown">
             @*@Html.ActionLink(User.Identity.GetUserName(), "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })*@
@@ -29,6 +30,10 @@
                 <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
             </ul>
             
+=======
+        <li>
+            <a href="@Url.Action("Index", "Manage", new { area = "" })"><img src="~/Content/uploads/@currentUser.Avatar" id="nav--profile-img"/><p id="nav--profile-name">@currentUser.UserName</p></a>
+>>>>>>> d8de7151f097d96da75b409357dee40ffe265527
         </li>
     </ul>
     }
@@ -40,3 +45,14 @@ else
         <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
     </ul>
 }
+<script>
+    $("#button").click(function () {
+        $("#button").css("display", "none"); 
+        $("#loader").css("display", "block");
+        $.ajax({
+            url: "/queue/QueueMe", success: function (result) {
+                console.log(result);
+            }
+        });
+    });
+</script>

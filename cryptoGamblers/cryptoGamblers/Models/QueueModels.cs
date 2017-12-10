@@ -17,6 +17,7 @@ namespace cryptoGamblers.Models
         public int MatchId { get; set; }
         public string Opponent1 { get; set; }
         public string Opponent2 { get; set; }
+        public DateTime Date { get; set; }
     }
     public class AfterMatch
     {
