@@ -109,5 +109,22 @@ namespace cryptoGamblers.Controllers
 
             return Json(response, JsonRequestBehavior.AllowGet);
         }
+
+        // GET: Match
+        public ActionResult Match()
+        {
+            return View();
+        }
+
+        // POST: Match
+        [HttpPost]
+        public ActionResult Match(FormCollection fc)
+        {
+            Random rnd = new Random();
+            double i = rnd.NextDouble() * 6;
+            ViewBag.Face = i;
+
+            return View();
+        }
     }
 }
