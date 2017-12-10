@@ -107,11 +107,9 @@ textarea {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-<<<<<<< HEAD
     margin-top: -77px;
 }
-=======
-}
+
 
 .loader {
     border: 16px solid #f3f3f3; /* Light grey */
@@ -132,4 +130,4 @@ textarea {
         transform: rotate(360deg);
     }
 }
->>>>>>> d8de7151f097d96da75b409357dee40ffe265527
+
