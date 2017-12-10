@@ -31,7 +31,8 @@ namespace cryptoGamblers
                       "~/Content/site.css",
                       "~/Content/Login/LoginForm.css",
 					  "~/Content/Styles/Nav.css",
-                      "~/Content/Styles/UserProfile.css"));
+                      "~/Content/Styles/UserProfile.css",
+					  "~/Content/Styles/BootstrapOverwrite.css"));
         }
     }
 }

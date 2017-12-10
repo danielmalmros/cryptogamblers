@@ -94,7 +94,7 @@ namespace cryptoGamblers.Controllers
                 QueueIn queueData = db.queueIn.Where(x => x.Opponent1 == userName || x.Opponent2 == userName).Select(x => x).FirstOrDefault();
                 newMatch = new Match { Opponent1 = queueData.Opponent1, Opponent2 = queueData.Opponent2, Date = DateTime.Now };
                 db.Match.AddOrUpdate(newMatch);
-
+				db.SaveChanges();
                 newMatch = db.Match.FirstOrDefault(x => x.Opponent1 == newMatch.Opponent1 && x.Opponent2 == newMatch.Opponent2);
 
                 db.queueIn.Remove(queue);
