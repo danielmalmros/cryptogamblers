@@ -10,8 +10,8 @@ using System.Web.Mvc;
 
 namespace cryptoGamblers.Controllers
 {
-    [Authorize]
-    public class QueueController : Controller
+   
+    public class QueueController : AuthorizeController
     {
 
         private ApplicationDbContext db = new ApplicationDbContext();

@@ -12,8 +12,8 @@ using Microsoft.AspNet.Identity.Owin;
 
 namespace cryptoGamblers.Controllers
 {
-    [Authorize]
-    public class HomeController : Controller
+    
+    public class HomeController : AuthorizeController
     {
        
 

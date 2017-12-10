@@ -7,33 +7,33 @@
     var currentUser = manager.FindById(User.Identity.GetUserId());
 }
 @if (Request.IsAuthenticated)
-{  <button id="button" class="btn btn-default loginInput">Queue me up</button>   <div id="loader" class="loader"></div>  
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+{
+    
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm"}))
     {
     @Html.AntiForgeryToken()
-      
-    <ul class="nav navbar-nav navbar-right menu-items">
-        <li>
-            <a href="@Url.Action("Index", "Manage", new { area = "" })"><img src="~/Content/uploads/@currentUser.Avatar" id="nav--profile-img"/><p id="nav--profile-name">@currentUser.UserName</p></a>
-        </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-    </ul>
+        <div class="rightNav">
+            <div class="rightNavBtnSection">
+                <button type="button" id="button" class="btn btn-default queueButton">Queue me up</button>
+                <div id="loader" class="loader"></div>
+                <a href="@Url.Action("Index", "Manage", new { area = "" })">
+                    <img src="~/Content/uploads/@currentUser.Avatar" id="nav--profile-img" />
+                    <p id="nav--profile-name">@currentUser.UserName</p>
+                </a>
+                <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+            </div>
+        </div>
     }
 }
-else
-{
-    <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-    </ul>
-}
+
 <script>
     $("#button").click(function () {
         $("#button").css("display", "none"); 
         $("#loader").css("display", "block");
         $.ajax({
             url: "/queue/QueueMe", success: function (result) {
-                console.log(result);
+                var redirectUrl = "http://localhost:49816/Match/Index?id=" + result.Object.MatchId;
+                window.location = redirectUrl;
             }
         });
     });
