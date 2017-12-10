@@ -4,16 +4,16 @@
     ViewBag.Title = "Home Page";
     ViewBag.UserprofileLink = "/User/UserProfile?username=";
 }
+
 <div class="jumbotron">
     <div class="container body-content">
-        <h1 class="display-3">CryptoGamblers</h1>
-        <p class="lead">CryptoGamblers is the leading bitcoin gambling site for onion users.</p>
-        <hr class="my-4">
-        <p>Gamble all your bitcoins here!</p>
-        <p class="lead">
-            @Html.ActionLink("Queue me the fuck up!", "QueueMe", "Queue", new { Area = "" }, new { })
-        </p>
+        <div class="text-center">
+            <h2 class="jumbo-title">Gamble all your bitcoins</h2>
+            @*<a href="#" class="play-button">PLAY NOW</a>*@
+            @Html.ActionLink("PLAY NOW", "QueueMe", "Queue", new { Area = "" }, new { @class = "play-button" })
+        </div>
     </div>
+  <div class="top-background"><svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 699.08 31"><defs><style>.cls-1,.cls-2{fill:#0c131c;}.cls-2{stroke:#f7931a;stroke-miterlimit:10;stroke-width:4px;}</style></defs><title>Untitled-3</title><rect class="cls-1" x="2.41" y="27" width="694" height="4"/><polyline class="cls-2" points="1.41 29.5 28.91 2 670.41 2 697.66 29.25"/></svg></div>
 </div>
 
 
@@ -37,4 +37,15 @@
             @Html.ActionLink("View top 100","Index","HallofFame")
         </table>
     </div>
+    <div class="row row--modified">
+        <h1 class="display-3">CryptoGamblers</h1>
+        <p class="lead">CryptoGamblers is the leading bitcoin gambling site for onion users.</p>
+        <hr class="my-4">
+        <p>Gamble all your bitcoins here!</p>
+        <p class="lead">
+            @Html.ActionLink("Queue me the fuck up!", "QueueMe", "Queue", new { Area = "" }, new { })
+        </p>
+    </div>
+    <div style="margin-bottom:500px"></div>
 </div>
+

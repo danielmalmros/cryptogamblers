@@ -13,12 +13,23 @@
     @Html.AntiForgeryToken()
 
     <ul class="nav navbar-nav navbar-right menu-items">
-        <li>
+        <li class="nav-game-find">@Html.ActionLink("Find Game", "QueueMe", "Queue", new { Area = "" }, new { })</li>
+        <li class="dropdown">
             @*@Html.ActionLink(User.Identity.GetUserName(), "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })*@
-
-            <a href="@Url.Action("Index", "Manage", new { area = "" })"><img src="~/Content/uploads/@currentUser.Avatar" id="nav--profile-img"/><p id="nav--profile-name">@currentUser.UserName</p></a>
+            <a href="#" class="dropdown-toggle" id="nav--profile" data-toggle="dropdown">
+                <img src="~/Content/uploads/@currentUser.Avatar" id="nav--profile-img" />
+                <div>
+                    <p id="nav--profile-name">@currentUser.UserName</p>
+                    <p id="nav--profile-balance">@currentUser.Balance</p>
+                </div>
+            </a>
+            <ul class="dropdown-menu">
+                <li>@Html.ActionLink("My Profile", "UserProfile", "User", new { id = currentUser.UserName }, null)</li>
+                <li><a href="@Url.Action("Index", "Manage", new { area = "" })">Manage Profile</a></li>
+                <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+            </ul>
+            
         </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
     </ul>
     }
 }
