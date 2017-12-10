@@ -13,8 +13,8 @@ using System.Web.Mvc;
 
 namespace cryptoGamblers.Controllers
 {
-	[Authorize]
-	public class AdminController : Controller
+	
+	public class AdminController : AuthorizeController
 	{
 		// GET: Admin
 		public ActionResult Index()

@@ -207,6 +207,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AuthorizeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MatchController.cs" />
@@ -331,9 +332,10 @@
     <Content Include="Views\Admin\CreateRole.cshtml" />
     <Content Include="Views\Admin\Edit.cshtml" />
     <Content Include="Views\Admin\EditRole.cshtml" />
+    <Content Include="Views\Match\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Views\Match\" />
+    <Folder Include="Views\Authorize\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

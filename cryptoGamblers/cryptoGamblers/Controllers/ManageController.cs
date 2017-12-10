@@ -11,8 +11,7 @@ using System.Web.Mvc;
 
 namespace cryptoGamblers.Controllers
 {
-	[Authorize]
-	public class ManageController : Controller
+	public class ManageController : AuthorizeController
 	{
 		private ApplicationSignInManager _signInManager;
 		private ApplicationUserManager _userManager;
