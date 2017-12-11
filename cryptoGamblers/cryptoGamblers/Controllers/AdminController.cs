@@ -17,12 +17,17 @@ namespace cryptoGamblers.Controllers
 	public class AdminController : AuthorizeController
 	{
 		// GET: Admin
-		public ActionResult Index()
+		public ActionResult Index(string searchString)
 		{
 			IEnumerable<ApplicationUser> allUsers = UserManager.Users.ToList();
 			IEnumerable<AppRole> allRoles = RoleManager.Roles.ToList();
 
-			AdminIndexViewModel model = new AdminIndexViewModel
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                allUsers = allUsers.Where(u => u.UserName.Contains(searchString));
+            }
+
+            AdminIndexViewModel model = new AdminIndexViewModel
 			{
 				AllRoles = allRoles,
 				AllUsers = allUsers

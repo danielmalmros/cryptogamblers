@@ -1,0 +1,62 @@
+﻿.first-place-header {
+    margin: 0;
+    text-transform: uppercase;
+    color: #fff;
+    text-align: center;
+    font-weight: 300;
+    letter-spacing: 3px;
+}
+
+.first-place-header span {
+    font-weight: 700;
+}
+
+hr {
+    border: none;
+    height: 2px;
+    background: linear-gradient(to right, rgba(247,147,26,0) 0%,rgba(247,147,26,1) 20%,rgba(247,147,26,1) 80%,rgba(247,147,26,0) 100%);
+    -box-shadow: 0px 0px 15px -2px rgba(247,148,26,1);
+    position: relative;
+    overflow: visible;
+}
+
+hr.big-hr {
+    height: 5px;
+    background: linear-gradient(to right, rgba(247,147,26,0) 0%,rgba(247,147,26,0) 5%,rgba(247,147,26,1) 20%,rgba(247,147,26,1) 80%,rgba(247,147,26,0) 95%,rgba(247,147,26,0) 100%);
+    margin: 3em;
+}
+
+hr.big-hr::after {
+    content: "";
+    position: absolute;
+    width: 80%;
+    height: 100%;
+    box-shadow: 0px 0px 15px -1px rgba(247,148,26,.7);
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    border-radius: 100%/5px;
+}
+
+.leaderboard--winner {
+    text-align: center;
+    font-size: 6vw;
+    font-weight: 700;
+    color: #fff;
+    white-space: pre;
+}
+
+.leaderboard--winner-streak {
+    text-align: center;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    -font-size: 2em;
+    color: #fff;
+    margin-bottom: 0;
+}
+
+.streak-count {
+    font-weight: 700;
+    margin: 0;
+}
