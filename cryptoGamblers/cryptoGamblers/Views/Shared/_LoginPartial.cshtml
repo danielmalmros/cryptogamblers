@@ -7,9 +7,36 @@
     var currentUser = manager.FindById(User.Identity.GetUserId());
 }
 @if (Request.IsAuthenticated)
+
 {
-    
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm"}))
+    @*<button id="button" class="btn btn-default loginInput">Queue me up</button>   <div id="loader" class="loader"></div>*@  
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+    @Html.AntiForgeryToken()
+
+        <ul class="nav navbar-nav navbar-right menu-items">
+            <li class="nav-game-find">@Html.ActionLink("Find Game", "QueueMe", "Queue", new { Area = "" }, new { id = "button" })<div id="loader" class="loader"></div></li>
+            <li class="dropdown">
+                @*@Html.ActionLink(User.Identity.GetUserName(), "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })*@
+                <a href="#" class="dropdown-toggle" id="nav--profile" data-toggle="dropdown">
+                    <img src="~/Content/uploads/@currentUser.Avatar" id="nav--profile-img" />
+                    <div>
+                        <p id="nav--profile-name">@currentUser.UserName</p>
+                        <p id="nav--profile-balance">@currentUser.Balance</p>
+                    </div>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>@Html.ActionLink("My Profile", "UserProfile", "User", new { id = currentUser.UserName }, null)</li>
+                    <li><a href="@Url.Action("Index", "Manage", new { area = "" })">Manage Profile</a></li>
+                    <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+                </ul>
+
+            </li>
+        </ul>
+
+    }
+
+    @*using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm"}))
     {
     @Html.AntiForgeryToken()
         <div class="rightNav">
@@ -23,7 +50,8 @@
                 <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
             </div>
         </div>
-    }
+
+    }*@
 }
 
 <script>

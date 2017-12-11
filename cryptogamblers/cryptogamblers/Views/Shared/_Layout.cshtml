@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - CryptoGamblers</title>
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700" rel="stylesheet">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
@@ -12,7 +13,7 @@
     <link href="" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-inverse navbar-fixed-top custom-nav">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -20,7 +21,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="@Url.Action("Index", "Home", new { area = "" })">
+                <a href="@Url.Action("Index", "Home", new { area = "" })" class="navbar-brand">
                     <img src="@Url.Content("~/Content/Images/logo.png")" />
                 </a>
             </div>
@@ -48,6 +49,15 @@
         </footer>
     </div>
 
+
+    
+    <script>
+        window.addEventListener('scroll', function () {
+            document.body.classList[
+                window.scrollY > 400 ? 'add': 'remove'
+            ]('scrolled');
+        });
+    </script>
 
 </body>
 </html>
