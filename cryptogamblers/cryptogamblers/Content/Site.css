@@ -1,12 +1,16 @@
 ﻿@import 'Home/Home.css';
 
 
+html {
+    height: 100%;
+}
 body {
     background: #0c131c;
     color: #fff;
     font-family: 'Source Sans Pro', sans-serif;
-    min-height:100vh;
+    min-height:100%;
     position:relative;
+    padding-bottom: 40px;
 }
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
@@ -85,10 +89,11 @@ textarea {
 }
 
 .footer {
-    /*position: absolute;
+    position: absolute;
+    left: 0;
     right: 0;
     bottom: 0;
-    left: 0;*/
+    height: 40px;
     margin-top:50px;
     padding: 1rem;
     background-color: #272A31;
@@ -130,5 +135,10 @@ textarea {
     100% {
         transform: rotate(360deg);
     }
+}
+
+.text-success {
+    color: #f7931a;
+    font-weight: 700;
 }
 
