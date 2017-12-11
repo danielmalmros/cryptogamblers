@@ -3,55 +3,111 @@
 @using cryptoGamblers.Models
 @*@model cryptoGamblers.Models.IndexViewModel*@
 @{
-	ViewBag.Title = "Manage";
+    ViewBag.Title = "Manage";
 
-	var currentUserId = User.Identity.GetUserId();
-	var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
-	var currentUser = manager.FindById(User.Identity.GetUserId());
+    var currentUserId = User.Identity.GetUserId();
+    var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+    var currentUser = manager.FindById(User.Identity.GetUserId());
 
 }
 
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+@Html.Partial("MiniJumbotron", "Manage Profile")
+
 <div class="container">
-	<h2>@ViewBag.Title.</h2>
+    <div class="userprofile-wrapper">
+        <div class="manageprofile--editable">
+            <a href="@Url.Action("ChangeAvatar", "Manage")">
+                <img src="../Content/uploads/@currentUser.Avatar" />
+            </a>
+            <div class="edit"><a href="@Url.Action("ChangeAvatar", "Manage")"><i class="fa fa-pencil fa-lg"></i></a></div>
+        </div>
+        <div>
+            <h2>@User.Identity.GetUserName()</h2>
+            <div class="manageprofile--editable manageprofile--description">
+                <a href="@Url.Action("ChangeDescription", "Manage")">
+                    <p>@currentUser.ProfileDescription</p>
+                </a>
+                <div class="edit"><a href="@Url.Action("ChangeDescription", "Manage")"><i class="fa fa-pencil fa-lg"></i></a></div>
+            </div>
+            <br />
+            <div class="manageprofile--editable manageprofile--description">
+                <a href="@Url.Action("ManageBalance", "Manage")">
+                    <p><strong>Balance: </strong><span id="nav--profile-balance">@currentUser.Balance</span></p>
+                </a>
+                <div class="edit"><a href="@Url.Action("ChangeDescription", "Manage")"><i class="fa fa-plus fa-lg"></i></a></div>
+            </div>
+            <hr class="userprofile-hr" />
+            <p>
+                @Html.ActionLink("Change your password", "ChangePassword")
+            </p>
+            @*<a href="@Url.Action("ManageBalance", "Manage")" class="btn btn-primary">Add More Bitcoins</a>*@
+            @using (Html.BeginForm("Delete", "Manage", new { id = User.Identity.GetUserId() }))
+            {
+                <button class="btn btn-danger btn-xs" type="submit" onclick="return confirm('WARNING: This can not be undone')">Delete Account</button>}
+        </div>
 
-	<p class="text-success">@ViewBag.StatusMessage</p>
-	<h4>Change your account settings</h4>
+    </div>
 
-	<div class="userprofile-wrapper">
-		<div>
-			<p><strong>Username:</strong> @User.Identity.GetUserName()</p>
-		</div>
-		<div>
-			<p>
-				<strong>Password: </strong>
-				@Html.ActionLink("Change your password", "ChangePassword")
-			</p>
-		</div>
-		<div>
-			<p><strong>Balance:</strong> @currentUser.Balance @Html.ActionLink("Manage", "ManageBalance")</p>
-		</div>
-		<div>
-			<p><strong>Current Winstreak:</strong> @currentUser.WinStreak</p>
-		</div>
-		<div>
-			<p><strong>Highest Winstreak:</strong> @currentUser.WinStreakMax</p>
-		</div>
-		<div>
-			<p><strong>Profile text:</strong>@currentUser.ProfileDescription</p>
-			<p>@Html.ActionLink("Change Description", "ChangeDescription")</p>
-		</div>
-		<div>
-			<p>Avatar:</p>
-			<img src="../Content/uploads/@currentUser.Avatar" style="width: 200px" />
-			<p>@Html.ActionLink("Change Avatar", "ChangeAvatar")</p>
-		</div>
-		@using (Html.BeginForm("Delete", "Manage", new { id = User.Identity.GetUserId() }))
-			{
-			<button class="btn btn-danger btn-xs" type="submit">Delete</button>
-			}
-	</div>
 
 </div>
 
+<style>
+    .manageprofile--editable {
+        position: relative;
+        display: inline-block;
+    }
+
+        .manageprofile--editable:hover .edit {
+            opacity: 100;
+            transition: 200ms all;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .manageprofile--editable img {
+            border-radius: 500px;
+            border: 4px solid #f7931a;
+            max-width: 250px;
+        }
+    .manageprofile--description {
+        max-width: 400px
+    }
+    .manageprofile--description .edit {
+        left: 100%;
+        top: 0;
+        padding: 0;
+    }
+
+    .manageprofile--description a p {
+        text-decoration: none;
+        color: #fff;
+    }
+
+    .manageprofile--description .edit a i {
+        font-size: 18px;
+    }
 
 
+
+    .edit {
+        padding-top: 7px;
+        padding-right: 7px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(0) scale(0);
+        text-shadow: 3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+        opacity: 0;
+        transition: 200ms all;
+    }
+
+        .edit a {
+            color: #f7931a;
+        }
+
+            .edit a i {
+                width: 0;
+                font-size: 30px;
+            }
+</style>

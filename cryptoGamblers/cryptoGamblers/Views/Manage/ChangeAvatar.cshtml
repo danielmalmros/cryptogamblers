@@ -9,6 +9,8 @@
 		var currentUser = manager.FindById(User.Identity.GetUserId());
 }
 
+@Html.Partial("MiniJumbotron", "Change Avatar")
+
 <div class="container body-content">
     <h2>@ViewBag.Title</h2>
 	<img src="../Content/uploads/@currentUser.Avatar" style="width: 200px" />
