@@ -27,7 +27,7 @@
             <h2>@User.Identity.GetUserName()</h2>
             <div class="manageprofile--editable manageprofile--description">
                 <a href="@Url.Action("ChangeDescription", "Manage")">
-                    <p>@currentUser.ProfileDescription</p>
+                    <p class="word-break">@currentUser.ProfileDescription</p>
                 </a>
                 <div class="edit"><a href="@Url.Action("ChangeDescription", "Manage")"><i class="fa fa-pencil fa-lg"></i></a></div>
             </div>

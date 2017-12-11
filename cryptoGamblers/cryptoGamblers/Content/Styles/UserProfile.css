@@ -115,3 +115,13 @@
             width: 0;
             font-size: 30px;
         }
+
+
+.textarea-max {
+    max-width: 100%;
+    width: 100%;
+}
+
+.center-field {
+    margin: 0 auto;
+}
