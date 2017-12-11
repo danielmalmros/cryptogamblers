@@ -10,7 +10,7 @@
     background-position: center center;
     position: relative;
     z-index: 1;
-    margin-bottom: 0;
+    margin-bottom: 100px;
 }
 
 .jumbotron::before {

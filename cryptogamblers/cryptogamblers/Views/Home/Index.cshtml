@@ -17,34 +17,80 @@
 </div>
 
 
-<div class="container body-content">
-    <div class="row row--modified">
-        <h2>Hall of Winstreak Fame</h2>
-        <p>Showing the top 3 users with the highest winstreak</p>
-        <table class="table table-striped table-borderless">
-            <tr class="winstreak-header">
-                <th>Username</th>
-                <th>Winstreak</th>
-            </tr>
-            @foreach (ApplicationUser user in Model)
-            {
-                <tr class="winstreak-users">
-                    <td>@Html.ActionLink(user.UserName, "UserProfile", "User", new { id = user.UserName }, null) </td>
-                    <td>@user.WinStreakMax</td>
+<div class="wrapper">
+
+    <div class="container body-content">
+        <div class="row row--modified halloffame-top-three">
+            <h1>Hall of Winstreak Fame</h1>
+            <p>Showing the top 3 users with the highest winstreak</p>
+            <table class="table table-striped table-borderless">
+                <tr class="winstreak-header">
+                    <th>Username</th>
+                    <th>Winstreak</th>
                 </tr>
-            }
-            @Html.ActionLink("View top 100","Index","HallofFame")
-        </table>
+                @foreach (ApplicationUser user in Model)
+                {
+                    <tr class="winstreak-users">
+                        <td>@Html.ActionLink(user.UserName, "UserProfile", "User", new { id = user.UserName }, null) </td>
+                        <td>@user.WinStreakMax</td>
+                    </tr>
+                }
+                @Html.ActionLink("View top 100","Index","HallofFame")
+            </table>
+        </div>
+    
+        <div class="home-content">
+            <div class="home-content__block">
+                <h1>CryptoGamblers</h1>
+                <br />
+                <p>CryptoGamblers invites gamblers from all over the world to take advantage of their low-edge online Dice, Blackjack, Lottery and Slot machine games, in which they are offering everyone an opportunity to gamble online with cryptocurrencies such as Bitcoin both, securely and anonymously.</p>
+
+                @Html.ActionLink("Read more", "Index", "About")
+            </div>
+            <div class="home-content__block-img">
+                <img src="@Url.Content("~/Content/Images/logo.png")" alt="bitcoins" width="300px">
+            </div>
+        </div>
+
+        <div class="home-content">
+            <div class="home-content__block-img">
+               <img src="https://cdn3.iconfinder.com/data/icons/circle-payment-methods-4/512/Bitcoin-256.png" alt="bitcoins">
+            </div>
+            <div class="home-content__block">
+                <h1>Be part of the game!</h1>
+                <br />
+                <p>Bitcoin uses peer-to-peer technology to operate with no central authority or banks; managing transactions and the issuing of bitcoins is carried out collectively by the network. Bitcoin is open-source; its design is public, nobody owns or controls Bitcoin and everyone can take part. Through many of its unique properties, Bitcoin allows exciting uses that could not be covered by any previous payment system.</p>
+            </div>
+        </div>
     </div>
-    <div class="row row--modified">
-        <h1 class="display-3">CryptoGamblers</h1>
-        <p class="lead">CryptoGamblers is the leading bitcoin gambling site for onion users.</p>
-        <hr class="my-4">
-        <p>Gamble all your bitcoins here!</p>
-        <p class="lead">
-            @Html.ActionLink("Queue me the fuck up!", "QueueMe", "Queue", new { Area = "" }, new { })
-        </p>
+
+    <div class="full-width">
+
     </div>
-    <div style="margin-bottom:500px"></div>
+
+    <div class="container body-content">
+        <div class="home-content">
+            <div class="home-content__block">
+                <p>Mexico is another game with simple dynamics. The game is played with two dice for rolling, with each player being given an additional die. The die will dictate how many lives each player has after each round, so will start on a six, and deplete accordingly.</p>
+                <p>After each game, the lowest dice roll will be considered the losing roll, and as such, that particular player will lose a life. The winner of Mexico is the player left standing after all players have rolled their dice and lost their lives.</p>
+            </div>
+            <div class="home-content__block-img">
+                <img src="https://lh4.ggpht.com/DJx1JlCLTjsuyM_cswBF1oEk5s6gdHOCD4D9cOTd9Y7fp9-4VbRWc2CkEc_GNEvpGbc=w300" alt="bitcoins" width="300px">
+            </div>
+        </div>
+
+        <div class="home-content">
+            <div class="home-content__block-img">
+                <img src="@Url.Content("~/Content/Images/hat.png")" alt="bitcoins" width="300px">
+            </div>
+            <div class="home-content__block">
+                <p>While working with anonymous users is inherently limiting in some ways (because there are few things you know for sure about them).
+But there are some things you can know for sure about users, such as the date and time they are visiting and any information in the request or session.
+WebLogic Portal takes advantage of that information and provides many features that make working with anonymous users more useful and meaningful in your portals, such as letting you set up visitor entitlements, delegated administration, and some types of personalization based on that information.
+WebLogic Portal provides even more power in working with anonymous users with a feature called anonymous user tracking. When you use anonymous user tracking, anonymous users are given records in a database, where you can store meaningful information about them such as personal preferences.</p>
+            </div>
+        </div>
+    </div>
+    </div>
 </div>
 

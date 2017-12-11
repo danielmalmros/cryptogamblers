@@ -76,6 +76,11 @@ textarea {
     border: none;
 }
 
+.tabel-end {
+    display: flex;
+    justify-content: flex-end;
+}
+
 .row--modified {
     margin: 0;
 }
@@ -100,9 +105,9 @@ textarea {
     text-align: center;
 }
 
-    .footer p {
-        margin: 0;
-    }
+.footer p {
+    margin: 0;
+}
 
 .container .jumbotron {
     border-radius: 0;
@@ -115,7 +120,6 @@ textarea {
     background-size: cover;
     margin-top: -77px;
 }
-
 
 .loader {
     border: 16px solid #f3f3f3; /* Light grey */
@@ -142,3 +146,66 @@ textarea {
     font-weight: 700;
 }
 
+.admin-panel__wrapper {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    margin-bottom: 20px;
+}
+.admin-panel__search-box {
+    position: relative;
+}
+
+.admin-panel__search-box input {
+    border: 1px solid #dadada;
+    outline: none;
+    color: #777;
+    width: 100%;
+    max-width: none;
+    height: 34px;
+    background: #fff;
+    padding-left: 10px;
+}
+
+.admin-panel__search-box .searchsubmit {
+    width: 57px;
+    height: 34px;
+    border: 1px solid #dadada;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #dadada;
+    border: none;
+    color: #5d3250;
+    cursor: pointer;
+}
+
+.home-content {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    margin-bottom: 150px;
+}
+
+.home-content__block {
+    align-self: center;
+}
+
+    .home-content__block a {
+        color: #f7931a;
+    }
+
+.home-content__block-img {
+    justify-self: center;
+}
+
+.full-width {
+    position: relative;
+    height: 30vw;
+    max-height: 600px;
+    background: url('https://4.bp.blogspot.com/-3aBTdvTvgqM/VNcb2gxRaTI/AAAAAAABccs/PPbDPAL-6Bo/s0/Bitcoin_UHD.jpg') no-repeat center center;
+    background-size: cover;
+    margin-bottom: 150px;
+}
+
+.halloffame-top-three {
+    margin-bottom: 150px;
+}
