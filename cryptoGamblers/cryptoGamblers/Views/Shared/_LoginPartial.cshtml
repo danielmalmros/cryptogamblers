@@ -15,7 +15,9 @@
     @Html.AntiForgeryToken()
 
         <ul class="nav navbar-nav navbar-right menu-items">
-            <li class="nav-game-find">@Html.ActionLink("Find Game", "QueueMe", "Queue", new { Area = "" }, new { id = "button" })<div id="loader" class="loader"></div></li>
+            <li class="nav-game-find">
+            <button type="button" id="button"></button><div id="loader" class="loader"></div>
+            </li>
             <li class="dropdown">
                 @*@Html.ActionLink(User.Identity.GetUserName(), "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })*@
                 <a href="#" class="dropdown-toggle" id="nav--profile" data-toggle="dropdown">
