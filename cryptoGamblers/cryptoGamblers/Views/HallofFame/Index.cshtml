@@ -3,6 +3,9 @@
 @{
     ViewBag.Title = "Hall of Fame";
     ViewBag.UserprofileLink = "/User/UserProfile?username=";
+    ApplicationDbContext db = new ApplicationDbContext();
+    var firstPlace = from u in db.Users.OrderByDescending(u => u.WinStreakMax).Take(1) select u;
+    firstPlace.ToList();
 }
 @Styles.Render("~/Content/HallOfFame/HallOfFame.css")
 
@@ -20,23 +23,29 @@
 <div class="container body-content">
     <div class="row row--modified">
         <hr class="big-hr">
-        <p class="leaderboard--winner">john</p>
-        <h2 class="leaderboard--winner-streak">With a streak of:</h2>
-        <h2 class="leaderboard--winner-streak streak-count">14</h2>
-        <hr class="big-hr">
-        <h2>Hall of Winstreak Top 100 Fame</h2>
-        <p>Showing the top 100 users with the highest winstreak</p>
-        @using (Html.BeginForm())
+        @foreach (ApplicationUser winner in firstPlace)
         {
-            <p>
-                Find by username: @Html.TextBox("SearchString")
-                <input type="submit" value="Search" />
-            </p>
+            <p class="leaderboard--winner">@winner.UserName</p>
+            <h2 class="leaderboard--winner-streak">With a max streak of:</h2>
+            <h2 class="leaderboard--winner-streak streak-count">@winner.WinStreakMax</h2>
         }
-        <table class="table table-striped table-borderless">
+        
+        <hr class="big-hr">
+        <div class="search-wrapper">
+            @using (Html.BeginForm())
+            {
+                <p class="search-box">
+                    @*@Html.TextBox("SearchString")*@
+                    <input id="SearchString" name="SearchString" type="text" placeholder="Search users">
+                    <input type="submit" value="&#xf002;" />
+                </p>
+            }
+        </div>
+        
+        <table class="table table-striped table-borderless streak-table">
             <tr class="winstreak-header">
-                <th>@Html.ActionLink("Username", "Index", new { sortOrder = ViewBag.UserNameSortParm })</th>
-                <th>@Html.ActionLink("Winstreak", "Index", new { sortOrder = ViewBag.MaxStreakSortParm })</th>
+                <th>@Html.ActionLink("Username", "Index", new { sortOrder = ViewBag.UserNameSortParm })<i class="fa fa-sort"></i></th>
+                <th>@Html.ActionLink("Winstreak", "Index", new { sortOrder = ViewBag.MaxStreakSortParm })<i class="fa fa-sort"></i></th>
             </tr>
             @foreach (ApplicationUser user in Model)
             {
@@ -49,3 +58,55 @@
         </table>
     </div>
 </div>
+
+<style>
+    .search-wrapper {
+        background: linear-gradient(to right, rgba(247,147,26,0) 0%,rgba(247,147,26,.6) 20%,rgba(247,147,26,.6) 80%,rgba(247,147,26,0) 100%);
+
+    }
+    .search-wrapper form p{
+        text-align:center;
+    }
+    .search-box input[type="text"] {
+        padding: 10px;
+        margin:4px 0;
+        border: none;
+        background: rgba(247,147,26,.5);
+        color:#fff;
+    }
+    .search-box input[type="submit"] {
+        padding: 10px;
+        border: none;
+        font-family: 'FontAwesome';
+        max-width: 50px;
+        color: #fff;
+        background: #F7931A;
+    }
+    .winstreak-header {
+        background: linear-gradient(to right, rgba(247,147,26,0) 0%,rgba(247,147,26,1) 20%,rgba(247,147,26,1) 80%,rgba(247,147,26,0) 100%) !important;
+        -box-shadow: 0px 0px 15px -1px rgba(247,148,26,.7);
+    }
+    .winstreak-header th {
+        background-color: rgba(0,0,0,0) !important;
+        color: #fff;
+    }
+    .winstreak-header th a {
+        color:#fff;
+        padding-right:5px;
+    }
+    .streak-table > tbody > tr > td:nth-child(2), .streak-table > tbody > tr > th:nth-child(2) {
+        text-align: right;
+    }
+    .streak-table > tbody > tr > td, .streak-table > tbody > tr > th {
+        padding: 10px 40px;
+    }
+    .winstreak-users td {
+        font-style:normal;
+    }
+    .streak-table > tbody > tr:nth-child(2n+1) > td, .streak-table > tbody > tr:nth-child(2n+1) > th {
+        background-color:rgba(0,0,0,0);
+    }
+    .streak-table > tbody > tr:nth-child(2n+1)  {
+        background: linear-gradient(to right, rgba(247,147,26,0) 0%,rgba(247,147,26,.3) 20%,rgba(247,147,26,.3) 80%,rgba(247,147,26,0) 100%);
+    }
+</style>
