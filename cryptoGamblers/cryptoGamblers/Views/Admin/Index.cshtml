@@ -72,7 +72,7 @@
                 {
                     <div class="admin-panel__search">
                         <div class="admin-panel__search-box">
-                            @Html.TextBox("SearchString", "Search for users") <input class="searchsubmit" type="submit" value="Search"/>
+                            @Html.TextBox("SearchString", "", new { placeholder = "Search users"}) <input class="searchsubmit" type="submit" value="Search"/>
                         </div>
                     </div>
                 }
