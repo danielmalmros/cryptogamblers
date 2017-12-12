@@ -35,23 +35,6 @@
         </ul>
 
     }
-
-    @*using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm"}))
-    {
-    @Html.AntiForgeryToken()
-        <div class="rightNav">
-            <div class="rightNavBtnSection">
-                <button type="button" id="button" class="btn btn-default queueButton">Queue me up</button>
-                <div id="loader" class="loader"></div>
-                <a href="@Url.Action("Index", "Manage", new { area = "" })">
-                    <img src="~/Content/uploads/@currentUser.Avatar" id="nav--profile-img" />
-                    <p id="nav--profile-name">@currentUser.UserName</p>
-                </a>
-                <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
-            </div>
-        </div>
-
-    }*@
 }
 
 <script>

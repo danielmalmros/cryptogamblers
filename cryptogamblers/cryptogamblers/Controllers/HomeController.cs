@@ -7,7 +7,6 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using cryptoGamblers.Models;
-using cryptoGamblers.App_Start;
 using Microsoft.AspNet.Identity.Owin;
 
 namespace cryptoGamblers.Controllers
