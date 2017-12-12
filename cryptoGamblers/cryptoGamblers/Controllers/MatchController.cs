@@ -10,6 +10,7 @@ namespace cryptoGamblers.Controllers
 {
     public class MatchController : AuthorizeController
     {
+
         // GET: Match
         public ActionResult Index(int Id)
         {
@@ -32,6 +33,13 @@ namespace cryptoGamblers.Controllers
             ViewBag.Name = userName;
 
             return View(match);
+        }
+
+        public ActionResult Roll(int matchId) {
+            Random rng = new Random();
+            var roll = rng.Next(1,6);
+
+            return null;
         }
     }
 }
