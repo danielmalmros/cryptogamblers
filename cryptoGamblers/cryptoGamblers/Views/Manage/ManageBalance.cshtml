@@ -1,30 +1,32 @@
 ﻿@model cryptoGamblers.Models.ChangeBalanceViewModel
 @{
-    ViewBag.Title = "Manage Balance";
+	ViewBag.Title = "Manage Balance";
 }
 
 
 @Html.Partial("MiniJumbotron", "Manage Your Bitcoins")
 
 <div class="wrapper">
-    <div class="container body-content text-center">
-        <div>
-            <div class="item"></div>
-            @using (Html.BeginForm("ManageBalance", "Manage", FormMethod.Post, new { @class = "form-horizontal textarea-max", role = "form" }))
-            {
-                @Html.AntiForgeryToken()
-                <h4>Add your Wallet ID</h4>
-                @Html.ValidationMessageFor(m => m.AddWalletID, "", new { @class = "text-danger" })
-                @Html.TextBoxFor(m => m.AddWalletID, new { @class = "form-control center-field input-box-black" })
-                <h4>Add BTC to your balance</h4>
-                @Html.ValidationMessageFor(m => m.AddBalance, "", new { @class = "text-danger" })
-                @Html.TextBoxFor(m => m.AddBalance, new { @class = "form-control center-field input-box-black" })
-                <input type="submit" value="Add to balance" class="btn btn-default input-button-black" />
-            }
-        </div>
-    </div>
+	<div class="container body-content text-center">
+		<div>
+			<div class="item"></div>
+			@using (Html.BeginForm("ManageBalance", "Manage", FormMethod.Post, new { @class = "form-horizontal textarea-max", role = "form" }))
+			{
+				@Html.AntiForgeryToken()
+				<h2 class="first-place-header">Add more BitCoins from your wallet</h2>
+				<hr class="big-hr" />
+							<h4>Insert your Wallet ID</h4>
+							@Html.ValidationMessageFor(m => m.AddWalletID, "", new { @class = "text-danger" })
+							@Html.TextBoxFor(m => m.AddWalletID, new { @class = "form-control center-field input-box-black" })
+							<h4>Specify amount of BTC to add</h4>
+							@Html.ValidationMessageFor(m => m.AddBalance, "", new { @class = "text-danger" })
+							@Html.TextBoxFor(m => m.AddBalance, new { @class = "form-control center-field input-box-black" })
+							<input type="submit" value="Boost your balance" class="btn btn-default input-button-black" />
+			}
+		</div>
+	</div>
 </div>
 
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+	@Scripts.Render("~/bundles/jqueryval")
 }
