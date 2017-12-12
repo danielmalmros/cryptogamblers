@@ -1,5 +1,5 @@
 ﻿$(".game-button").click(function () {
-    $(".game-button").css("display", "none");
+    $(".game-button").css({ "pointer-events" : "none", "opacity" : 0.5});
     $("#loader").css("display", "block");
     $.ajax({
         url: "/queue/QueueMe", success: function (result) {
