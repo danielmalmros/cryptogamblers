@@ -64,6 +64,11 @@ namespace cryptoGamblers.Models
         [Required]
         [Display(Name = "Add Balance")]
         public double AddBalance { get; set; }
+
+        [Required(ErrorMessage = "Please add correct Wallet ID")]
+        [RegularExpression(@"^[13][a-km-zA-HJ-NP-Z1-9]{25,34}$", ErrorMessage = "Please insert a correct Wallet ID")]
+        [Display(Name = "Add Wallet ID")]
+        public string AddWalletID { get; set; }
     }
 
     public class ChangeAvatarViewModel
