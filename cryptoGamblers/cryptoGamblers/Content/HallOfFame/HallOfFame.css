@@ -72,8 +72,9 @@ hr.big-hr::after {
 .search-box input[type="text"] {
     padding: 10px;
     margin: 4px 0;
-    border: none;
-    background: rgba(247,147,26,.5);
+    border: 2px solid #F7931A;
+    /*background: rgba(247,147,26,.5);*/
+    background: #0C131C;
     color: #fff;
 }
 
@@ -84,6 +85,7 @@ hr.big-hr::after {
     max-width: 50px;
     color: #fff;
     background: #F7931A;
+    border: 2px solid #F7931A;
 }
 
 .winstreak-header {

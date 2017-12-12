@@ -13,12 +13,13 @@
             @using (Html.BeginForm("ManageBalance", "Manage", FormMethod.Post, new { @class = "form-horizontal textarea-max", role = "form" }))
             {
                 @Html.AntiForgeryToken()
-                <h4>Add more BTC to your balance</h4>
-                @Html.ValidationSummary("", new { @class = "text-danger" })
+                <h4>Add your Wallet ID</h4>
+                @Html.ValidationMessageFor(m => m.AddWalletID, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(m => m.AddWalletID, new { @class = "form-control center-field input-box-black" })
+                <h4>Add BTC to your balance</h4>
+                @Html.ValidationMessageFor(m => m.AddBalance, "", new { @class = "text-danger" })
                 @Html.TextBoxFor(m => m.AddBalance, new { @class = "form-control center-field input-box-black" })
-                    <div>
-                        <input type="submit" value="Add to balance" class="btn btn-default input-button-black" />
-                    </div>
+                <input type="submit" value="Add to balance" class="btn btn-default input-button-black" />
             }
         </div>
     </div>
