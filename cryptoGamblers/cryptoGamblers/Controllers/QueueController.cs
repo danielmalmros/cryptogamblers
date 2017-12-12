@@ -1,5 +1,4 @@
 ﻿using cryptoGamblers.Models;
-using cryptoGamblers.Services;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;

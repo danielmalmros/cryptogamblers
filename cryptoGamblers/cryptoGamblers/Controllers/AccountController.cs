@@ -10,8 +10,6 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using cryptoGamblers.Models;
 using System.IO;
-using cryptoGamblers.Services;
-
 namespace cryptoGamblers.Controllers
 {
 	
