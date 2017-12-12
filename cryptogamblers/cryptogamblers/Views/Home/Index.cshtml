@@ -9,7 +9,7 @@
     <div class="container body-content">
         <div class="text-center">
             <h2 class="jumbo-title">Gamble all your bitcoins</h2>
-            <button class="play-button game-button" type="button" id="">Find match</button>
+            <button class="play-button game-button" type="button" id="">FIND MATCH</button>
             @*@Html.ActionLink("PLAY NOW", "QueueMe", "Queue", new { Area = "" }, new { @class = "play-button" })*@
         </div>
     </div>
@@ -22,8 +22,8 @@
     <div class="container body-content">
         <div class="row row--modified halloffame-top-three">
             <h1>Hall of Winstreak Fame</h1>
-            <p>Showing the top 3 users with the highest winstreak</p>
-            <table class="table table-striped table-borderless">
+            <p>Showing the top 5 users with the highest winstreak</p>
+            <table class="table table-striped table-borderless streak-table">
                 <tr class="winstreak-header">
                     <th>Username</th>
                     <th>Winstreak</th>
@@ -35,8 +35,8 @@
                         <td>@user.WinStreakMax</td>
                     </tr>
                 }
-                @Html.ActionLink("View top 100","Index","HallofFame")
             </table>
+            @Html.ActionLink("View top 100","Index","HallofFame", new { Area = "" }, new { @class = "top-100-link"})
         </div>
     
         <div class="home-content">
@@ -71,6 +71,7 @@
     <div class="container body-content">
         <div class="home-content">
             <div class="home-content__block">
+                <h1>Dice up your game</h1>
                 <p>Mexico is another game with simple dynamics. The game is played with two dice for rolling, with each player being given an additional die. The die will dictate how many lives each player has after each round, so will start on a six, and deplete accordingly.</p>
                 <p>After each game, the lowest dice roll will be considered the losing roll, and as such, that particular player will lose a life. The winner of Mexico is the player left standing after all players have rolled their dice and lost their lives.</p>
             </div>
@@ -84,6 +85,7 @@
                 <img src="@Url.Content("~/Content/Images/hat.png")" alt="bitcoins" width="300px">
             </div>
             <div class="home-content__block">
+                <h1>completely anonymous</h1>
                 <p>While working with anonymous users is inherently limiting in some ways (because there are few things you know for sure about them).
 But there are some things you can know for sure about users, such as the date and time they are visiting and any information in the request or session.
 WebLogic Portal takes advantage of that information and provides many features that make working with anonymous users more useful and meaningful in your portals, such as letting you set up visitor entitlements, delegated administration, and some types of personalization based on that information.

@@ -18,7 +18,7 @@ namespace cryptoGamblers.Controllers
 
         public ActionResult Index()
         {
-            IEnumerable<ApplicationUser> allUsers = UserManager.Users.OrderByDescending(u => u.WinStreakMax).Take(3).ToList();
+            IEnumerable<ApplicationUser> allUsers = UserManager.Users.OrderByDescending(u => u.WinStreakMax).Take(5).ToList();
             return View(allUsers);
         }
 
