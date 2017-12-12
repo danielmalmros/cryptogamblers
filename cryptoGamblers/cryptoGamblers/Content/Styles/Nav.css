@@ -84,20 +84,18 @@ body.scrolled .custom-nav {
 }
 
 #nav--profile-img {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    border: 2px solid #f7931a;
-    object-fit: cover;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	border: 2px solid #f7931a;
+	object-fit: cover;
+	background-color: #f7931a;
+	margin-right: 10px;
 }
 
 #nav--profile p {
     margin: 0;
     line-height: 14px;
-}
-
-#nav--profile-img {
-    margin-right: 10px;
 }
 
 #nav--profile-balance {

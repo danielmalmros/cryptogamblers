@@ -6,7 +6,8 @@
     var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
     var currentUser = manager.FindById(User.Identity.GetUserId());
 }
-@if (Request.IsAuthenticated)
+
+@if (Request.IsAuthenticated && currentUser != null)
 
 {
     @*<button id="button" class="btn btn-default loginInput">Queue me up</button>   <div id="loader" class="loader"></div>*@  
@@ -16,7 +17,7 @@
 
         <ul class="nav navbar-nav navbar-right menu-items">
             <li class="nav-game-find">
-            <button type="button" id="button"></button><div id="loader" class="loader"></div>
+            <button class="find-game-btn game-button" type="button">Find match</button><div id="loader" class="loader"></div>
             </li>
             <li class="dropdown">
                 @*@Html.ActionLink(User.Identity.GetUserName(), "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })*@
@@ -30,6 +31,7 @@
                 <ul class="dropdown-menu">
                     <li>@Html.ActionLink("My Profile", "UserProfile", "User", new { id = currentUser.UserName }, null)</li>
                     <li><a href="@Url.Action("Index", "Manage", new { area = "" })">Manage Profile</a></li>
+					<li>@Html.ActionLink("Add BitCoins", "ManageBalance", "Manage", null, new {  @id = "bitcoin-menu-attention" })</li>
                     <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
                 </ul>
 

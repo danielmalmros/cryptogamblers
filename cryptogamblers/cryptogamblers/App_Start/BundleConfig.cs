@@ -19,6 +19,9 @@ namespace cryptoGamblers
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/queue").Include(
+                       "~/Scripts/queue/queue.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
@@ -32,7 +35,9 @@ namespace cryptoGamblers
                       "~/Content/Login/LoginForm.css",
 					  "~/Content/Styles/Nav.css",
                       "~/Content/Styles/UserProfile.css",
-                      "~/Content/_loginPartial/_loginPartial.css"));
+                      "~/Content/_loginPartial/_loginPartial.css",
+					  "~/Content/Styles/mediaqueries.css,",
+					  "~/Content/HallOfFame/HallOfFame.css"));
         }
     }
 }

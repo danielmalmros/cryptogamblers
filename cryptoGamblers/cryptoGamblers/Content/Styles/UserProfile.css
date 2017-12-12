@@ -7,9 +7,9 @@
     display: grid;
     grid-template-columns: auto 50% auto;
     grid-template-rows: auto;
-    justify-items: start;
+    justify-items: center;
     align-items: start;
-    margin-top: 40px;
+	text-align:center;
 }
 
 .userprofile-item {
@@ -30,7 +30,6 @@
 
 .userprofile-hr {
     border-top: 1px solid rgba(238, 238, 238, 0.15);
-    width: 50px;
     margin-left: 0;
 }
 
@@ -125,8 +124,8 @@
 
 
 .textarea-max {
-    max-width: 100%;
-    width: 100%;
+	max-width: 100%;
+	width: 100%;
 }
 
 .center-field {

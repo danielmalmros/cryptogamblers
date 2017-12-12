@@ -9,8 +9,8 @@
     <div class="container body-content">
         <div class="text-center">
             <h2 class="jumbo-title">Gamble all your bitcoins</h2>
-            @*<a href="#" class="play-button">PLAY NOW</a>*@
-            @Html.ActionLink("PLAY NOW", "QueueMe", "Queue", new { Area = "" }, new { @class = "play-button" })
+            <button class="play-button game-button" type="button" id="">FIND MATCH</button>
+            @*@Html.ActionLink("PLAY NOW", "QueueMe", "Queue", new { Area = "" }, new { @class = "play-button" })*@
         </div>
     </div>
   <div class="top-background"><svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 699.08 31"><defs><style>.cls-1,.cls-2{fill:#0c131c;}.cls-2{stroke:#f7931a;stroke-miterlimit:10;stroke-width:4px;}</style></defs><title>Untitled-3</title><rect class="cls-1" x="2.41" y="27" width="694" height="4"/><polyline class="cls-2" points="1.41 29.5 28.91 2 670.41 2 697.66 29.25"/></svg></div>
@@ -21,9 +21,9 @@
 
     <div class="container body-content">
         <div class="row row--modified halloffame-top-three">
-            <h1>Hall of Winstreak Fame</h1>
-            <p>Showing the top 3 users with the highest winstreak</p>
-            <table class="table table-striped table-borderless">
+            <h1 class="text-center">Hall of Winstreak Fame</h1>
+            <p class="text-center">Showing the top 5 users with the highest winstreak</p>
+            <table class="table table-striped table-borderless streak-table">
                 <tr class="winstreak-header">
                     <th>Username</th>
                     <th>Winstreak</th>
@@ -31,12 +31,12 @@
                 @foreach (ApplicationUser user in Model)
                 {
                     <tr class="winstreak-users">
-                        <td>@Html.ActionLink(user.UserName, "UserProfile", "User", new { id = user.UserName }, null) </td>
+                        <td>@Html.ActionLink("🏅 " + user.UserName, "UserProfile", "User", new { id = user.UserName }, null) </td>
                         <td>@user.WinStreakMax</td>
                     </tr>
                 }
-                @Html.ActionLink("View top 100","Index","HallofFame")
             </table>
+            @Html.ActionLink("View top 100","Index","HallofFame", new { Area = "" }, new { @class = "top-100-link"})
         </div>
     
         <div class="home-content">
@@ -47,13 +47,13 @@
 
                 @Html.ActionLink("Read more", "Index", "About")
             </div>
-            <div class="home-content__block-img">
+            <div class="home-content__block-img" style="justify-self:right;">
                 <img src="@Url.Content("~/Content/Images/logo.png")" alt="bitcoins" width="300px">
             </div>
         </div>
 
         <div class="home-content">
-            <div class="home-content__block-img">
+            <div class="home-content__block-img" style="justify-self:left;">
                <img src="https://cdn3.iconfinder.com/data/icons/circle-payment-methods-4/512/Bitcoin-256.png" alt="bitcoins">
             </div>
             <div class="home-content__block">
@@ -71,19 +71,21 @@
     <div class="container body-content">
         <div class="home-content">
             <div class="home-content__block">
+                <h1>Dice up your game</h1>
                 <p>Mexico is another game with simple dynamics. The game is played with two dice for rolling, with each player being given an additional die. The die will dictate how many lives each player has after each round, so will start on a six, and deplete accordingly.</p>
                 <p>After each game, the lowest dice roll will be considered the losing roll, and as such, that particular player will lose a life. The winner of Mexico is the player left standing after all players have rolled their dice and lost their lives.</p>
             </div>
-            <div class="home-content__block-img">
+            <div class="home-content__block-img" style="justify-self:right;">
                 <img src="https://lh4.ggpht.com/DJx1JlCLTjsuyM_cswBF1oEk5s6gdHOCD4D9cOTd9Y7fp9-4VbRWc2CkEc_GNEvpGbc=w300" alt="bitcoins" width="300px">
             </div>
         </div>
 
         <div class="home-content">
-            <div class="home-content__block-img">
+            <div class="home-content__block-img" style="justify-self:left;">
                 <img src="@Url.Content("~/Content/Images/hat.png")" alt="bitcoins" width="300px">
             </div>
             <div class="home-content__block">
+                <h1>completely anonymous</h1>
                 <p>While working with anonymous users is inherently limiting in some ways (because there are few things you know for sure about them).
 But there are some things you can know for sure about users, such as the date and time they are visiting and any information in the request or session.
 WebLogic Portal takes advantage of that information and provides many features that make working with anonymous users more useful and meaningful in your portals, such as letting you set up visitor entitlements, delegated administration, and some types of personalization based on that information.

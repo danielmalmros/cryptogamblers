@@ -110,6 +110,58 @@
     transition: all .6s cubic-bezier(.19,1,.22,1);
 }
 
+.winstreak-header {
+    background: linear-gradient(to right, rgba(247,147,26,0) 0%,rgba(247,147,26,1) 20%,rgba(247,147,26,1) 80%,rgba(247,147,26,0) 100%) !important;
+    -box-shadow: 0px 0px 15px -1px rgba(247,148,26,.7);
+}
+
+.winstreak-header th {
+    background-color: rgba(0,0,0,0) !important;
+    color: #fff;
+}
+
+.winstreak-header th a {
+    color: #fff;
+    padding-right: 5px;
+}
+
+.streak-table > tbody > tr > td:nth-child(2), .streak-table > tbody > tr > th:nth-child(2) {
+    text-align: right;
+}
+
+.streak-table > tbody > tr > td, .streak-table > tbody > tr > th {
+    padding: 10px 40px;
+}
+
+.winstreak-users td {
+    font-style: normal;
+}
+
+.streak-table > tbody > tr:nth-child(2n+1) > td, .streak-table > tbody > tr:nth-child(2n+1) > th {
+    background-color: rgba(0,0,0,0) !important;
+}
+
+.streak-table > tbody > tr:nth-child(2n+1) {
+    background: linear-gradient(to right, rgba(247,147,26,0) 0%,rgba(247,147,26,.3) 20%,rgba(247,147,26,.3) 80%,rgba(247,147,26,0) 100%);
+}
+.streak-table td a {
+    font-weight: 300;
+    font-size: 1.2em;
+    color:#fff;
+    font-style:normal;
+}
+.top-100-link {
+    color:rgba(247,147,26,1);
+    text-align:center;
+    display:block;
+    font-weight:700;
+}
+h1 {
+    color:rgba(247,147,26,1);
+    font-weight:700;
+    text-transform:uppercase;
+    text-shadow:0 0 15px rgba(247,147,26,1);
+}
 
 @media screen and (max-width:768px) {
     .play-button {

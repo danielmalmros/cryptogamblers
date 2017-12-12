@@ -17,48 +17,47 @@
 
 <div class="container">
     <div class="userprofile-wrapper">
-        <div class="manageprofile--editable">
-            <a href="@Url.Action("ChangeAvatar", "Manage")">
-                <img src="../Content/uploads/@currentUser.Avatar" />
-            </a>
-            <div class="edit"><a href="@Url.Action("ChangeAvatar", "Manage")"><i class="fa fa-pencil fa-lg"></i></a></div>
-        </div>
-        <div>
-            <h2>@User.Identity.GetUserName()</h2>
-
-			@if(currentUser.ProfileDescription  != null) {
-            <div class="manageprofile--editable manageprofile--description">
-                <a href="@Url.Action("ChangeDescription", "Manage")">
-                    <p class="word-break">@currentUser.ProfileDescription</p>
-                </a>
-                <div class="edit"><a href="@Url.Action("ChangeDescription", "Manage")"><i class="fa fa-pencil fa-lg"></i></a></div>
-            </div>
-			} else {
-			<div class="manageprofile--editable manageprofile--description">
-				<a href="@Url.Action("ChangeDescription", "Manage")">
-					<p class="word-break">Update your profile description.</p>
+		<div></div>
+		<div>
+			<div class="manageprofile--editable">
+				<a href="@Url.Action("ChangeAvatar", "Manage")">
+					<img src="../Content/uploads/@currentUser.Avatar" />
 				</a>
-				<div class="edit"><a href="@Url.Action("ChangeDescription", "Manage")"><i class="fa fa-pencil fa-lg"></i></a></div>
+				<div class="edit"><a href="@Url.Action("ChangeAvatar", "Manage")"><i class="fa fa-pencil fa-lg"></i></a></div>
 			</div>
-			}
 
-            <br />
-            <div class="manageprofile--editable manageprofile--description">
-                <a href="@Url.Action("ManageBalance", "Manage")">
-                    <p><strong>Balance: </strong><span id="nav--profile-balance">@currentUser.Balance</span></p>
-                </a>
-                <div class="edit"><a href="@Url.Action("ChangeDescription", "Manage")"><i class="fa fa-plus fa-lg"></i></a></div>
-            </div>
-            <hr class="userprofile-hr" />
-            <p>
-                @Html.ActionLink("Change your password", "ChangePassword")
-            </p>
-            @*<a href="@Url.Action("ManageBalance", "Manage")" class="btn btn-primary">Add More Bitcoins</a>*@
-            @using (Html.BeginForm("Delete", "Manage", new { id = User.Identity.GetUserId() }))
-            {
-                <button class="btn btn-danger btn-xs" type="submit" onclick="return confirm('WARNING: This can not be undone')">Delete Account</button>}
-        </div>
+			<div>
 
+				<h2 class="jumbo-title">@User.Identity.GetUserName()</h2>
+				<div class="manageprofile--editable manageprofile--description">
+					<a href="@Url.Action("ManageBalance", "Manage")">
+						<p><strong>Add more to your current balance: </strong><span id="nav--profile-balance">@currentUser.Balance</span></p>
+					</a>
+					<div class="edit"><a href="@Url.Action("ChangeDescription", "Manage")"><i class="fa fa-plus fa-lg"></i></a></div>
+				</div>
+				<br />
+					<div class="manageprofile--editable manageprofile--description">
+						<a href="@Url.Action("ChangeDescription", "Manage")">
+							<p class="word-break">Update your profile description </p>
+						</a>
+						<div class="edit"><a href="@Url.Action("ChangeDescription", "Manage")"><i class="fa fa-pencil fa-lg"></i></a></div>
+					</div>
+
+				<br />
+				<div class="manageprofile--editable manageprofile--description manageprofile--changepassword ">
+					<a href="@Url.Action("ChangePassword", "Manage")">
+						<p>Change your password </p>
+					</a>
+					<div class="edit"><a href="@Url.Action("ChangePassword", "Manage")"><i class="fa fa-pencil fa-lg"></i></a></div>
+				</div>
+				<hr class="userprofile-hr" />
+
+				@*<a href="@Url.Action("ManageBalance", "Manage")" class="btn btn-primary">Add More Bitcoins</a>*@
+				@using (Html.BeginForm("Delete", "Manage", new { id = User.Identity.GetUserId() }))
+				{
+					<button class="btn btn-danger btn-xs" type="submit" onclick="return confirm('WARNING: This can not be undone')">Delete Account</button>}
+			</div>
+		</div>
     </div>
 
 </div>

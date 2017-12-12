@@ -60,3 +60,65 @@ hr.big-hr::after {
     font-weight: 700;
     margin: 0;
 }
+
+.search-wrapper {
+    background: linear-gradient(to right, rgba(247,147,26,0) 0%,rgba(247,147,26,.6) 20%,rgba(247,147,26,.6) 80%,rgba(247,147,26,0) 100%);
+}
+
+    .search-wrapper form p {
+        text-align: center;
+    }
+
+.search-box input[type="text"] {
+    padding: 10px;
+    margin: 4px 0;
+    border: 2px solid #F7931A;
+    /*background: rgba(247,147,26,.5);*/
+    background: #0C131C;
+    color: #fff;
+}
+
+.search-box input[type="submit"] {
+    padding: 10px;
+    border: none;
+    font-family: 'FontAwesome';
+    max-width: 50px;
+    color: #fff;
+    background: #F7931A;
+    border: 2px solid #F7931A;
+}
+
+.winstreak-header {
+    background: linear-gradient(to right, rgba(247,147,26,0) 0%,rgba(247,147,26,1) 20%,rgba(247,147,26,1) 80%,rgba(247,147,26,0) 100%) !important;
+    -box-shadow: 0px 0px 15px -1px rgba(247,148,26,.7);
+}
+
+    .winstreak-header th {
+        background-color: rgba(0,0,0,0) !important;
+        color: #fff;
+    }
+
+        .winstreak-header th a {
+            color: #fff;
+            padding-right: 5px;
+        }
+
+.streak-table > tbody > tr > td:nth-child(2), .streak-table > tbody > tr > th:nth-child(2) {
+    text-align: right;
+}
+
+.streak-table > tbody > tr > td, .streak-table > tbody > tr > th {
+    padding: 10px 40px;
+}
+
+.winstreak-users td {
+    font-style: normal;
+}
+
+.streak-table > tbody > tr:nth-child(2n+1) > td, .streak-table > tbody > tr:nth-child(2n+1) > th {
+    background-color: rgba(0,0,0,0);
+}
+
+.streak-table > tbody > tr:nth-child(2n+1) {
+    background: linear-gradient(to right, rgba(247,147,26,0) 0%,rgba(247,147,26,.3) 20%,rgba(247,147,26,.3) 80%,rgba(247,147,26,0) 100%);
+}

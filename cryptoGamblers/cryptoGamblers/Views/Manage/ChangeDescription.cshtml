@@ -3,6 +3,7 @@
     ViewBag.Title = "Change Description";
 }
 @Html.Partial("MiniJumbotron", "Change Description")
+@Styles.Render("~/Content/HallOfFame/HallOfFame.css")
 
 <div class="wrapper">
     <div class="container body-content text-center">
@@ -12,8 +13,9 @@
         @Html.AntiForgeryToken()
         @Html.ValidationSummary("", new { @class = "text-danger" })
 
-        @Html.LabelFor(m => m.ProfileDescription, new { @class = "control-label" })
-        @Html.TextAreaFor(m => m.ProfileDescription, new { @class = "form-control center-field input-box-black" })
+			<h2 class="first-place-header">Change your profile description</h2>
+			<hr class="big-hr" />
+        @Html.TextAreaFor(m => m.ProfileDescription, new { @class = "form-control center-field input-box-black", @rows = 5 })
 
          <input type="submit" value="Change description" class="btn btn-default input-button-black" />
         }
