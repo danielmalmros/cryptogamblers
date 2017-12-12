@@ -235,17 +235,18 @@ input, textarea {
 	background-color: black;
 	border: 1px solid #f7931a;
 	color: #efefef;
+	resize: none;
 }
 
 .input-button-black {
 	margin-top: 10px;
 	margin-bottom: 10px;
 	border-radius: 0;
-	background-color: black;
+	background-color: orange;
 	color: #fff;
 	border: 1px solid orange;
-	transform: scale(1);
-	transition: 100ms all;
+	transform: translateY(0px);
+	transition: 200ms all;
 }
 
 	.input-button-black:hover {
@@ -255,6 +256,19 @@ input, textarea {
 		background-color: black;
 		color: #fff;
 		border: 1px solid orange;
-		transform: scale(1.05);
-		transition: 100ms all;
+		transform: translateY(-2px);
+		transition: 200ms all;
 	}
+
+	.input-button-black:active,
+	.input-button-black:visited {
+		margin-top: 10px;
+		margin-bottom: 10px;
+		border-radius: 0;
+		background-color: orange;
+		color: #fff;
+		border: 1px solid orange;
+		transform: translateY(0px);
+		transition: 200ms all;
+	}
+
