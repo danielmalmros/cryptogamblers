@@ -15,9 +15,9 @@
                 @Html.AntiForgeryToken()
                 <h4>Add more BTC to your balance</h4>
                 @Html.ValidationSummary("", new { @class = "text-danger" })
-                @Html.EditorFor(m => m.AddBalance, new { @class = "form-control textarea-max" })
+                @Html.TextBoxFor(m => m.AddBalance, new { @class = "form-control center-field input-box-black" })
                     <div>
-                        <input type="submit" value="Add to balance" class="btn btn-default" />
+                        <input type="submit" value="Add to balance" class="btn btn-default input-button-black" />
                     </div>
             }
         </div>

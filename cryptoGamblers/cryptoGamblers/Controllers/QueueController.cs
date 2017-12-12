@@ -90,6 +90,9 @@ namespace cryptoGamblers.Controllers
             Match newMatch = null;
             if (queueContains)
             {
+                db = new ApplicationDbContext();
+                queue = db.queueIn.FirstOrDefault(u => u.Opponent1 == userName);
+
                 QueueIn queueData = db.queueIn.Where(x => x.Opponent1 == userName || x.Opponent2 == userName).Select(x => x).FirstOrDefault();
                 newMatch = new Match { Opponent1 = queueData.Opponent1, Opponent2 = queueData.Opponent2, Date = DateTime.Now };
                 db.Match.AddOrUpdate(newMatch);
@@ -108,22 +111,6 @@ namespace cryptoGamblers.Controllers
 
             return Json(response, JsonRequestBehavior.AllowGet);
         }
-
-        // GET: Match
-        public ActionResult Match()
-        {
-            return View();
-        }
-
-        // POST: Match
-        [HttpPost]
-        public ActionResult Match(FormCollection fc)
-        {
-            Random rnd = new Random();
-            double i = rnd.NextDouble() * 6;
-            ViewBag.Face = i;
-
-            return View();
-        }
+        
     }
 }

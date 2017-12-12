@@ -22,9 +22,9 @@
                     @Html.AntiForgeryToken()
                     @Html.ValidationSummary("", new { @class = "text-danger" })
                     <div class="text-center">
-                        @Html.TextBoxFor(m => m.AvatarPath, new { @class = "form-control  center-field", type = "file", name = "fileupload" })
+                        @Html.TextBoxFor(m => m.AvatarPath, new { @class = "form-control  center-field  input-box-black", type = "file", name = "fileupload" })
                     </div>
-                    <input type="submit" value="Change Avatar" class="btn btn-default" />
+                    <input type="submit" value="Change Avatar" class="btn btn-default input-button-black" />
                 }
             </div>
         </div>

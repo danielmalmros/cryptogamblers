@@ -6,6 +6,7 @@
     var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
     var currentUser = manager.FindById(User.Identity.GetUserId());
 }
+
 @if (Request.IsAuthenticated)
 
 {
@@ -15,7 +16,9 @@
     @Html.AntiForgeryToken()
 
         <ul class="nav navbar-nav navbar-right menu-items">
-            <li class="nav-game-find">@Html.ActionLink("Find Game", "QueueMe", "Queue", new { Area = "" }, new { id = "button" })<div id="loader" class="loader"></div></li>
+            <li class="nav-game-find">
+            <button class="find-game-btn game-button" type="button">Find match</button><div id="loader" class="loader"></div>
+            </li>
             <li class="dropdown">
                 @*@Html.ActionLink(User.Identity.GetUserName(), "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })*@
                 <a href="#" class="dropdown-toggle" id="nav--profile" data-toggle="dropdown">
@@ -36,16 +39,3 @@
 
     }
 }
-
-<script>
-    $("#button").click(function () {
-        $("#button").css("display", "none"); 
-        $("#loader").css("display", "block");
-        $.ajax({
-            url: "/queue/QueueMe", success: function (result) {
-                var redirectUrl = "http://localhost:49816/Match/Index?id=" + result.Object.MatchId;
-                window.location = redirectUrl;
-            }
-        });
-    });
-</script>
