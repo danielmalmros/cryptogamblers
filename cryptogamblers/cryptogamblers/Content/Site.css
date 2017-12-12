@@ -147,6 +147,11 @@ textarea {
     font-weight: 700;
 }
 
+.text-danger {
+    margin: 5px 0;
+    padding: 0;
+}
+
 .word-break {
     -ms-word-break: break-all;
     word-break: break-all;
@@ -234,20 +239,22 @@ input, textarea {
 
 .input-button-black {
 	margin-top: 10px;
+	margin-bottom: 10px;
 	border-radius: 0;
 	background-color: black;
 	color: #fff;
 	border: 1px solid orange;
-	transform: scale(1.1);
+	transform: scale(1);
 	transition: 100ms all;
 }
 
 	.input-button-black:hover {
 		margin-top: 10px;
+		margin-bottom: 10px;
 		border-radius: 0;
 		background-color: black;
 		color: #fff;
 		border: 1px solid orange;
-		transform: scale(1.15);
+		transform: scale(1.05);
 		transition: 100ms all;
 	}
