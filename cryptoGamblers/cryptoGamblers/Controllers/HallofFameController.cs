@@ -19,8 +19,6 @@ namespace cryptoGamblers.Controllers
             ViewBag.UserNameSortParm = sortOrder == "username" ? "username_desc" : "username";
 
             var users = from u in db.Users.OrderByDescending(u => u.WinStreakMax).Take(100) select u;
-            //var firstPlace = from u in db.Users.OrderByDescending(u => u.WinStreakMax).Take(1) select u;
-            //ViewBag.firstPlace = firstPlace.ToString();
 
             if (!string.IsNullOrEmpty(searchString))
             {
