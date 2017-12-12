@@ -68,13 +68,13 @@ namespace cryptoGamblers.Controllers
                     };
 
                     return View(model);
-                } catch (Exception e)
+                } catch (Exception)
                 {
 					//If user can't be found
-					return HttpNotFound();
+					return HttpNotFound("User could not be found");
                 }
             }
-            //If no parameter is given
+            //If no parameter is given - Redirect to home
             return RedirectToAction("Index", "Home", null);
         }
     }
