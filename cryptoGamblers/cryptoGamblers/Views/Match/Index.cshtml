@@ -1,49 +1,163 @@
-﻿@using Microsoft.AspNet.Identity
-@using Microsoft.AspNet.Identity.EntityFramework
-@using cryptoGamblers.Models
-@{
-    ViewBag.Title = "Match";
+﻿@model cryptoGamblers.Models.MatchViewModel
 
-    var currentUserId = User.Identity.GetUserId();
-    var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
-    var currentUser = manager.FindById(User.Identity.GetUserId());
+@{
+    ViewBag.Title = Model.Match.Opponent1 + " Vs. " + Model.Match.Opponent2;
+
 }
 <div class="container body-content">
     <h2>Match</h2>
     <div class="three-col">
         <div class="opponent op1">
-            <img src="~/Content/uploads/@currentUser.Avatar" />
-            <p class="username">@currentUser.UserName</p>
-            <p class="bet">Betting: <span>@currentUser.Balance</span></p>
+            <img src="~/Content/uploads/@Model.Opponent1.Avatar" />
+            <p class="username">@Model.Opponent1.UserName</p>
+            <p class="bet">Betting: <span>@Model.Opponent1.Balance</span></p>
+            <input type="hidden" id="matchId" value="@Model.Match.MatchId" />
+            <input type="hidden" id="isOpponent1" value="@Model.IsOpponent1.ToString()" />
+            @if (Model.IsOpponent1)
+            {
+              
+                <input type="text" class="proposedBet" />
+                <button type="button" class="btnProposeBet">Propose bet</button>
+            }
+            else
+            {
+                <input type="text" class="proposedBet" disabled/>
+                <button type="button" class="btnAacceptBet btnHandleBet">Accept</button>
+                <button type="button" class="btnDeclineBet btnHandleBet">Decline</button>
+            }
         </div>
         <div class="playfield">
             @using (Html.BeginForm())
             {
-                <button type="submit">Roll the Dice</button>
+                <button type="submit" class="btnRoll" disabled>Roll the Dice</button>
+                <button type="submit" class="resetGame" disabled>Start over</button>
             }
             @if (ViewBag.Face != null)
             {
                 <p>You got:  <span> @ViewBag.Face</span></p>
             }
-            <div class="chat">chat be here</div>
             <div class="waving-tom"></div>
         </div>
+
         <div class="opponent op2">
-            <img src="~/Content/uploads/@currentUser.Avatar" />
-            <p class="username">@currentUser.UserName</p>
-            <p class="bet">Betting: <span>@currentUser.Balance</span></p>
+            <img src="~/Content/uploads/@Model.Opponent2.Avatar" />
+            <p class="username">@Model.Opponent2.UserName</p>
+            <p class="bet">Betting: <span>@Model.Opponent2.Balance</span></p>
         </div>
     </div>
 
 
 
 </div>
+<script>
+    $(document).ready(function () {
+        var matchState = 0; 
+
+       $.ajax({
+           url: "/Match/checkMatchStatus?matchId=" + $("#matchId").val(), success: function (result) {
+               matchState = result.Data.BetState;
+                    switch (matchState) {
+                        case 0:
+                            if ($('#isOpponent1').val() === 'False') {
+                                betListener();
+                            }
+                            break;
+                        case 1:
+                            $(".proposedBet").val(result.Data.PrizePool);
+                            $(".btnHandleBet").css("display", "block");
+                            if ($('#isOpponent1').val() === 'True') {
+                                responseListener();
+                            }
+                            break;
+                        case 2:
+                            break;
+                        case 3:
+                            $(".proposedBet").val(result.Data.PrizePool);
+                            $(".btnProposeBet").css("display", "none");
+                            $(".proposedBet").prop('disabled', true);
+                            $(".btnRoll").prop('disabled', false);
+                            break;
+                        case 3:
+                            $(".proposedBet").val(result.Data.PrizePool);
+                            $(".btnProposeBet").css("display", "none");
+                            $(".proposedBet").prop('disabled', true);
+                            $(".btnRoll").prop('disabled', true);
+                            $(".resetGame").prop('disabled', false);
+                            break;
+                }
+            }
+        });
+    });
+
+    $(".btnProposeBet").click(function () {
+        responseListener();
+    });
+
+    $(".btnAacceptBet").click(function () {
+        respondToBet(true);
+    });
+
+    $(".btnDeclineBet").click(function () {
+        respondToBet(false);
+    });
+
+    $(".btnRoll").click(function () {
+        $.ajax({
+            url: "/Match/Roll?matchId=" + $("#matchId").val(), success: function (result) {
+                console.log(result);
+            }
+        });
+    });
+    
+    var respondToBet = function (response) {
+        $(".btnHandleBet").css("display", "none");
+        $.ajax({
+            url: "/Match/RespondBet?accepted="+response+"&matchId=" + $("#matchId").val(), success: function (result) {
+                if(!response){
+                betListener();
+                $(".proposedBet").val("");
+                } else {
+                    $(".btnRoll").prop('disabled', false);
+                }
+            }
+        });
+    }
+
+    var betListener = function () {
+            $.ajax({
+                url: "/Match/RecieveBet?matchId=" + $("#matchId").val(), success: function (result) {
+                    $(".proposedBet").val(result.Amount);
+                    $(".btnHandleBet").css("display", "block");
+                }
+            });
+    }
+
+    var responseListener = function () {
+        $(".btnProposeBet").css("display", "none");
+        $(".proposedBet").prop('disabled', true); 
+
+        $.ajax({
+            url: "/Match/ProposeBet?matchId=" + $("#matchId").val() + "&amount=" + $(".proposedBet").val(), success: function (result) {
+                    if (result.Status === "ACC") {
+                        $(".btnRoll").prop('disabled', false);
+                    } else if (result.Status === "DEC") {
+                        $(".btnProposeBet").css("display", "block");
+                        $(".proposedBet").prop('disabled', false);
+                    }
+                }
+            });
+    }
+
+</script>
 <style>
     .three-col {
         display: grid;
         grid-template-columns: 18em minmax(min-content, 1fr) 18em;
     }
 
+    .btnHandleBet{
+        display:none;
+    } 
     .op1 {
         grid-column: 1;
     }

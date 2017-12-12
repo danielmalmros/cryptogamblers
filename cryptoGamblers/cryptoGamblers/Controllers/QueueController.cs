@@ -45,7 +45,9 @@ namespace cryptoGamblers.Controllers
                     {
                         //re-init application context so data is updated
                         db = new ApplicationDbContext();
-                        var matchCreated = db.Match.FirstOrDefault(u => u.Opponent2 == userName && u.Opponent1 == queue.Opponent1);
+                        var matchCreated = db.Matchdat.FirstOrDefault(u => u.Opponent2 == userName && u.Opponent1 == queue.Opponent1 ||
+                         u.Opponent1 == userName && u.Opponent2 == queue.Opponent1
+                        );
 
                         if (matchCreated != null)
                         {
@@ -57,7 +59,6 @@ namespace cryptoGamblers.Controllers
                                 Status = new HttpStatusCodeResult(200)
                             };
                             return Json(response, JsonRequestBehavior.AllowGet);
-
                         }
                         else
                         {
@@ -94,10 +95,18 @@ namespace cryptoGamblers.Controllers
                 queue = db.queueIn.FirstOrDefault(u => u.Opponent1 == userName);
 
                 QueueIn queueData = db.queueIn.Where(x => x.Opponent1 == userName || x.Opponent2 == userName).Select(x => x).FirstOrDefault();
-                newMatch = new Match { Opponent1 = queueData.Opponent1, Opponent2 = queueData.Opponent2, Date = DateTime.Now };
-                db.Match.AddOrUpdate(newMatch);
+
+                newMatch = new Match { Opponent1 = queueData.Opponent1, Opponent2 = queueData.Opponent2, Date = DateTime.Now, MatchState = MatchState.PENDINGBETPROPOSAL };
+
+                db.Matchdat.AddOrUpdate(newMatch);
 				db.SaveChanges();
-                newMatch = db.Match.FirstOrDefault(x => x.Opponent1 == newMatch.Opponent1 && x.Opponent2 == newMatch.Opponent2);
+
+                newMatch = db.Matchdat.FirstOrDefault(x => x.Opponent1 == newMatch.Opponent1 && x.Opponent2 == newMatch.Opponent2);
+
+                db.MatchData.Add(new MatchData {
+                    MatchId = newMatch.MatchId,
+                    BetState = betState.PENDINGBET
+                });
 
                 db.queueIn.Remove(queue);
                 db.SaveChanges();
