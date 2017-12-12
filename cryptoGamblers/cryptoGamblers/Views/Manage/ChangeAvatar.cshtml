@@ -3,35 +3,33 @@
 @using cryptoGamblers.Models
 @model cryptoGamblers.Models.ChangeAvatarViewModel
 @{
-	ViewBag.Title = "Change Avatar";
-		var currentUserId = User.Identity.GetUserId();
-		var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
-		var currentUser = manager.FindById(User.Identity.GetUserId());
+    ViewBag.Title = "Change Avatar";
+    var currentUserId = User.Identity.GetUserId();
+    var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+    var currentUser = manager.FindById(User.Identity.GetUserId());
 }
 
-<div class="container body-content">
-    <h2>@ViewBag.Title</h2>
-	<img src="../Content/uploads/@currentUser.Avatar" style="width: 200px" />
-    @using (Html.BeginForm("ChangeAvatar", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form", data_ajax = "false", enctype = "multipart/form-data" }))
-    {
-        @Html.AntiForgeryToken()
-        <h4>Change your avatar</h4>
-        <hr />
-        @Html.ValidationSummary("", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(m => m.AvatarPath, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(m => m.AvatarPath, new { @class = "form-control", type = "file", name = "fileupload" })
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Change Avatar" class="btn btn-default" />
-            </div>
-        </div>
-    }
-</div>
+@Html.Partial("MiniJumbotron", "Change Avatar")
 
+<div class="wrapper">
+    <div class="container body-content text-center">
+        <div>
+            <div class="item"></div>
+            <div class="item text-center textarea-max">
+                <img src="../Content/uploads/@currentUser.Avatar" style="width: 200px" />
+                @using (Html.BeginForm("ChangeAvatar", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form", data_ajax = "false", enctype = "multipart/form-data" }))
+            {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary("", new { @class = "text-danger" })
+                    <div class="text-center">
+                        @Html.TextBoxFor(m => m.AvatarPath, new { @class = "form-control  center-field", type = "file", name = "fileupload" })
+                    </div>
+                    <input type="submit" value="Change Avatar" class="btn btn-default" />
+                }
+            </div>
+        </div>
+    </div>
+</div>
 
 
 @section Scripts {

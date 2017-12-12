@@ -8,20 +8,44 @@
 }
 
 
+<div class="jumbotron">
+    <div class="container body-content">
+        <div class="text-center-mini">
+            <img src="~/Content/uploads/@Model.AvatarPath" class="img-rounded userprofile--avatar" />
+            <h2 class="jumbo-title">@Model.Username</h2>
+            <p class="word-break">@Model.ProfileDescription</p>
+        </div>
+    </div>
+    <div class="top-background">
+        <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 699.08 31">
+            <defs>
+                <style>
+                    .cls-1, .cls-2 {
+                        fill: #0c131c;
+                    }
+
+                    .cls-2 {
+                        stroke: #f7931a;
+                        stroke-miterlimit: 10;
+                        stroke-width: 4px;
+                    }
+                </style>
+            </defs>
+            <title>Untitled-3</title>
+            <rect class="cls-1" x="2.41" y="27" width="694" height="4" />
+            <polyline class="cls-2" points="1.41 29.5 28.91 2 670.41 2 697.66 29.25" />
+        </svg>
+    </div>
+</div>
+
 <div class="container">
 	<div class="userprofile-wrapper">
 		<div class="userprofile-item">
-			<img src="~/Content/uploads/@Model.AvatarPath" class="img-rounded" style="max-width: 250px" />
 		</div>
 		<div class="userprofile-item">
-			<h1>
-				@Model.Username
-			</h1>
-			<p>@Model.ProfileDescription</p>
-			<hr class="userprofile-hr" />
 			@{if (Model.WinStreak > 0)
 				{
-					<p><strong>🚨 @Model.Username is currently on a winstreak! 🚨 </strong></p>
+					<h3><strong>🚨 @Model.Username is currently on a winstreak! 🚨 </strong></h3>
 				}
 			}
 			<div class="userprofile--winstreak-wrapper">
@@ -38,6 +62,8 @@
 				</div>
 			</div>
 		</div>
+        <div class="userprofile-item">
+        </div>
 	</div>
 </div>
 
@@ -52,14 +78,14 @@
 	if (maxWinstreak > 0) {
 		var myCircle = Circles.create({
 			id: 'circles-1',
-			radius: 40,
+			radius: 60,
 			value: winstreak,
 			maxValue: maxWinstreak,
-			width: 12,
+			width: 14,
 			text: function (value) {
 				return value + '/' + this.getMaxValue()
 			},
-			colors: ['rgb(0, 202, 254)', 'rgb(31, 172, 208)'],
+            colors: ['rgb(195, 101, 23)', 'rgb(247, 147, 26)'],
 			duration: 600,
 			wrpClass: 'circles-wrp',
 			textClass: 'circles-text',
