@@ -28,10 +28,10 @@
 
 			<div>
 
-				<h2>@User.Identity.GetUserName()</h2>
+				<h2 class="jumbo-title">@User.Identity.GetUserName()</h2>
 				<div class="manageprofile--editable manageprofile--description">
 					<a href="@Url.Action("ManageBalance", "Manage")">
-						<p><strong>Add more to your current: </strong><span id="nav--profile-balance">@currentUser.Balance</span></p>
+						<p><strong>Add more to your current balance: </strong><span id="nav--profile-balance">@currentUser.Balance</span></p>
 					</a>
 					<div class="edit"><a href="@Url.Action("ChangeDescription", "Manage")"><i class="fa fa-plus fa-lg"></i></a></div>
 				</div>

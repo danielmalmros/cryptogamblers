@@ -272,3 +272,8 @@ input, textarea {
 		transition: 200ms all;
 	}
 
+#bitcoin-menu-attention {
+	color: #f7931a;
+	font-weight: 700;
+}
+

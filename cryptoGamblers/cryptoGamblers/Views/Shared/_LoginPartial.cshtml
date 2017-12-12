@@ -31,6 +31,7 @@
                 <ul class="dropdown-menu">
                     <li>@Html.ActionLink("My Profile", "UserProfile", "User", new { id = currentUser.UserName }, null)</li>
                     <li><a href="@Url.Action("Index", "Manage", new { area = "" })">Manage Profile</a></li>
+					<li>@Html.ActionLink("Add BitCoins", "ManageBalance", "Manage", null, new {  @id = "bitcoin-menu-attention" })</li>
                     <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
                 </ul>
 
