@@ -16,6 +16,7 @@ body {
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     font-family: 'Source Sans Pro', sans-serif;
 }
+
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
@@ -223,3 +224,30 @@ input, textarea {
 .halloffame-top-three {
     margin-bottom: 150px;
 }
+
+.input-box-black {
+	border-radius: 0;
+	background-color: black;
+	border: 1px solid #f7931a;
+	color: #efefef;
+}
+
+.input-button-black {
+	margin-top: 10px;
+	border-radius: 0;
+	background-color: black;
+	color: #fff;
+	border: 1px solid orange;
+	transform: scale(1.1);
+	transition: 100ms all;
+}
+
+	.input-button-black:hover {
+		margin-top: 10px;
+		border-radius: 0;
+		background-color: black;
+		color: #fff;
+		border: 1px solid orange;
+		transform: scale(1.15);
+		transition: 100ms all;
+	}
