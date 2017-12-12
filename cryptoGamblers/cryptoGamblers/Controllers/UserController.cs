@@ -51,7 +51,7 @@ namespace cryptoGamblers.Controllers
             return View();
         }
 
-        public async Task<ActionResult> UserProfile( string id )
+		public async Task<ActionResult> UserProfile( string id)
         {
             if(id != null) { 
 
@@ -70,12 +70,12 @@ namespace cryptoGamblers.Controllers
                     return View(model);
                 } catch (Exception e)
                 {
-                    return HttpNotFound();
+					//If user can't be found
+					return HttpNotFound();
                 }
-
             }
-            //If user can't be found
-            return HttpNotFound();
+            //If no parameter is given
+            return RedirectToAction("Index", "Home", null);
         }
     }
 }
