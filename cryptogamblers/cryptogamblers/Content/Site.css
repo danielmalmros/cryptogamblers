@@ -114,7 +114,7 @@ textarea {
 }
 
 .jumbotron {
-    background-image: url('https://www.bitcoin.co.id/homev2-assets/img/p2pbg.jpg');
+    background-image: url('~/Content/Images/p2pbg.jpg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
