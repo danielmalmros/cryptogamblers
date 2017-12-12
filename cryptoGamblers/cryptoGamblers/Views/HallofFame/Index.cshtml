@@ -7,7 +7,7 @@
     var firstPlace = from u in db.Users.OrderByDescending(u => u.WinStreakMax).Take(1) select u;
     firstPlace.ToList();
 }
-@Styles.Render("~/Content/HallOfFame/HallOfFame.css")
+@*@Styles.Render("~/Content/HallOfFame/HallOfFame.css")*@
 
 <div class="jumbotron" style="background-image: url('http://uhceo.com/wp-content/blog/uploads/2010/09/winner_background.jpg');">
     <div class="container body-content">
@@ -50,7 +50,7 @@
             @foreach (ApplicationUser user in Model)
             {
                 <tr class="winstreak-users">
-                    <td>@Html.ActionLink(user.UserName, "UserProfile", "User", new { id = user.UserName }, null) </td>
+                    <td>@Html.ActionLink("🏅 " + user.UserName, "UserProfile", "User", new { id = user.UserName }, null) </td>
                     <td>@user.WinStreakMax</td>
                 </tr>
 

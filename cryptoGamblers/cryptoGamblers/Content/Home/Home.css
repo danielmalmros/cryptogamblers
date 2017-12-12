@@ -144,7 +144,12 @@
 .streak-table > tbody > tr:nth-child(2n+1) {
     background: linear-gradient(to right, rgba(247,147,26,0) 0%,rgba(247,147,26,.3) 20%,rgba(247,147,26,.3) 80%,rgba(247,147,26,0) 100%);
 }
-
+.streak-table td a {
+    font-weight: 300;
+    font-size: 1.2em;
+    color:#fff;
+    font-style:normal;
+}
 .top-100-link {
     color:rgba(247,147,26,1);
     text-align:center;
