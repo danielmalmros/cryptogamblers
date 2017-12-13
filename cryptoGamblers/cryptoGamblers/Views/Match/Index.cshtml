@@ -27,14 +27,17 @@
             }
         </div>
         <div class="playfield">
-            @using (Html.BeginForm())
-            {
-                <button type="submit" class="btnRoll" disabled>Roll the Dice</button>
-                <button type="submit" class="resetGame" disabled>Start over</button>
-            }
+                <button type="button" class="btnRoll" disabled>Roll the Dice</button>
+                <button type="button" class="resetGame" style="display:none;"disabled>Start over</button>
+            <p>@Model.Opponent1.UserName got:  <span  id="Opponent1Face"></span></p>
+            <p>@Model.Opponent2.UserName got:  <span  id="Opponent2Face"></span></p>
+            <p>WINNER:  <span id="Winner"></span></p>
+            <p class="CountDown">Game shuts down in:  <span class="counter "id="counter">20</span></p>
+
+
             @if (ViewBag.Face != null)
             {
-                <p>You got:  <span> @ViewBag.Face</span></p>
+                <p>You got:  <span><text id="Winner"></text></span></p>
             }
             <div class="waving-tom"></div>
         </div>
@@ -51,43 +54,52 @@
 </div>
 <script>
     $(document).ready(function () {
-        var matchState = 0; 
-
-       $.ajax({
-           url: "/Match/checkMatchStatus?matchId=" + $("#matchId").val(), success: function (result) {
-               matchState = result.Data.BetState;
-                    switch (matchState) {
-                        case 0:
-                            if ($('#isOpponent1').val() === 'False') {
-                                betListener();
-                            }
-                            break;
-                        case 1:
-                            $(".proposedBet").val(result.Data.PrizePool);
-                            $(".btnHandleBet").css("display", "block");
-                            if ($('#isOpponent1').val() === 'True') {
-                                responseListener();
-                            }
-                            break;
-                        case 2:
-                            break;
-                        case 3:
-                            $(".proposedBet").val(result.Data.PrizePool);
-                            $(".btnProposeBet").css("display", "none");
-                            $(".proposedBet").prop('disabled', true);
-                            $(".btnRoll").prop('disabled', false);
-                            break;
-                        case 3:
-                            $(".proposedBet").val(result.Data.PrizePool);
-                            $(".btnProposeBet").css("display", "none");
-                            $(".proposedBet").prop('disabled', true);
-                            $(".btnRoll").prop('disabled', true);
-                            $(".resetGame").prop('disabled', false);
-                            break;
-                }
-            }
+      var initState = function () {
+          $.ajax({
+              url: "/Match/checkMatchStatus?matchId=" + $("#matchId").val(), success: function (result) {
+                  switch (result.Data.BetState) {
+                      case 0:
+                          if ($('#isOpponent1').val() === 'False') {
+                              betListener();
+                          }
+                          break;
+                      case 1:
+                          $(".proposedBet").val(result.Data.PrizePool);
+                          $(".btnHandleBet").css("display", "block");
+                          if ($('#isOpponent1').val() === 'True') {
+                              responseListener();
+                          }
+                          break;
+                      case 2:
+                          break;
+                      case 3:
+                          $(".proposedBet").val(result.Data.PrizePool);
+                          $(".btnProposeBet").css("display", "none");
+                          $(".proposedBet").prop('disabled', true);
+                          $(".btnRoll").prop('disabled', false);
+                          break;
+                      case 3:
+                          $(".proposedBet").val(result.Data.PrizePool);
+                          $(".btnProposeBet").css("display", "none");
+                          $(".proposedBet").prop('disabled', true);
+                          $(".btnRoll").prop('disabled', true);
+                          $(".resetGame").prop('disabled', false);
+                          break;
+                      case 4:
+                          $(".proposedBet").val(result.Data.PrizePool);
+                          $(".btnProposeBet").css("display", "none");
+                          $(".proposedBet").prop('disabled', true);
+                          $(".btnRoll").prop('disabled', true);
+                          $(".resetGame").prop('disabled', true);
+                          setInterval(countDown(),1000);
+                          break;
+                  }
+              }
+          });
+        }
+      initState();
         });
-    });
+    
 
     $(".btnProposeBet").click(function () {
         responseListener();
@@ -102,13 +114,39 @@
     });
 
     $(".btnRoll").click(function () {
+        $(".btnRoll").prop('disabled', true);
         $.ajax({
             url: "/Match/Roll?matchId=" + $("#matchId").val(), success: function (result) {
                 console.log(result);
+                $("#Opponent1Face").text(result.Opponent1Roll);
+                $("#Opponent2Face").text(result.Opponent2Roll);
+                if (result.Opponent1Roll === result.Opponent2Roll) {
+                    resetRoll();
+                    $("#Winner").text("Draw");
+                } else {
+                    $("#Winner").text(result.Winner);
+                    setInterval(countDown, 1000);
+                }
             }
         });
     });
-    
+
+    var countDown = function () {
+        $(".CountDown").css("display", "block");
+        $('.counter').each(function () {
+            var count = parseInt($(this).html());
+            if (count !== 0) {
+                $(this).text(count - 1);
+            } else {
+                // Schedule the update to happen once every second
+                $.ajax({
+                    url: "/Match/TransferMatch?matchId=" + $("#matchId").val(), success: function () {
+                        window.location = "http://localhost:49816/Home/Index";
+                    }
+                });
+            }
+        });
+    };
     var respondToBet = function (response) {
         $(".btnHandleBet").css("display", "none");
         $.ajax({
@@ -147,9 +185,20 @@
                 }
             });
     }
+    var resetRoll = function () {
+        $.ajax({
+            url: "/Match/ResetRoll?matchId=" + $("#matchId").val(), success: function () {
+                $(".btnRoll").prop('disabled', false);
+            }
+        });
+    }
+
 
 </script>
 <style>
+    .CountDown{
+        display: none;
+    } 
     .three-col {
         display: grid;
         grid-template-columns: 18em minmax(min-content, 1fr) 18em;

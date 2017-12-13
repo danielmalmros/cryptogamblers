@@ -18,11 +18,8 @@ namespace cryptoGamblers.Controllers
             ApplicationDbContext db = new ApplicationDbContext();
             var viewModel = new MatchViewModel();
             //init match info 
-            viewModel.Match = db.Matchdat.FirstOrDefault(m => m.MatchId == Id);
-            viewModel.Opponent1 = db.Users.FirstOrDefault(u => u.UserName == viewModel.Match.Opponent1);
-            viewModel.Opponent2 = db.Users.FirstOrDefault(u => u.UserName == viewModel.Match.Opponent2);
-            viewModel.IsOpponent1 = User.Identity.GetUserName() == viewModel.Opponent1.UserName;
 
+            viewModel.Match = db.Match.OrderByDescending(m => m.Date).FirstOrDefault(m => m.MatchId == Id);
             var userName = User.Identity.GetUserName();
 
             if (viewModel.Match == null)
@@ -31,11 +28,17 @@ namespace cryptoGamblers.Controllers
             }
             else
             {
-                if(viewModel.Match.Opponent1 != userName && viewModel.Match.Opponent2 != userName)
+                if (viewModel.Match.Opponent1 != userName && viewModel.Match.Opponent2 != userName)
                 {
                     return RedirectToAction("Index", "Home");
                 }
             }
+
+            viewModel.Opponent1 = db.Users.FirstOrDefault(u => u.UserName == viewModel.Match.Opponent1);
+            viewModel.Opponent2 = db.Users.FirstOrDefault(u => u.UserName == viewModel.Match.Opponent2);
+            viewModel.IsOpponent1 = User.Identity.GetUserName() == viewModel.Opponent1.UserName;
+     
+
 
             ViewBag.Name = userName;
 
@@ -45,13 +48,13 @@ namespace cryptoGamblers.Controllers
         public JsonResult ProposeBet(int amount, int matchId)
         {
             ApplicationDbContext db = new ApplicationDbContext();
-            
+
             //init match info 
-            var match = db.Matchdat.FirstOrDefault(m => m.MatchId == matchId);
+            var match = db.Match.FirstOrDefault(m => m.MatchId == matchId);
             var data = db.MatchData.FirstOrDefault(d => d.MatchId == matchId);
 
             var userName = User.Identity.GetUserName();
-        
+
             if (match == null && amount > 0)
             {
                 return null;
@@ -64,13 +67,13 @@ namespace cryptoGamblers.Controllers
                 }
             }
 
-            if (data.BetState == betState.PENDINGBET) { 
-            //setprizepool to amount
-            data.PrizePool = amount;
+            if (data.BetState == betState.PENDINGBET) {
+                //setprizepool to amount
+                data.PrizePool = amount;
                 data.BetState = betState.PENDINGBETRESPONSE;
-            db.MatchData.AddOrUpdate(data);
-                db.Matchdat.AddOrUpdate(match);
-            db.SaveChanges();
+                db.MatchData.AddOrUpdate(data);
+                db.Match.AddOrUpdate(match);
+                db.SaveChanges();
             }
 
             //Wait for response to bet
@@ -84,8 +87,8 @@ namespace cryptoGamblers.Controllers
                     case betState.ACCEPTED:
 
                         stateChanged = true;
-                        
-                        db.Matchdat.AddOrUpdate(match);
+
+                        db.Match.AddOrUpdate(match);
                         db.MatchData.AddOrUpdate(data);
                         db.SaveChanges();
 
@@ -99,7 +102,7 @@ namespace cryptoGamblers.Controllers
 
                         data.BetState = betState.PENDINGBET;
                         data.PrizePool = 0;
-                            db.MatchData.AddOrUpdate(data);
+                        db.MatchData.AddOrUpdate(data);
                         db.SaveChanges();
 
                         return Json(new
@@ -121,7 +124,7 @@ namespace cryptoGamblers.Controllers
             ApplicationDbContext db = new ApplicationDbContext();
 
             //init match info 
-            var match = db.Matchdat.FirstOrDefault(m => m.MatchId == matchId);
+            var match = db.Match.FirstOrDefault(m => m.MatchId == matchId);
             var data = db.MatchData.FirstOrDefault(d => d.MatchId == matchId);
 
             var userName = User.Identity.GetUserName();
@@ -146,39 +149,111 @@ namespace cryptoGamblers.Controllers
         public ActionResult RespondBet(bool accepted, int matchId)
         {
             ApplicationDbContext db = new ApplicationDbContext();
-            try { 
-            //init match info 
-            var match = db.Matchdat.FirstOrDefault(m => m.MatchId == matchId);
-            var data = db.MatchData.FirstOrDefault(d => d.MatchId == matchId);
+            try {
+                //init match info 
+                var match = db.Match.FirstOrDefault(m => m.MatchId == matchId);
+                var data = db.MatchData.FirstOrDefault(d => d.MatchId == matchId);
 
-            var userName = User.Identity.GetUserName();
+                var userName = User.Identity.GetUserName();
 
-            if (match == null)
-            {
-                return null;
-            }
-            else
-            {
-                if (match.Opponent2 != userName)
+                if (match == null)
                 {
                     return null;
                 }
-            }
-            if (accepted) {
-                data.BetState = betState.ACCEPTED;
-            }
-            else {
-                data.BetState = betState.DECLINED;
+                else
+                {
+                    if (match.Opponent2 != userName)
+                    {
+                        return null;
+                    }
+                }
+                if (accepted) {
+                    data.BetState = betState.ACCEPTED;
+                }
+                else {
+                    data.BetState = betState.DECLINED;
                     data.PrizePool = 0;
-            }
+                }
 
-            db.MatchData.AddOrUpdate(data);
-            db.SaveChanges();
+                db.MatchData.AddOrUpdate(data);
+                db.SaveChanges();
 
-            } catch(Exception e)
+            } catch (Exception e)
             {
                 new HttpStatusCodeResult(500);
             }
+            return new HttpStatusCodeResult(200);
+        }
+        public HttpStatusCodeResult ResetRoll(int matchId)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+
+            //get current user name
+            var userName = User.Identity.GetUserName();
+
+            //init match info 
+            var match = db.Match.FirstOrDefault(m => m.MatchId == matchId);
+            var data = db.MatchData.FirstOrDefault(d => d.MatchId == matchId);
+            if (match == null)
+            {
+                return new HttpStatusCodeResult(403);
+            }
+            else
+            {
+                if (match.Opponent2 != userName && match.Opponent1 != userName)
+                {
+                    return new HttpStatusCodeResult(403);
+                }
+            }
+
+            //reset rolls and state
+            data.Opponent1Roll = 0;
+            data.Opponent2Roll = 0;
+            data.BetState = betState.ACCEPTED;
+            db.MatchData.AddOrUpdate(data);
+            db.SaveChanges();
+
+            return new HttpStatusCodeResult(200);
+        }
+
+
+        public HttpStatusCodeResult TransferMatch(int matchId)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+
+            //get current user name
+            var userName = User.Identity.GetUserName();
+
+            //init match info 
+            var match = db.Match.FirstOrDefault(m => m.MatchId == matchId);
+            var data = db.MatchData.FirstOrDefault(d => d.MatchId == matchId);
+            if (match == null)
+            {
+                return new HttpStatusCodeResult(200);
+            }
+            else
+            {
+                if (match.Opponent2 != userName && match.Opponent1 != userName && data.BetState == betState.FINISHED)
+                {
+                    return new HttpStatusCodeResult(403);
+                }
+            }
+            try
+            {
+                //reset rolls and state
+                db.AfterMatch.AddOrUpdate(new AfterMatch
+                {
+                    GameDate = match.Date,
+                });
+                db.Match.Remove(match);
+                db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                //log e.message
+                return new HttpStatusCodeResult(500);
+            }
+
             return new HttpStatusCodeResult(200);
         }
 
@@ -190,7 +265,7 @@ namespace cryptoGamblers.Controllers
             var userName = User.Identity.GetUserName();
 
             //init match info 
-            var match = db.Matchdat.FirstOrDefault(m => m.MatchId == matchId);
+            var match = db.Match.FirstOrDefault(m => m.MatchId == matchId);
             var data = db.MatchData.FirstOrDefault(d => d.MatchId == matchId);
 
             if (match == null)
@@ -227,7 +302,7 @@ namespace cryptoGamblers.Controllers
             ApplicationDbContext db = new ApplicationDbContext();
 
             //init match info 
-            var match = db.Matchdat.FirstOrDefault(m => m.MatchId == matchId);
+            var match = db.Match.FirstOrDefault(m => m.MatchId == matchId);
             var data = db.MatchData.FirstOrDefault(d => d.MatchId == matchId);
           
 
@@ -245,14 +320,16 @@ namespace cryptoGamblers.Controllers
                     return null;
                 }
             }
+
             if (data.BetState == betState.ACCEPTED) { 
             Random rng = new Random();
-            var roll = rng.Next(1,6);
+          //  var roll = rng.Next(1,6);
 
                 var hasOpponentRolled = false;
 
                 if (isOpponent1) {
-                    data.Opponent1Roll = roll;
+
+                    data.Opponent1Roll = rng.Next(1, 6);
                     db.MatchData.AddOrUpdate(data);
                     db.SaveChanges();
 
@@ -263,19 +340,31 @@ namespace cryptoGamblers.Controllers
 
                         if (data.Opponent2Roll > 0)
                         {
-                            return Json(new {
-                                Opponent1Roll = data.Opponent1Roll,
-                                Opponent2Roll = data.Opponent2Roll,
-                                Winner = data.Opponent1Roll > data.Opponent2Roll ? "Opponent1" : "Opponent2"
-                            }, JsonRequestBehavior.AllowGet);
+                            hasOpponentRolled = true;
+                            data.BetState = betState.FINISHED;
+                            db.MatchData.AddOrUpdate(data);
+                            db.SaveChanges();
+
+                            if (data.Opponent1Roll == data.Opponent2Roll)
+                            {
+                                return Json(new
+                                {
+                                    Opponent1Roll = data.Opponent1Roll,
+                                    Opponent2Roll = data.Opponent2Roll,
+                                    Winner = "None"
+                                }, JsonRequestBehavior.AllowGet);
+                            }
+                            else
+                            {
+                                transferCurrency(match.MatchId);
+                            }
                         }
                         System.Threading.Thread.Sleep(1000);
                     }
 
                 } else {
 
-                    data.Opponent2Roll = roll;
-                    data.Opponent1Roll = roll;
+                    data.Opponent2Roll = rng.Next(1, 6);
                     db.MatchData.AddOrUpdate(data);
                     db.SaveChanges();
 
@@ -287,12 +376,16 @@ namespace cryptoGamblers.Controllers
                         if (data.Opponent1Roll > 0)
                         {
                             hasOpponentRolled = true;
-                            return Json(new
+
+                            if (data.Opponent1Roll == data.Opponent2Roll)
                             {
-                                Opponent1Roll = data.Opponent1Roll,
-                                Opponent2Roll = data.Opponent2Roll,
-                                Winner = data.Opponent1Roll > data.Opponent2Roll ? "Opponent1" : "Opponent2"
-                            },JsonRequestBehavior.AllowGet);
+                                return Json(new
+                                {
+                                    Opponent1Roll = data.Opponent1Roll,
+                                    Opponent2Roll = data.Opponent2Roll,
+                                    Winner = "None"
+                                }, JsonRequestBehavior.AllowGet);
+                            }
                         }
                         System.Threading.Thread.Sleep(1000);
                     }
@@ -303,7 +396,54 @@ namespace cryptoGamblers.Controllers
             else{
                 return null;
             }
-            return Json(new { },JsonRequestBehavior.AllowGet);
+
+            return Json(new
+            {
+                Opponent1Roll = data.Opponent1Roll,
+                Opponent2Roll = data.Opponent2Roll,
+                Winner = data.Opponent1Roll > data.Opponent2Roll ? match.Opponent1 : match.Opponent2
+            }, JsonRequestBehavior.AllowGet);
+        }
+
+        private void transferCurrency(int matchId)
+        {
+
+            //transfer money from one account to another
+            ApplicationDbContext db = new ApplicationDbContext();
+
+            //init match info 
+            var match = db.Match.FirstOrDefault(m => m.MatchId == matchId);
+            var data = db.MatchData.FirstOrDefault(d => d.MatchId == matchId);
+
+
+            var userName = User.Identity.GetUserName();
+            var isOpponent1 = match.Opponent1 == userName;
+
+            if (match == null)
+            {
+                return;
+
+            }
+            else
+            {
+                if (match.Opponent1 != userName && match.Opponent2 != userName)
+                {
+                    return;
+                }
+            }
+
+            if (data.BetState == betState.FINISHED)
+            {
+               var winner = data.Opponent1Roll > data.Opponent2Roll ?  db.Users.FirstOrDefault(u => u.UserName == match.Opponent1) : db.Users.FirstOrDefault(u => u.UserName == match.Opponent2);
+               var looser = data.Opponent1Roll < data.Opponent2Roll ? db.Users.FirstOrDefault(u => u.UserName == match.Opponent1) : db.Users.FirstOrDefault(u => u.UserName == match.Opponent2);
+                
+                winner.Balance = winner.Balance + data.PrizePool;
+                looser.Balance = looser.Balance - data.PrizePool;
+
+                db.Users.AddOrUpdate(winner);
+                db.Users.AddOrUpdate(looser);
+                db.SaveChanges();
+            }
         }
     }
 

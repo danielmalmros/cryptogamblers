@@ -13,7 +13,7 @@ namespace cryptoGamblers.Models
         PENDINGBETRESPONSE,
         DECLINED,
         ACCEPTED,
-        ROLLED
+        FINISHED
     }
     public class MatchData
     {

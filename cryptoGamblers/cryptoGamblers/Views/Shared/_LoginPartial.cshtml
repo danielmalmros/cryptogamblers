@@ -47,7 +47,6 @@
         $("#loader").css("display", "block");
         $.ajax({
             url: "/queue/QueueMe", success: function (result) {
-                console.log("test");
                 var redirectUrl = "http://localhost:49816/Match/Index?id=" + result.Object.MatchId;
                 window.location = redirectUrl;
             }

@@ -41,7 +41,7 @@ namespace cryptoGamblers.Models
         }
 
         public DbSet<QueueIn> queueIn { get; set; }
-        public DbSet<Match> Matchdat { get; set; }
+        public DbSet<Match> Match { get; set; }
         public DbSet<AfterMatch> AfterMatch { get; set; }
         public DbSet<MatchData> MatchData { get; set; }
     }
