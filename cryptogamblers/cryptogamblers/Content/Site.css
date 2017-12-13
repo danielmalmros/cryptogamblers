@@ -308,7 +308,7 @@ input, textarea {
 
 .three-col {
     display: grid;
-    grid-template-columns: 22em minmax(min-content, 1fr) 22em;
+    grid-template-columns: 1fr minmax(min-content, 2fr) 1fr;
 }
 
 .btnHandleBet {
