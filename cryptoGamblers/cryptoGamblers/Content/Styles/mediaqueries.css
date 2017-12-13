@@ -1,100 +1,147 @@
 ﻿
 
 @media screen and (max-width: 1000px) {
-	/*Login & Register*/
-	.bodyContent {
-		grid-template-columns: auto 50% auto;
-	}
+    /*Login & Register*/
+    .bodyContent {
+        grid-template-columns: auto 50% auto;
+    }
 
-	.loginWrapper {
-		grid-row-start: 2;
-		grid-row-end: 2;
-		grid-column-start: 2;
-		grid-column-end: 2;
-		padding: 40px;
-	}
+    .loginWrapper {
+        grid-row-start: 2;
+        grid-row-end: 2;
+        grid-column-start: 2;
+        grid-column-end: 2;
+        padding: 40px;
+    }
 
-	.loginForm {
-		display: grid;
-		grid-template-rows: 33% auto;
-		grid-template-columns: 1;
-	}
+    .loginForm {
+        display: grid;
+        grid-template-rows: 33% auto;
+        grid-template-columns: 1;
+    }
 }
 
 @media screen and (max-width: 680px) {
-/* General*/
-h3 {
-	font-size: 20px;
-}
-	.jumbotron {
-		padding: 0;
-		margin-bottom: 50px;
-	}
+    /* General*/
+    h3 {
+        font-size: 20px;
+    }
 
-	.text-center-mini {
-		padding-top: 40px;
-		padding-bottom: 20px;
-	}
-	/*Login & Register*/
-	.loginWrapper {
-		grid-row-start: 2;
-		grid-row-end: 2;
-		grid-column-start: 1;
-		grid-column-end: 4;
-		padding: 40px;
-	}
+    .jumbotron {
+        padding: 0;
+        margin-bottom: 50px;
+    }
 
-	.loginForm {
-		display: grid;
-		grid-template-rows: 33% auto;
-		grid-template-columns: 1;
-	}
+    .text-center-mini {
+        padding-top: 40px;
+        padding-bottom: 20px;
+    }
+    /*Login & Register*/
+    .loginWrapper {
+        grid-row-start: 2;
+        grid-row-end: 2;
+        grid-column-start: 1;
+        grid-column-end: 4;
+        padding: 40px;
+    }
 
-	.loginInput {
-		width: 0;
-	}
-	/* Homepage*/
+    .loginForm {
+        display: grid;
+        grid-template-rows: 33% auto;
+        grid-template-columns: 1;
+    }
 
-	.play-button {
-		margin-right: 0;
-		margin-left: 0;
-	}
+    .loginInput {
+        width: 0;
+    }
+    /* Homepage*/
 
-	.home-content {
-		grid-template-columns: 1fr;
+    .play-button {
+        margin-right: 0;
+        margin-left: 0;
+    }
 
-		/* Manage profile*/
-	}
+    .home-content {
+        grid-template-columns: 1fr;
+        /* Manage profile*/
+    }
 
-	.userprofile-hr {
-		width: 100%;
-	}
+    .userprofile-hr {
+        width: 100%;
+    }
 
-	.userprofile-wrapper {
-		grid-template-columns: 1fr;
-		text-align: center;
-		align-items: center;
-		justify-content: center;
-		justify-items: center;
-	}
+    .userprofile-wrapper {
+        grid-template-columns: 1fr;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        justify-items: center;
+    }
 
-	.manageprofile--changepassword {
-		margin-bottom: 40px;
-	}
+    .manageprofile--changepassword {
+        margin-bottom: 40px;
+    }
 
-/*User profile*/
-	.userprofile--winstreak-wrapper {
-		grid-template-columns: 1fr;
-		justify-items: center;
-	}
+    /*User profile*/
+    .userprofile--winstreak-wrapper {
+        grid-template-columns: 1fr;
+        justify-items: center;
+    }
 
-/*Hall of fame*/
-#SearchString {
-	width: 100%;
-	max-width: 100%;
-}
-#SearchString + input {
-	width: 100%;
-	max-width: 100%;
-}
+    /*Hall of fame*/
+    #SearchString {
+        width: 100%;
+        max-width: 100%;
+    }
+
+        #SearchString + input {
+            width: 100%;
+            max-width: 100%;
+        }
+
+    /* MATCH */
+
+    .three-col {
+        grid-template-columns: 100%;
+    }
+
+    .opponent {
+        width: unset;
+        height: unset;
+    }
+
+    .playfield {
+        grid-column: 1;
+    }
+
+    .no-image,
+    .avatar-big,
+    .opponent img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .username {
+        font-size: 10px;
+    }
+
+    .bet {
+        font-size: 14px;
+    }
+
+    .play-button {
+        margin: 20px 5px;
+        padding: 5px 15px;
+        line-height: 60px;
+        font-size: 1.5em;
+    }
+
+    .proposedBet {
+        display: block;
+        margin: 0 auto;
+    }
+
+    .playfield .jumbo-title {
+        font-size: 20px
+    }
 }
