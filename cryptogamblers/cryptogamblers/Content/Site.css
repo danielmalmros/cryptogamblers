@@ -23,6 +23,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+    margin-bottom: 50px
 }
 
 #cryptogamblers-logo {
@@ -279,3 +280,11 @@ input, textarea {
 	font-weight: 700;
 }
 
+.form-wrapper {
+    display: grid;
+    justify-content: center;
+}
+
+.form-wrapper__inner .btn {
+    width: auto;
+}
