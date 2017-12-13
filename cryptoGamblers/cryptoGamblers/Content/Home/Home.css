@@ -168,4 +168,24 @@ h1 {
         /*transform: scale(.7);*/
         font-size: 2em;
     }
+    .home-content {
+        grid-template-columns: 100% !important;
+    }
+    .home-content__block-img {
+        justify-self: center !important;
+        order: 1;
+        margin-top:50px;
+    }
+}
+
+.home-content__block-img {
+    max-width: 300px;
+    max-height: 300px;
+    border-radius: 50%;
+    background: #f7931a;
+    box-shadow: inset 0 0 0 8px #f7931a, inset 0 0 0 16px #0c131c,0px 0px 15px -1px rgba(247,148,26,.7);
+}
+.home-content__block-img img {
+    padding:70px;
+    width:100%;
 }
