@@ -12,7 +12,7 @@
 
 <div class="bodyContent">
 	<div class="loginWrapper">
-
+        <img src="/Content/Images/logo.png" class="loginLogo">
 		@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form", data_ajax = "false", enctype = "multipart/form-data" }))
 		{
 			<div class="loginForm">
@@ -23,14 +23,15 @@
 					@Html.AntiForgeryToken()
 					@Html.ValidationSummary("", new { @class = "text-danger" })
 					@Html.LabelFor(m => m.Username, new { @class = "control-label" })
-					@Html.TextBoxFor(m => m.Username, new { @class = "form-control loginInput" })
+					@Html.TextBoxFor(m => m.Username, new { @class = "form-control loginInput input-box-black" })
 					@Html.LabelFor(m => m.Email, new { @class = "control-label" })
-					@Html.TextBoxFor(m => m.Email, new { @class = "form-control loginInput" })
+					@Html.TextBoxFor(m => m.Email, new { @class = "form-control loginInput input-box-black" })
 					@Html.LabelFor(m => m.Password, new { @class = "control-label" })
-					@Html.PasswordFor(m => m.Password, new { @class = "form-control loginInput" })
+					@Html.PasswordFor(m => m.Password, new { @class = "form-control loginInput input-box-black" })
 					@Html.LabelFor(m => m.ConfirmPassword, new { @class = "control-label" })
-					@Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control loginInput" })
-					<input type="submit" class="btn btn-default loginInput" value="✨ Make me a BitCoin Superstar ✨" />
+					@Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control loginInput input-box-black last-input" })
+					<input type="submit" class="btn btn-default loginInput input-button-black" value="✨ Make me a BitCoin Superstar ✨" />
+                    @Html.ActionLink("Already a user? Login", "Login", new { @class = "loginInput" })
 				</div>
 			</div>
 		}

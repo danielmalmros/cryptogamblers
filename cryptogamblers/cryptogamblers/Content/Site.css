@@ -5,11 +5,13 @@ html {
     height: 100%;
 }
 body {
-    background: #0c131c;
+    background: url(https://i.imgur.com/hzkYOTj.png) #0c131c;
+    background-position: center center;
+    background-size: cover;
     color: #fff;
     font-family: 'Source Sans Pro', sans-serif;
-    min-height:100%;
-    position:relative;
+    min-height: 100%;
+    position: relative;
     padding-bottom: 40px;
 }
 
