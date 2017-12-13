@@ -13,6 +13,10 @@
                 {
                     <img src="~/Content/uploads/@Model.Opponent1.Avatar" class="avatar-big" />
                 }
+                else
+                {
+                    <div class="no-image"></div>
+                }
                 <p class="username jumbo-title">@Model.Opponent1.UserName</p>
             </div>
             <p class="bet">In-Wallet: <span class="bitcoin-currency">@Model.Opponent1.Balance</span></p>
@@ -49,9 +53,12 @@
 
         <div class="opponent op2">
             <div class="avatar-container">
-                @if (Model.Opponent1.Avatar != null)
+                @if (Model.Opponent2.Avatar != null)
                 {
                     <img src="~/Content/uploads/@Model.Opponent2.Avatar" class="avatar-big" />
+                } else
+                {
+                    <div class="no-image"></div>
                 }
                 <p class="username jumbo-title">@Model.Opponent2.UserName</p>
             </div>
