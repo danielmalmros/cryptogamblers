@@ -8,6 +8,7 @@
     <h1 class="text-center">@Model.Opponent1.UserName  VS @Model.Opponent2.UserName</h1>
     <div class="three-col">
         <div class="opponent op1">
+            <h2 class="bet">Opponent 1</h2>
             <div class="avatar-container">
                 @if (Model.Opponent1.Avatar != null)
                 {
@@ -52,6 +53,7 @@
         </div>
 
         <div class="opponent op2">
+            <h2 class="bet">Opponent 2</h2>
             <div class="avatar-container">
                 @if (Model.Opponent2.Avatar != null)
                 {
