@@ -5,11 +5,13 @@ html {
     height: 100%;
 }
 body {
-    background: #0c131c;
+    background: url(https://i.imgur.com/hzkYOTj.png) #0c131c;
+    background-position: center center;
+    background-size: cover;
     color: #fff;
     font-family: 'Source Sans Pro', sans-serif;
-    min-height:100%;
-    position:relative;
+    min-height: 100%;
+    position: relative;
     padding-bottom: 40px;
 }
 
@@ -21,6 +23,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+    margin-bottom: 50px
 }
 
 #cryptogamblers-logo {
@@ -277,3 +280,11 @@ input, textarea {
 	font-weight: 700;
 }
 
+.form-wrapper {
+    display: grid;
+    justify-content: center;
+}
+
+.form-wrapper__inner .btn {
+    width: auto;
+}

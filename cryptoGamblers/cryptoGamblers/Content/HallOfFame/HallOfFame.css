@@ -76,6 +76,11 @@ hr.big-hr::after {
     /*background: rgba(247,147,26,.5);*/
     background: #0C131C;
     color: #fff;
+    transition:background .1s;
+    outline:none;
+}
+.search-box input[type="text"]:focus {
+    background:#543a1c;
 }
 
 .search-box input[type="submit"] {
@@ -86,6 +91,9 @@ hr.big-hr::after {
     color: #fff;
     background: #F7931A;
     border: 2px solid #F7931A;
+}
+.search-box input[type="submit"]:hover {
+    opacity:.8;
 }
 
 .winstreak-header {

@@ -78,6 +78,10 @@ body.scrolled .custom-nav {
     font-weight: 700;
 }
 
+li.nav-game-find {
+    display:flex;
+}
+
 #nav--profile {
     display: flex;
     align-items: center;

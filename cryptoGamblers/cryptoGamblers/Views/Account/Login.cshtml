@@ -9,7 +9,7 @@
 
 <div class="bodyContent">
     <div class="loginWrapper">
-        
+        <img src="/Content/Images/logo.png" class="loginLogo">
                     @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
                         <div class="loginForm">
@@ -19,11 +19,13 @@
                             <div class="LoginFormBody">
                                 @Html.AntiForgeryToken()
                                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control loginInput", @placeholder = "User name" })
+                                @Html.LabelFor(m => m.UserName, new { @class = "control-label" })
+                                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control loginInput input-box-black" })
                                 @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
-                                @Html.PasswordFor(m => m.Password, new { @class = "form-control loginInput", @placeholder = "Password" })
+                                @Html.LabelFor(m => m.Password, new { @class = "control-label" })
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control loginInput input-box-black last-input" })
                                 @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                                <input type="submit" value="Let me in" class="btn btn-default loginInput" />
+                                <input type="submit" value="Let me in" class="btn btn-default loginInput input-button-black" />
                                 @Html.ActionLink("Register as a new user", "Register", new { @class = "loginInput" })
                             </div>
                         </div>
