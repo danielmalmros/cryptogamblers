@@ -239,7 +239,16 @@ input, textarea {
 	border: 1px solid #f7931a;
 	color: #efefef;
 	resize: none;
+    letter-spacing: 1px;
+    font-weight: 700
 }
+    .input-box-black:active,
+    .input-box-black:focus {
+        border-color: #b16d1a;
+        outline: 0;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgb(247, 147, 26);
+    }
 
 .input-button-black {
 	margin-top: 10px;
@@ -250,6 +259,7 @@ input, textarea {
 	border: 1px solid rgba(247, 147, 26, 0.7);
 	transform: translateY(0px);
 	transition: 200ms all;
+    padding: 0.5em 1.5em;
 }
 
 	.input-button-black:hover {
@@ -287,4 +297,129 @@ input, textarea {
 
 .form-wrapper__inner .btn {
     width: auto;
+}
+
+
+/* Temporary Match Placement */
+
+.CountDown {
+    display: none;
+}
+
+.three-col {
+    display: grid;
+    grid-template-columns: 18em minmax(min-content, 1fr) 18em;
+}
+
+.btnHandleBet {
+    display: none;
+}
+
+.op1 {
+    grid-column: 1;
+
+}
+
+.op2 {
+
+}
+
+.bet {
+    color: #fff;
+    font-size: 20px;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 5px;
+    margin-top: 10px
+}
+
+.opponent {
+    background: #152233;
+    padding: 1em;
+    box-shadow: 10px 14px 63px -17px rgba(3,3,2,1);
+    width: 300px;
+    height: 450px;
+    text-align: center;
+    transition: 150ms all;
+}
+
+    .opponent:hover {
+        transform: scale(1.04);
+        box-shadow: 12px 22px 68px -17px rgba(3,3,2,1);
+        transition: 150ms all;
+    }
+
+    .opponent img {
+        width: 90%;
+        margin: 0 auto;
+        display: block;
+    }
+
+.avatar-container {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+.avatar-container p {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+    .avatar-container img {
+        filter: brightness(50%) sepia(20%);
+    }
+
+    .proposedBet {
+        text-align: center;
+    }
+.playfield {
+    grid-column: 2;
+    text-align: center;
+}
+
+.btnHandleBet {
+    display:inline-block;
+}
+
+.waving-tom {
+    background-image: url("https://shop.lego.com/static/animations/tom/waving-tom_sprite.png");
+    animation: anim-waving-tom 2.88s steps(72) infinite;
+    width: 100px;
+    height: 70px;
+    transform: scale(1);
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index: 99999;
+}
+
+@keyframes anim-waving-tom {
+    100% {
+        background-position: -7200px;
+    }
+}
+
+[data-id=anim-waving-tom] .movieclip__media {
+    background-image: url(/static/animations/tom/waving-tom_sprite.png);
+    -webkit-animation: anim-waving-tom 2.88s steps(72) infinite;
+    animation: anim-waving-tom 2.88s steps(72) infinite;
+}
+
+.bitcoin-currency {
+    color: #f7931a;
+    letter-spacing: 2px;
+}
+.bitcoin-currency:before {
+    Content: "";
+    width: 17px;
+    height: 17px;
+    display: inline-block;
+    background-image: url("data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA3LjYzIDEwLjU3Ij48ZGVmcz48c3R5bGU+LmNscy0xe2ZpbGw6I2Y3OTMxYTt9PC9zdHlsZT48L2RlZnM+PHRpdGxlPlVudGl0bGVkLTI8L3RpdGxlPjxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTk2Mi44MSw1MzguMzFjLS4xMS0xLjE1LTEuMTEtMS41NC0yLjM3LTEuNjV2LTEuNmgtMXYxLjU2aC0uNzh2LTEuNTdoLTF2MS41OWgtMnYxaC43MWEuNS41LDAsMCwxLC41Ni40M1Y1NDBoMHYyLjU1YS4zNC4zNCwwLDAsMS0uMzYuMzJzLS43MSwwLS43MSwwbC0uMTksMS4xNmgydjEuNjJoMVY1NDRoLjc4djEuNTloMVY1NDRjMS42NC0uMSwyLjc5LS41MSwyLjkyLTJhMS42NiwxLjY2LDAsMCwwLTEuNC0yLDEuNSwxLjUsMCwwLDAsLjg0LTEuNjRabS0xLjM2LDMuNDZjMCwxLjIxLTIuMDcsMS4wNy0yLjczLDEuMDdWNTQwLjdjLjY2LDAsMi43My0uMTksMi43MywxLjA3Wm0tLjQ1LTNjMCwxLjEtMS43MywxLTIuMjcsMXYtMS45NGMuNTUsMCwyLjI3LS4xNywyLjI3LDFaIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtOTU1Ljc2IC01MzUuMDYpIi8+PC9zdmc+");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    transform: translateY(2px);
 }

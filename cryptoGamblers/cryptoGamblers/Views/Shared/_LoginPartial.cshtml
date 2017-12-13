@@ -1,7 +1,7 @@
 ﻿@using Microsoft.AspNet.Identity
 @using Microsoft.AspNet.Identity.EntityFramework
 @using cryptoGamblers.Models
-@{ 
+@{
     var currentUserId = User.Identity.GetUserId();
     var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
     var currentUser = manager.FindById(User.Identity.GetUserId());
@@ -10,40 +10,43 @@
 @if (Request.IsAuthenticated && currentUser != null)
 
 {
-    @*<button id="button" class="btn btn-default loginInput">Queue me up</button>   <div id="loader" class="loader"></div>*@  
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-    {
+    @*<button id="button" class="btn btn-default loginInput">Queue me up</button>   <div id="loader" class="loader"></div>*@
+using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+{
     @Html.AntiForgeryToken()
 
-        <ul class="nav navbar-nav navbar-right menu-items">
-            <li class="nav-game-find">
+    <ul class="nav navbar-nav navbar-right menu-items">
+        <li class="nav-game-find">
             <button class="find-game-btn game-button" type="button">Find match</button><div id="loader" class="loader"></div>
-            </li>
-            <li class="dropdown">
-                @*@Html.ActionLink(User.Identity.GetUserName(), "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })*@
-                <a href="#" class="dropdown-toggle" id="nav--profile" data-toggle="dropdown">
+        </li>
+        <li class="dropdown">
+            @*@Html.ActionLink(User.Identity.GetUserName(), "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })*@
+            <a href="#" class="dropdown-toggle" id="nav--profile" data-toggle="dropdown">
+                @if (currentUser.Avatar != null)
+                {
                     <img src="~/Content/uploads/@currentUser.Avatar" id="nav--profile-img" />
-                    <div>
-                        <p id="nav--profile-name">@currentUser.UserName</p>
-                        <p id="nav--profile-balance">@currentUser.Balance</p>
-                    </div>
-                </a>
-                <ul class="dropdown-menu">
-                    <li>@Html.ActionLink("My Profile", "UserProfile", "User", new { id = currentUser.UserName }, null)</li>
-                    <li><a href="@Url.Action("Index", "Manage", new { area = "" })">Manage Profile</a></li>
-					<li>@Html.ActionLink("Add BitCoins", "ManageBalance", "Manage", null, new {  @id = "bitcoin-menu-attention" })</li>
-                    <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-                </ul>
+                }
+                <div>
+                    <p id="nav--profile-name">@currentUser.UserName</p>
+                    <p id="nav--profile-balance">@currentUser.Balance</p>
+                </div>
+            </a>
+            <ul class="dropdown-menu">
+                <li>@Html.ActionLink("My Profile", "UserProfile", "User", new { id = currentUser.UserName }, null)</li>
+                <li><a href="@Url.Action("Index", "Manage", new { area = "" })">Manage Profile</a></li>
+                <li>@Html.ActionLink("Add BitCoins", "ManageBalance", "Manage", null, new { @id = "bitcoin-menu-attention" })</li>
+                <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+            </ul>
 
-            </li>
-        </ul>
+        </li>
+    </ul>
 
     }
 }
 
 <script>
     $("#button").click(function () {
-        $("#button").css("display", "none"); 
+        $("#button").css("display", "none");
         $("#loader").css("display", "block");
         $.ajax({
             url: "/queue/QueueMe", success: function (result) {

@@ -9,7 +9,7 @@
     var currentUser = manager.FindById(User.Identity.GetUserId());
 }
 <div class="container body-content">
-    <h2>Match</h2>
+    <h2>@currentUser.UserName VS @currentUser.UserName</h2>
     <div class="three-col">
         <div class="opponent op1">
             <img src="~/Content/uploads/@currentUser.Avatar" />
