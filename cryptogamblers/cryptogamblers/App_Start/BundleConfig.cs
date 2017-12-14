@@ -41,9 +41,9 @@ namespace cryptoGamblers
 					  "~/Content/Styles/Nav.css",
                       "~/Content/Styles/UserProfile.css",
                       "~/Content/_loginPartial/_loginPartial.css",
-					  "~/Content/Styles/mediaqueries.css",
 					  "~/Content/HallOfFame/HallOfFame.css",
-					  "~/Content/Match/index.css"));
+					  "~/Content/Match/index.css",
+					  "~/Content/Styles/mediaqueries.css"));
         }
     }
 }
