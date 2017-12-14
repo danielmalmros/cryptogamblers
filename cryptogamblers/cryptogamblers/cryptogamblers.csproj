@@ -277,6 +277,10 @@
     <Compile Include="Migrations\201712140801412_remove matchstate from match.Designer.cs">
       <DependentUpon>201712140801412_remove matchstate from match.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712141235238_test if result is returned to opponents.cs" />
+    <Compile Include="Migrations\201712141235238_test if result is returned to opponents.Designer.cs">
+      <DependentUpon>201712141235238_test if result is returned to opponents.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ActionResult.cs" />
@@ -435,6 +439,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712140801412_remove matchstate from match.resx">
       <DependentUpon>201712140801412_remove matchstate from match.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712141235238_test if result is returned to opponents.resx">
+      <DependentUpon>201712141235238_test if result is returned to opponents.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
