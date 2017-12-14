@@ -184,6 +184,7 @@ namespace cryptoGamblers.Controllers
             }
             return new HttpStatusCodeResult(200);
         }
+
         public HttpStatusCodeResult ResetRoll(int matchId)
         {
             ApplicationDbContext db = new ApplicationDbContext();
@@ -194,25 +195,46 @@ namespace cryptoGamblers.Controllers
             //init match info 
             var match = db.Match.FirstOrDefault(m => m.MatchId == matchId);
             var data = db.MatchData.FirstOrDefault(d => d.MatchId == matchId);
-            if (match == null)
-            {
-                return new HttpStatusCodeResult(403);
-            }
-            else
-            {
-                if (match.Opponent2 != userName && match.Opponent1 != userName)
+
+
+                if (match == null)
                 {
                     return new HttpStatusCodeResult(403);
                 }
+                else
+                {
+                    if (match.Opponent2 != userName && match.Opponent1 != userName)
+                    {
+                        return new HttpStatusCodeResult(403);
+                    }
+                }
+
+            var isOpponent1 = match.Opponent1 == userName;
+
+            if (isOpponent1)
+            {
+                var readyForReset = false;
+
+                while (!readyForReset)
+                {
+                    db = new ApplicationDbContext();
+                    data = db.MatchData.FirstOrDefault(d => d.MatchId == matchId);
+
+                    if (data.rollReturnedOpponent2)
+                    {
+                        //reset rolls and state
+                        data.Opponent2Roll = 0;
+                        data.Opponent1Roll = 0;
+
+                        data.rollReturnedOpponent1 = false;
+                        data.rollReturnedOpponent2 = false;
+
+                        data.MatchState = MatchState.ACCEPTED;
+                        db.MatchData.AddOrUpdate(data);
+                        db.SaveChanges();
+                    }
+                }
             }
-
-            //reset rolls and state
-            data.Opponent1Roll = 0;
-            data.Opponent2Roll = 0;
-            data.MatchState = MatchState.ACCEPTED;
-            db.MatchData.AddOrUpdate(data);
-            db.SaveChanges();
-
             return new HttpStatusCodeResult(200);
         }
 
@@ -330,8 +352,7 @@ namespace cryptoGamblers.Controllers
                 if (isOpponent1) {
 
                     db.MatchData.AddOrUpdate(data);
-					data.Opponent1Roll = 1;
-                   // data.Opponent1Roll = rng.Next(1, 6);
+                    data.Opponent1Roll = rng.Next(1, 10);
 					db.SaveChanges();
 
                     while (!hasOpponentRolled)
@@ -343,6 +364,7 @@ namespace cryptoGamblers.Controllers
                         {
                             hasOpponentRolled = true;
                             data.MatchState = MatchState.FINISHED;
+                            data.rollReturnedOpponent1 = true;
                             db.MatchData.AddOrUpdate(data);
                             db.SaveChanges();
 
@@ -365,8 +387,7 @@ namespace cryptoGamblers.Controllers
 
                 } else {
 
-					//data.Opponent2Roll = rng.Next(1, 6);
-					data.Opponent2Roll = 1;
+					data.Opponent2Roll = rng.Next(1, 10);
 					db.MatchData.AddOrUpdate(data);
                     db.SaveChanges();
 
@@ -378,6 +399,9 @@ namespace cryptoGamblers.Controllers
                         if (data.Opponent1Roll > 0)
                         {
                             hasOpponentRolled = true;
+                            data.rollReturnedOpponent2 = true;
+                            db.MatchData.AddOrUpdate(data);
+                            db.SaveChanges();
 
                             if (data.Opponent1Roll == data.Opponent2Roll)
                             {

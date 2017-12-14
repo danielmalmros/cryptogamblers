@@ -24,6 +24,9 @@ namespace cryptoGamblers.Models
         public int? Opponent1Roll { get; set; }
         public int? Opponent2Roll { get; set; }
 
+        public bool rollReturnedOpponent1 { get; set; }
+        public bool rollReturnedOpponent2 { get; set; }
+
         [ForeignKey("Match")]
         public virtual int? MatchId { get; set;}
         public virtual Match Match { get; set; }
