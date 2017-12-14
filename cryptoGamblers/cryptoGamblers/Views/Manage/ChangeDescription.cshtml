@@ -18,6 +18,8 @@
         @Html.TextAreaFor(m => m.ProfileDescription, new { @class = "form-control center-field input-box-black", @rows = 5 })
 
          <input type="submit" value="Change description" class="btn btn-default input-button-black" />
+        <br />
+        @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-default input-button-black input-cancel" })
         }
         <div class="item"></div>
     </div>

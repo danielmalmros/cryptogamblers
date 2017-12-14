@@ -30,6 +30,8 @@
                         @Html.TextBoxFor(m => m.AvatarPath, new { @class = "form-control  center-field  input-box-black", type = "file", name = "fileupload" })
                     </div>
                     <input type="submit" value="Change Avatar" class="btn btn-default input-button-black" />
+                    <br />
+                    @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-default input-button-black input-cancel" })
                 }
             </div>
         </div>
