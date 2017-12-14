@@ -37,7 +37,7 @@
             }
         </div>
         <div class="playfield">
-            <button type="button" class="btnRoll play-button game-button " disabled>Roll the Dice</button>
+            <button type="button" class="btnRoll match-button" disabled>Roll the Dice</button>
             <button type="button" class="resetGame" style="display:none;" disabled>Start over</button>
             <p class="bet">@Model.Opponent1.UserName rolled a:  <span id="Opponent1Face"></span></p>
             <p class="bet">@Model.Opponent2.UserName rolled a:  <span id="Opponent2Face"></span></p>
@@ -72,4 +72,3 @@
 
 </div>
 @Scripts.Render("~/bundles/GameEnigne")
-@Styles.Render("~/bundles/match")

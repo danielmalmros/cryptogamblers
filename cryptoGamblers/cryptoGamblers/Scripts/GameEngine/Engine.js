@@ -10,7 +10,7 @@
                         break;
                     case 1:
                         $(".proposedBet").val(result.Data.PrizePool);
-                        $(".btnHandleBet").css("display", "block");
+                        $(".btnHandleBet").css("display", "inline-block");
                         if ($('#isOpponent1').val() === 'True') {
                             responseListener();
                         }
@@ -111,7 +111,7 @@ var betListener = function () {
     $.ajax({
         url: "/Match/RecieveBet?matchId=" + $("#matchId").val(), success: function (result) {
             $(".proposedBet").val(result.Amount);
-            $(".btnHandleBet").css("display", "block");
+            $(".btnHandleBet").css("display", "inline-block");
         }
     });
 }
@@ -126,7 +126,7 @@ var responseListener = function () {
                 subtractBalance(result.Amount);
                 $(".btnRoll").prop('disabled', false);
             } else if (result.Status === "DEC") {
-                $(".btnProposeBet").css("display", "block");
+                $(".btnProposeBet").css("display", "inline-block");
                 $(".proposedBet").prop('disabled', false);
             }
         }
