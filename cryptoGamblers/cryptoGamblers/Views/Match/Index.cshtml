@@ -20,13 +20,12 @@
                 }
                 <p class="username jumbo-title">@Model.Opponent1.UserName</p>
             </div>
-            <p class="bet">In-Wallet: <span class="bitcoin-currency">@Model.Opponent1.Balance</span></p>
             <input type="hidden" id="matchId" value="@Model.Match.MatchId" />
             <input type="hidden" id="isOpponent1" value="@Model.IsOpponent1.ToString()" />
             @if (Model.IsOpponent1)
             {
 
-                <input type="text" class="proposedBet input-box-black" />
+                <input type="number" class="proposedBet input-box-black" />
                 <button type="button" class="btnProposeBet input-button-black">Propose bet</button>
             }
             else
@@ -42,7 +41,7 @@
             <p class="bet">@Model.Opponent1.UserName rolled a:  <span id="Opponent1Face"></span></p>
             <p class="bet">@Model.Opponent2.UserName rolled a:  <span id="Opponent2Face"></span></p>
             <p class="jumbo-title">WINNER:  <span id="Winner"></span></p>
-            <p class="CountDown">Game shuts down in:  <span class="counter " id="counter">20</span></p>
+            <p class="CountDown">Game shuts down in:  <span class="counter " id="counter">5</span></p>
 
 
             @if (ViewBag.Face != null)
@@ -64,7 +63,6 @@
                 }
                 <p class="username jumbo-title">@Model.Opponent2.UserName</p>
             </div>
-            <p class="bet">In-Wallet: <span class="bitcoin-currency">@Model.Opponent2.Balance</span></p>
         </div>
     </div>
 

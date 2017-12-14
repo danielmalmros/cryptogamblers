@@ -51,14 +51,17 @@ $(".btnProposeBet").click(function () {
 });
 
 $(".btnAacceptBet").click(function () {
-    subtractBalance($("#proposedBet").text());
+    setTimeout(function () {
+        subtractBalance($(".proposedBet").val());
+        console.log($(".proposedBet").val())
+    }, 300);
     respondToBet(true);
 });
 
 $(".btnDeclineBet").click(function () {
     respondToBet(false);
 });
-
+    
 $(".btnRoll").click(function () {
     $(".btnRoll").prop('disabled', true);
     $.ajax({
@@ -141,10 +144,8 @@ var resetRoll = function () {
 }
 
 var subtractBalance = function (amount) {
-    console.log(amount);
-    console.log($("nav--profile-balance").text());
-    var balance = $("nav--profile-balance").text();
-    var result = balance - amount;
-    console.log(result);
-    $("nav--profile-balance").text(result)
+    var balance = $("#nav--profile-balance").text();
+    var num = parseInt(balance)
+    var result = num - amount;
+    $("#nav--profile-balance").text(result)
 }
