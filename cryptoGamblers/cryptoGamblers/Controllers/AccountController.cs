@@ -232,9 +232,17 @@ namespace cryptoGamblers.Controllers
 		[ValidateAntiForgeryToken]
 		public ActionResult LogOff()
 		{
-         ApplicationDbContext db = new ApplicationDbContext();
 
-         AuthenticationManager.SignOut();
+         ApplicationDbContext db = new ApplicationDbContext();
+         var queue = db.queueIn.FirstOrDefault(u => u.Opponent1 == this.User.Identity.Name || u.Opponent2 == this.User.Identity.Name);
+            
+            //if user is queued remove from queue
+            if (queue != null) { 
+            db.queueIn.Remove(queue);
+            db.SaveChanges();
+            }
+
+            AuthenticationManager.SignOut();
 			return RedirectToAction("Index", "Home");
 		}
 
