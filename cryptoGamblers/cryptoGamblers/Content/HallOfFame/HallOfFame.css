@@ -130,3 +130,7 @@ hr.big-hr::after {
 .streak-table > tbody > tr:nth-child(2n+1) {
     background: linear-gradient(to right, rgba(247,147,26,0) 0%,rgba(247,147,26,.3) 20%,rgba(247,147,26,.3) 80%,rgba(247,147,26,0) 100%);
 }
+
+.table-responsive > .table {
+	background-color: unset;
+}
