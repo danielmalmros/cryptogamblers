@@ -17,7 +17,7 @@
         <h3>User Roles</h3>
         <div class="admin-panel__wrapper">
             <div class="admin-panel__create">
-                @Html.ActionLink("Create role", "CreateRole", null, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Create role", "CreateRole", null, new { @class = "btn btn-primary input-button-black" })
             </div>
             <div class="admin-panel__search">
                
@@ -26,7 +26,7 @@
             <table class="table table-striped table-borderless">
                 <tr>
                     <th>ID</th>
-                    <th>Name</th>
+                    <th>Role Name</th>
                     <th>User Amount</th>
                     <th></th>
                 </tr>
@@ -65,7 +65,7 @@
         <h3>User Accounts</h3>
         <div class="admin-panel__wrapper">
             <div class="admin-panel__create">
-                @Html.ActionLink("Create user", "CreateUser", null, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Create user", "CreateUser", null, new { @class = "btn btn-primary input-button-black" })
             </div>
             <div class="admin-panel__search">
                 @using (Html.BeginForm())
