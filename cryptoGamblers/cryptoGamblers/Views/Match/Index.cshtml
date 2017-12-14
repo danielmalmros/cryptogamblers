@@ -5,34 +5,44 @@
 
 }
 <div class="container body-content">
-    <h2>Match</h2>
+    <h1 class="text-center">@Model.Opponent1.UserName  VS @Model.Opponent2.UserName</h1>
     <div class="three-col">
         <div class="opponent op1">
-            <img src="~/Content/uploads/@Model.Opponent1.Avatar" />
-            <p class="username">@Model.Opponent1.UserName</p>
-            <p class="bet">Betting: <span>@Model.Opponent1.Balance</span></p>
+            <h2 class="bet">Opponent 1</h2>
+            <div class="avatar-container">
+                @if (Model.Opponent1.Avatar != null)
+                {
+                    <img src="~/Content/uploads/@Model.Opponent1.Avatar" class="avatar-big" />
+                }
+                else
+                {
+                    <div class="no-image"></div>
+                }
+                <p class="username jumbo-title">@Model.Opponent1.UserName</p>
+            </div>
+            <p class="bet">In-Wallet: <span class="bitcoin-currency">@Model.Opponent1.Balance</span></p>
             <input type="hidden" id="matchId" value="@Model.Match.MatchId" />
             <input type="hidden" id="isOpponent1" value="@Model.IsOpponent1.ToString()" />
             @if (Model.IsOpponent1)
             {
-              
-                <input type="text" class="proposedBet" />
-                <button type="button" class="btnProposeBet">Propose bet</button>
+
+                <input type="text" class="proposedBet input-box-black" />
+                <button type="button" class="btnProposeBet input-button-black">Propose bet</button>
             }
             else
             {
-                <input type="text" class="proposedBet" disabled/>
-                <button type="button" class="btnAacceptBet btnHandleBet">Accept</button>
-                <button type="button" class="btnDeclineBet btnHandleBet">Decline</button>
+                <input type="text" class="proposedBet input-box-black" disabled />
+                <button type="button" class="btnAacceptBet  input-button-black btnHandleBet">Accept</button>
+                <button type="button" class="btnDeclineBet  input-button-black btnHandleBet">Decline</button>
             }
         </div>
         <div class="playfield">
-                <button type="button" class="btnRoll" disabled>Roll the Dice</button>
-                <button type="button" class="resetGame" style="display:none;"disabled>Start over</button>
-            <p>@Model.Opponent1.UserName got:  <span  id="Opponent1Face"></span></p>
-            <p>@Model.Opponent2.UserName got:  <span  id="Opponent2Face"></span></p>
-            <p>WINNER:  <span id="Winner"></span></p>
-            <p class="CountDown">Game shuts down in:  <span class="counter "id="counter">20</span></p>
+            <button type="button" class="btnRoll play-button game-button " disabled>Roll the Dice</button>
+            <button type="button" class="resetGame" style="display:none;" disabled>Start over</button>
+            <p class="bet">@Model.Opponent1.UserName rolled a:  <span id="Opponent1Face"></span></p>
+            <p class="bet">@Model.Opponent2.UserName rolled a:  <span id="Opponent2Face"></span></p>
+            <p class="jumbo-title">WINNER:  <span id="Winner"></span></p>
+            <p class="CountDown">Game shuts down in:  <span class="counter " id="counter">20</span></p>
 
 
             @if (ViewBag.Face != null)
@@ -43,9 +53,18 @@
         </div>
 
         <div class="opponent op2">
-            <img src="~/Content/uploads/@Model.Opponent2.Avatar" />
-            <p class="username">@Model.Opponent2.UserName</p>
-            <p class="bet">Betting: <span>@Model.Opponent2.Balance</span></p>
+            <h2 class="bet">Opponent 2</h2>
+            <div class="avatar-container">
+                @if (Model.Opponent2.Avatar != null)
+                {
+                    <img src="~/Content/uploads/@Model.Opponent2.Avatar" class="avatar-big" />
+                } else
+                {
+                    <div class="no-image"></div>
+                }
+                <p class="username jumbo-title">@Model.Opponent2.UserName</p>
+            </div>
+            <p class="bet">In-Wallet: <span class="bitcoin-currency">@Model.Opponent2.Balance</span></p>
         </div>
     </div>
 

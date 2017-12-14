@@ -4,14 +4,17 @@
 @model cryptoGamblers.Models.UserProfileViewModel
 
 @{
-	ViewBag.Title = Model.Username;
+    ViewBag.Title = Model.Username;
 }
 
 
 <div class="jumbotron">
     <div class="container body-content">
         <div class="text-center-mini">
-            <img src="~/Content/uploads/@Model.AvatarPath" class="img-rounded userprofile--avatar" />
+            @if (Model.AvatarPath != null)
+            {
+                <img src="~/Content/uploads/@Model.AvatarPath" class="img-rounded userprofile--avatar" />
+            }
             <h2 class="jumbo-title">@Model.Username</h2>
             <p class="word-break">@Model.ProfileDescription</p>
         </div>
@@ -39,32 +42,32 @@
 </div>
 
 <div class="container">
-	<div class="userprofile-wrapper">
-		<div class="userprofile-item">
-		</div>
-		<div class="userprofile-item">
-			@{if (Model.WinStreak > 0)
-				{
-					<h3 class="word-break"><strong>🚨 @Model.Username is currently on a winstreak! 🚨 </strong></h3>
-				}
-			}
-			<div class="userprofile--winstreak-wrapper">
-				<div class="userprofile--winstreak-item">
-					<div class="circle" id="circles-1"></div>
-				</div>
-				<div class="userprofile--winstreak-item">
-					<p id="winstreak" data-winstreak="@Model.WinStreak">
-						<strong>Current winstreak:</strong> @Model.WinStreak
-					</p>
-					<p id="maxWinstreak" data-maxwinstreak="@Model.WinStreakMax">
-						<strong>All-Time Winstreak:</strong> @Model.WinStreakMax
-					</p>
-				</div>
-			</div>
-		</div>
+    <div class="userprofile-wrapper">
         <div class="userprofile-item">
         </div>
-	</div>
+        <div class="userprofile-item">
+            @{if (Model.WinStreak > 0)
+                {
+                    <h3 class="word-break"><strong>🚨 @Model.Username is currently on a winstreak! 🚨 </strong></h3>
+                }
+            }
+            <div class="userprofile--winstreak-wrapper">
+                <div class="userprofile--winstreak-item">
+                    <div class="circle" id="circles-1"></div>
+                </div>
+                <div class="userprofile--winstreak-item">
+                    <p id="winstreak" data-winstreak="@Model.WinStreak">
+                        <strong>Current winstreak:</strong> @Model.WinStreak
+                    </p>
+                    <p id="maxWinstreak" data-maxwinstreak="@Model.WinStreakMax">
+                        <strong>All-Time Winstreak:</strong> @Model.WinStreakMax
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="userprofile-item">
+        </div>
+    </div>
 </div>
 
 
@@ -72,27 +75,27 @@
 @Scripts.Render("~/bundles/circles")
 
 <script>
-	var winstreak = document.getElementById("winstreak").dataset.winstreak;
-	var maxWinstreak = document.getElementById("maxWinstreak").dataset.maxwinstreak;
+    var winstreak = document.getElementById("winstreak").dataset.winstreak;
+    var maxWinstreak = document.getElementById("maxWinstreak").dataset.maxwinstreak;
 
-	if (maxWinstreak > 0) {
-		var myCircle = Circles.create({
-			id: 'circles-1',
-			radius: 60,
-			value: winstreak,
-			maxValue: maxWinstreak,
-			width: 14,
-			text: function (value) {
-				return value + '/' + this.getMaxValue()
-			},
+    if (maxWinstreak > 0) {
+        var myCircle = Circles.create({
+            id: 'circles-1',
+            radius: 60,
+            value: winstreak,
+            maxValue: maxWinstreak,
+            width: 14,
+            text: function (value) {
+                return value + '/' + this.getMaxValue()
+            },
             colors: ['rgb(195, 101, 23)', 'rgb(247, 147, 26)'],
-			duration: 600,
-			wrpClass: 'circles-wrp',
-			textClass: 'circles-text',
-			valueStrokeClass: 'circles-valueStroke',
-			maxValueStrokeClass: 'circles-maxValueStroke',
-			styleWrapper: true,
-			styleText: false
-		});
-	}
+            duration: 600,
+            wrpClass: 'circles-wrp',
+            textClass: 'circles-text',
+            valueStrokeClass: 'circles-valueStroke',
+            maxValueStrokeClass: 'circles-maxValueStroke',
+            styleWrapper: true,
+            styleText: false
+        });
+    }
 </script>

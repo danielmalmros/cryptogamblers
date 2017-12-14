@@ -3,11 +3,11 @@
 @using cryptoGamblers.Models
 @*@model cryptoGamblers.Models.IndexViewModel*@
 @{
-    ViewBag.Title = "Manage";
+	ViewBag.Title = "Manage";
 
-    var currentUserId = User.Identity.GetUserId();
-    var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
-    var currentUser = manager.FindById(User.Identity.GetUserId());
+	var currentUserId = User.Identity.GetUserId();
+	var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+	var currentUser = manager.FindById(User.Identity.GetUserId());
 
 }
 
@@ -16,12 +16,25 @@
 @Html.Partial("MiniJumbotron", "Manage Profile")
 
 <div class="container">
-    <div class="userprofile-wrapper">
+	<div class="userprofile-wrapper">
 		<div></div>
 		<div>
 			<div class="manageprofile--editable">
 				<a href="@Url.Action("ChangeAvatar", "Manage")">
-					<img src="../Content/uploads/@currentUser.Avatar" />
+
+					@if (currentUser.Avatar != null)
+					{
+						<img src="../Content/uploads/@currentUser.Avatar" />
+					}
+					else
+					{
+						<div class="avatar-container">
+							<div class="no-image"></div>
+							<p class="username jumbo-title">Add Avatar</p>
+						</div>
+
+					}
+
 				</a>
 				<div class="edit"><a href="@Url.Action("ChangeAvatar", "Manage")"><i class="fa fa-pencil fa-lg"></i></a></div>
 			</div>
@@ -36,12 +49,12 @@
 					<div class="edit"><a href="@Url.Action("ChangeDescription", "Manage")"><i class="fa fa-plus fa-lg"></i></a></div>
 				</div>
 				<br />
-					<div class="manageprofile--editable manageprofile--description">
-						<a href="@Url.Action("ChangeDescription", "Manage")">
-							<p class="word-break">Update your profile description </p>
-						</a>
-						<div class="edit"><a href="@Url.Action("ChangeDescription", "Manage")"><i class="fa fa-pencil fa-lg"></i></a></div>
-					</div>
+				<div class="manageprofile--editable manageprofile--description">
+					<a href="@Url.Action("ChangeDescription", "Manage")">
+						<p class="word-break">Update your profile description </p>
+					</a>
+					<div class="edit"><a href="@Url.Action("ChangeDescription", "Manage")"><i class="fa fa-pencil fa-lg"></i></a></div>
+				</div>
 
 				<br />
 				<div class="manageprofile--editable manageprofile--description manageprofile--changepassword ">
@@ -54,10 +67,10 @@
 
 				@*<a href="@Url.Action("ManageBalance", "Manage")" class="btn btn-primary">Add More Bitcoins</a>*@
 				@using (Html.BeginForm("Delete", "Manage", new { id = User.Identity.GetUserId() }))
-				{
+			{
 					<button class="btn btn-danger btn-xs" type="submit" onclick="return confirm('WARNING: This can not be undone')">Delete Account</button>}
 			</div>
 		</div>
-    </div>
+	</div>
 
 </div>

@@ -9,7 +9,7 @@
     var currentUser = manager.FindById(User.Identity.GetUserId());
 }
 <div class="container body-content">
-    <h2>Match</h2>
+    <h2>@currentUser.UserName VS @currentUser.UserName</h2>
     <div class="three-col">
         <div class="opponent op1">
             <img src="~/Content/uploads/@currentUser.Avatar" />
@@ -41,7 +41,7 @@
 <style>
     .three-col {
         display: grid;
-        grid-template-columns: 18em minmax(min-content, 1fr) 18em;
+        grid-template-columns: 1fr minmax(min-content, 1fr) 1fr;
     }
     .op1 {
         grid-column: 1;
