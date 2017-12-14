@@ -4,47 +4,57 @@
 }
 @Html.ValidationSummary(false)
 
-<div class="container body-content">
-    <h2>Edit User "@Model.UserName"</h2>
+
+<div class="jumbotron" style="background-image: url('https://www.linkapedia.com/resources/images/user-background.jpg');">
+    <div class="container body-content">
+        <div class="text-center">
+            <h2 class="jumbo-title">Edit User "@Model.UserName"</h2>
+        </div>
+    </div>
+  <div class="top-background"><svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 699.08 31"><defs><style>.cls-1,.cls-2{fill:#0c131c;}.cls-2{stroke:#f7931a;stroke-miterlimit:10;stroke-width:4px;}</style></defs><title>Untitled-3</title><rect class="cls-1" x="2.41" y="27" width="694" height="4"/><polyline class="cls-2" points="1.41 29.5 28.91 2 670.41 2 697.66 29.25"/></svg></div>
+</div>
+
+<div class="container body-content form-wrapper">
 
     
-    <h1>Coming: TBD</h1>
+    
     @using (Html.BeginForm(new { data_ajax = "false", enctype = "multipart/form-data" }))
     {
         @Html.HiddenFor(m => m.Id)
         <div class="form-group">
-            <label>Email</label>
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", value = Model.Email })
+            <label class="control-label">Email</label>
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control input-box-black", value = Model.Email })
         </div>
 
         <div class="form-group">
-            <label>Password (Leave blank to keep unchanged)</label>
-            <input name="password" type="password" class="form-control"  />
+            <label class="control-label">Password (Leave blank to keep unchanged)</label>
+            <input name="password" type="password" class="form-control input-box-black"  />
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(m => m.Balance)
+            @Html.LabelFor(m => m.Balance, new { @class = "control-label" })
             @*@Html.EditorFor(m => m.Balance, new { @class = "form-control", disabled = "disabled", value = Model.Balance })*@
-            @Html.TextBoxFor(m => m.Balance, new { @type = "number", @class = "form-control", value = Model.Balance })
+            @Html.TextBoxFor(m => m.Balance, new { @type = "number", @class = "form-control input-box-black", value = Model.Balance })
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(m => m.ProfileDescription)
+            @Html.LabelFor(m => m.ProfileDescription, new { @class = "control-label" })
             @*@if (Model.ProfileDescription == null)
             {
                 Model.ProfileDescription = "A noob without a profile description";
             }*@
-            @Html.TextAreaFor(m => m.ProfileDescription, 5, 5, new { @class = "form-control" })
+            @Html.TextAreaFor(m => m.ProfileDescription, 5, 5, new { @class = "form-control input-box-black" })
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(m => m.Avatar)
+            @Html.LabelFor(m => m.Avatar, new { @class = "control-label" })
             <img src="~/Content/uploads/@Model.Avatar" class="current-img"/>
-            @Html.TextBoxFor(m => m.Avatar, new { @class = "form-control", type = "file", name = "fileupload" })
+            <br />
+            @Html.TextBoxFor(m => m.Avatar, new { @class = "form-control input-box-black", type = "file", name = "fileupload" })
         </div>
 
-        <button type="submit" class="btn btn-primary">Save</button>
-        @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-default" })
+        <button type="submit" class="btn btn-primary input-button-black">Save</button>
+        @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-default input-button-black input-cancel" })
     }
 </div>
 <style>

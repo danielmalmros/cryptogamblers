@@ -22,7 +22,9 @@
 							@Html.ValidationMessageFor(m => m.AddBalance, "", new { @class = "text-danger" })
 							@Html.TextBoxFor(m => m.AddBalance, new { @class = "form-control center-field input-box-black" })
 							<input type="submit" value="Boost your balance" class="btn btn-default input-button-black" />
-			}
+                            <br />  
+                            @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-default input-button-black input-cancel" })
+            }
 		</div>
 	</div>
 </div>

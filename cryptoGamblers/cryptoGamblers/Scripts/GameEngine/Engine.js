@@ -10,7 +10,7 @@
                         break;
                     case 1:
                         $(".proposedBet").val(result.Data.PrizePool);
-                        $(".btnHandleBet").css("display", "block");
+                        $(".btnHandleBet").css("display", "inline-block");
                         if ($('#isOpponent1').val() === 'True') {
                             responseListener();
                         }
@@ -21,20 +21,20 @@
                         $(".proposedBet").val(result.Data.PrizePool);
                         $(".btnProposeBet").css("display", "none");
                         $(".proposedBet").prop('disabled', true);
-                        $(".btnRoll").prop('disabled', false);
+                        $(".btnRoll").prop('disabled', false).removeClass("inactive-button");
                         break;
                     case 3:
                         $(".proposedBet").val(result.Data.PrizePool);
                         $(".btnProposeBet").css("display", "none");
                         $(".proposedBet").prop('disabled', true);
-                        $(".btnRoll").prop('disabled', true);
+                        $(".btnRoll").prop('disabled', true).addClass("inactive-button");
                         $(".resetGame").prop('disabled', false);
                         break;
                     case 4:
                         $(".proposedBet").val(result.Data.PrizePool);
                         $(".btnProposeBet").css("display", "none");
                         $(".proposedBet").prop('disabled', true);
-                        $(".btnRoll").prop('disabled', true);
+                        $(".btnRoll").prop('disabled', true).addClass("inactive-button");
                         $(".resetGame").prop('disabled', true);
                         setInterval(countDown(), 1000);
                         break;
@@ -60,7 +60,7 @@ $(".btnDeclineBet").click(function () {
 });
 
 $(".btnRoll").click(function () {
-    $(".btnRoll").prop('disabled', true);
+    $(".btnRoll").prop('disabled', true).addClass("inactive-button");
     $.ajax({
         url: "/Match/Roll?matchId=" + $("#matchId").val(), success: function (result) {
             console.log(result);
@@ -68,7 +68,9 @@ $(".btnRoll").click(function () {
             $("#Opponent2Face").text(result.Opponent2Roll);
             if (result.Opponent1Roll === result.Opponent2Roll) {
                 resetRoll();
+                $(".btnRoll").prop('disabled', false).removeClass("inactive-button");
                 $("#Winner").text("Draw");
+
             } else {
                 $("#Winner").text(result.Winner);
                 setInterval(countDown, 1000);
@@ -111,7 +113,7 @@ var betListener = function () {
     $.ajax({
         url: "/Match/RecieveBet?matchId=" + $("#matchId").val(), success: function (result) {
             $(".proposedBet").val(result.Amount);
-            $(".btnHandleBet").css("display", "block");
+            $(".btnHandleBet").css("display", "inline-block");
         }
     });
 }
@@ -126,7 +128,7 @@ var responseListener = function () {
                 subtractBalance(result.Amount);
                 $(".btnRoll").prop('disabled', false);
             } else if (result.Status === "DEC") {
-                $(".btnProposeBet").css("display", "block");
+                $(".btnProposeBet").css("display", "inline-block");
                 $(".proposedBet").prop('disabled', false);
             }
         }

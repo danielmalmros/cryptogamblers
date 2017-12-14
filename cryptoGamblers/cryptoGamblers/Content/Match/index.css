@@ -76,6 +76,52 @@
 	text-align: center;
 }
 
-.btnHandleBet {
+
+.match-button {
+	box-sizing: border-box;
+	margin: 40px;
 	display: inline-block;
+	text-decoration: none;
+	position: relative;
+	padding: 25px 35px;
+	text-align: center;
+	border: none;
+	color: #f7931a;
+	border-bottom: 4px solid #f7931a;
+	font-size: 54px;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-weight: 700;
+	letter-spacing: 5px;
+	background: rgba(12,19,28,.9);
+	transition: all .15s ease;
+	overflow: hidden;
+	box-shadow: 0px 0px 25px -5px rgba(247,148,26,.35), 0 16px 24px rgba(247,148,26,.11), 0 4px 12px rgba(0,0,0,.08);
+	line-height: 54px;
 }
+
+	.match-button::after {
+		content: "";
+		position: absolute;
+		z-index: 0;
+		top: -68px;
+		left: -100px;
+		width: 50px;
+		height: 250px;
+		transition: all .2s;
+		opacity: .3;
+		transform: rotate(35deg);
+		background: #fff;
+	}
+
+	.match-button:hover, .play-button:focus {
+		background: rgba(12,19,28,1);
+		box-shadow: 0px 0px 50px -10px rgba(247,148,26,.35), 0 30px 42px rgba(247,148,26,.11), 0 7px 20px rgba(0,0,0,.08);
+		transform: translateY(-1px);
+		text-decoration: none;
+		color: #f7931a;
+	}
+
+		.match-button:hover::after {
+			left: 120%;
+			transition: all .6s cubic-bezier(.19,1,.22,1);
+		}

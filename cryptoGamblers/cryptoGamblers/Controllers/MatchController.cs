@@ -329,9 +329,10 @@ namespace cryptoGamblers.Controllers
 
                 if (isOpponent1) {
 
-                    data.Opponent1Roll = rng.Next(1, 6);
                     db.MatchData.AddOrUpdate(data);
-                    db.SaveChanges();
+					data.Opponent1Roll = 1;
+                   // data.Opponent1Roll = rng.Next(1, 6);
+					db.SaveChanges();
 
                     while (!hasOpponentRolled)
                     {
@@ -364,8 +365,9 @@ namespace cryptoGamblers.Controllers
 
                 } else {
 
-                    data.Opponent2Roll = rng.Next(1, 6);
-                    db.MatchData.AddOrUpdate(data);
+					//data.Opponent2Roll = rng.Next(1, 6);
+					data.Opponent2Roll = 1;
+					db.MatchData.AddOrUpdate(data);
                     db.SaveChanges();
 
                     while (!hasOpponentRolled)
