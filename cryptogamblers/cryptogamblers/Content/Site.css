@@ -350,6 +350,7 @@ input, textarea {
 	background-color: #f7931a;
 	margin: 0 auto;
 }
+<<<<<<< HEAD
 .control-label {
     color: rgba(247,147,26,1);
     margin-top: 20px;
@@ -359,4 +360,9 @@ input, textarea {
 }
 .admin-panel__search {
     margin: 10px 0;
+}
+
+.inactive-button {
+	pointer-events: none;
+	opacity: 0.5;
 }
