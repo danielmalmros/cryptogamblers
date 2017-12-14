@@ -34,7 +34,7 @@
                         $(".proposedBet").val(result.Data.PrizePool);
                         $(".btnProposeBet").css("display", "none");
                         $(".proposedBet").prop('disabled', true);
-                        $(".btnRoll").prop('disabled', true);
+                        $(".btnRoll").prop('disabled', true).addClass("inactive-button");
                         $(".resetGame").prop('disabled', true);
                         setInterval(countDown(), 1000);
                         break;
@@ -60,7 +60,7 @@ $(".btnDeclineBet").click(function () {
 });
 
 $(".btnRoll").click(function () {
-    $(".btnRoll").prop('disabled', true);
+    $(".btnRoll").prop('disabled', true).addClass("inactive-button");
     $.ajax({
         url: "/Match/Roll?matchId=" + $("#matchId").val(), success: function (result) {
             console.log(result);

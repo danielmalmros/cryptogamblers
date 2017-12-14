@@ -350,3 +350,8 @@ input, textarea {
 	background-color: #f7931a;
 	margin: 0 auto;
 }
+
+.inactive-button {
+	pointer-events: none;
+	opacity: 0.5;
+}
