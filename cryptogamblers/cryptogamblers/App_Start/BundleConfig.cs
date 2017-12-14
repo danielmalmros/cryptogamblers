@@ -28,6 +28,11 @@ namespace cryptoGamblers
 
             bundles.Add(new ScriptBundle("~/bundles/circles").Include(
                       "~/Scripts/circles.min.js"));
+            bundles.Add(new ScriptBundle("~/bundles/GameEnigne").Include(
+                      "~/Scripts/GameEngine/Engine.js"));
+
+            bundles.Add(new StyleBundle("~/bundles/match").Include(
+                     "~/Content/Match/index.css"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",

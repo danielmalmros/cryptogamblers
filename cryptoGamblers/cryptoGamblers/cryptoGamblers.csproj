@@ -273,6 +273,10 @@
     <Compile Include="Migrations\201712121844039_made rolls nullable.Designer.cs">
       <DependentUpon>201712121844039_made rolls nullable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712140801412_remove matchstate from match.cs" />
+    <Compile Include="Migrations\201712140801412_remove matchstate from match.Designer.cs">
+      <DependentUpon>201712140801412_remove matchstate from match.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ActionResult.cs" />
@@ -299,6 +303,7 @@
     <Content Include="Content\Images\cryptogamblers.png" />
     <Content Include="Content\Images\logo.png" />
     <Content Include="Content\Login\LoginForm.css" />
+    <Content Include="Content\Match\index.css" />
     <Content Include="Content\Styles\BootstrapOverwrite.css" />
     <Content Include="Content\Styles\Nav.css" />
     <Content Include="Content\Styles\UserProfile.css" />
@@ -314,6 +319,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\GameEngine\Engine.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -426,6 +432,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712121844039_made rolls nullable.resx">
       <DependentUpon>201712121844039_made rolls nullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712140801412_remove matchstate from match.resx">
+      <DependentUpon>201712140801412_remove matchstate from match.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

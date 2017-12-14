@@ -7,7 +7,7 @@ using System.Web;
 
 namespace cryptoGamblers.Models
 {
-    public enum betState
+    public enum MatchState
     {
         PENDINGBET,
         PENDINGBETRESPONSE,
@@ -20,7 +20,7 @@ namespace cryptoGamblers.Models
         [Key]
         public int MatchDataId { get; set; }
         public int PrizePool { get; set; }
-        public betState BetState { get; set; }
+        public MatchState MatchState { get; set; }
         public int? Opponent1Roll { get; set; }
         public int? Opponent2Roll { get; set; }
 

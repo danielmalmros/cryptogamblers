@@ -67,10 +67,10 @@ namespace cryptoGamblers.Controllers
                 }
             }
 
-            if (data.BetState == betState.PENDINGBET) {
+            if (data.MatchState == MatchState.PENDINGBET) {
                 //setprizepool to amount
                 data.PrizePool = amount;
-                data.BetState = betState.PENDINGBETRESPONSE;
+                data.MatchState = MatchState.PENDINGBETRESPONSE;
                 db.MatchData.AddOrUpdate(data);
                 db.Match.AddOrUpdate(match);
                 db.SaveChanges();
@@ -82,9 +82,9 @@ namespace cryptoGamblers.Controllers
                 db = new ApplicationDbContext();
                 data = db.MatchData.FirstOrDefault(md => md.MatchId == match.MatchId);
                 //Checks what state the matchdata has if the state if different than pending a response should be returned
-                switch (data.BetState)
+                switch (data.MatchState)
                 {
-                    case betState.ACCEPTED:
+                    case MatchState.ACCEPTED:
 
                         stateChanged = true;
 
@@ -97,10 +97,10 @@ namespace cryptoGamblers.Controllers
                             Amount = data.PrizePool
                         }, JsonRequestBehavior.AllowGet);
 
-                    case betState.DECLINED:
+                    case MatchState.DECLINED:
                         stateChanged = true;
 
-                        data.BetState = betState.PENDINGBET;
+                        data.MatchState = MatchState.PENDINGBET;
                         data.PrizePool = 0;
                         db.MatchData.AddOrUpdate(data);
                         db.SaveChanges();
@@ -168,10 +168,10 @@ namespace cryptoGamblers.Controllers
                     }
                 }
                 if (accepted) {
-                    data.BetState = betState.ACCEPTED;
+                    data.MatchState = MatchState.ACCEPTED;
                 }
                 else {
-                    data.BetState = betState.DECLINED;
+                    data.MatchState = MatchState.DECLINED;
                     data.PrizePool = 0;
                 }
 
@@ -209,7 +209,7 @@ namespace cryptoGamblers.Controllers
             //reset rolls and state
             data.Opponent1Roll = 0;
             data.Opponent2Roll = 0;
-            data.BetState = betState.ACCEPTED;
+            data.MatchState = MatchState.ACCEPTED;
             db.MatchData.AddOrUpdate(data);
             db.SaveChanges();
 
@@ -233,7 +233,7 @@ namespace cryptoGamblers.Controllers
             }
             else
             {
-                if (match.Opponent2 != userName && match.Opponent1 != userName && data.BetState == betState.FINISHED)
+                if (match.Opponent2 != userName && match.Opponent1 != userName && data.MatchState == MatchState.FINISHED)
                 {
                     return new HttpStatusCodeResult(403);
                 }
@@ -321,7 +321,7 @@ namespace cryptoGamblers.Controllers
                 }
             }
 
-            if (data.BetState == betState.ACCEPTED) { 
+            if (data.MatchState == MatchState.ACCEPTED) { 
             Random rng = new Random();
           //  var roll = rng.Next(1,6);
 
@@ -341,7 +341,7 @@ namespace cryptoGamblers.Controllers
                         if (data.Opponent2Roll > 0)
                         {
                             hasOpponentRolled = true;
-                            data.BetState = betState.FINISHED;
+                            data.MatchState = MatchState.FINISHED;
                             db.MatchData.AddOrUpdate(data);
                             db.SaveChanges();
 
@@ -432,13 +432,18 @@ namespace cryptoGamblers.Controllers
                 }
             }
 
-            if (data.BetState == betState.FINISHED)
+            if (data.MatchState == MatchState.FINISHED)
             {
                var winner = data.Opponent1Roll > data.Opponent2Roll ?  db.Users.FirstOrDefault(u => u.UserName == match.Opponent1) : db.Users.FirstOrDefault(u => u.UserName == match.Opponent2);
                var looser = data.Opponent1Roll < data.Opponent2Roll ? db.Users.FirstOrDefault(u => u.UserName == match.Opponent1) : db.Users.FirstOrDefault(u => u.UserName == match.Opponent2);
                 
                 winner.Balance = winner.Balance + data.PrizePool;
                 looser.Balance = looser.Balance - data.PrizePool;
+                //update winstreak
+                winner.WinStreak = winner.WinStreak + 1;
+                winner.WinStreakMax = winner.WinStreak >= winner.WinStreakMax ? winner.WinStreak : winner.WinStreakMax;
+
+                looser.WinStreak = 0;
 
                 db.Users.AddOrUpdate(winner);
                 db.Users.AddOrUpdate(looser);

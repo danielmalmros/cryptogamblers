@@ -96,7 +96,7 @@ namespace cryptoGamblers.Controllers
 
                 QueueIn queueData = db.queueIn.Where(x => x.Opponent1 == userName || x.Opponent2 == userName).Select(x => x).FirstOrDefault();
 
-                newMatch = new Match { Opponent1 = queueData.Opponent1, Opponent2 = queueData.Opponent2, Date = DateTime.Now, MatchState = MatchState.PENDINGBETPROPOSAL };
+                newMatch = new Match { Opponent1 = queueData.Opponent1, Opponent2 = queueData.Opponent2, Date = DateTime.Now};
 
                 db.Match.AddOrUpdate(newMatch);
 				db.SaveChanges();
@@ -105,7 +105,7 @@ namespace cryptoGamblers.Controllers
 
                 db.MatchData.Add(new MatchData {
                     MatchId = newMatch.MatchId,
-                    BetState = betState.PENDINGBET
+                    MatchState = MatchState.PENDINGBET
                 });
 
                 db.queueIn.Remove(queue);

@@ -14,12 +14,6 @@ namespace cryptoGamblers.Models
         public string Opponent1 { get; set; }
         public string Opponent2 { get; set; }
     }
-    public enum MatchState
-    {
-        PENDINGBETPROPOSAL,
-        PENDINGBETACCEPTANCE,
-        FINISHED
-    }
 
     public class Match
     {
@@ -28,8 +22,6 @@ namespace cryptoGamblers.Models
         public string Opponent1 { get; set; }
         public string Opponent2 { get; set; }
         public DateTime Date { get; set; }
-        public MatchState MatchState { get; set; }
-        //[ForeignKey("MatchDataId")]
     }
     public class AfterMatch
     {
