@@ -18,11 +18,11 @@
             @using (Html.BeginForm())
             {
                 <div class="form-group">
-                    <label>Username</label>
-                    <input name="name" value="@Model" class="form-control" />
+                    <label class="control-label">Role name</label>
+                    <input name="name" value="@Model" class="form-control input-box-black" />
                 </div>
-                <button type="submit" class="btn btn-primary">Create admin</button>
-                @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-default" })
+                <button type="submit" class="btn btn-primary input-button-black">Create Role</button>
+                @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-default input-button-black input-cancel" })
             }
         </div>
     </div>

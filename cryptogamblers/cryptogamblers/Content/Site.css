@@ -351,6 +351,17 @@ input, textarea {
 	margin: 0 auto;
 }
 
+.control-label {
+    color: rgba(247,147,26,1);
+    margin-top: 20px;
+}
+.input-cancel {
+    background: rgba(255, 165, 0, 0.2);
+}
+.admin-panel__search {
+    margin: 10px 0;
+}
+
 .inactive-button {
 	pointer-events: none;
 	opacity: 0.5;
