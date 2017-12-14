@@ -68,7 +68,9 @@ $(".btnRoll").click(function () {
             $("#Opponent2Face").text(result.Opponent2Roll);
             if (result.Opponent1Roll === result.Opponent2Roll) {
                 resetRoll();
+                $(".btnRoll").prop('disabled', false).removeClass("inactive-button");
                 $("#Winner").text("Draw");
+
             } else {
                 $("#Winner").text(result.Winner);
                 setInterval(countDown, 1000);
