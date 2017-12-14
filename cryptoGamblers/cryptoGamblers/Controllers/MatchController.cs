@@ -211,17 +211,19 @@ namespace cryptoGamblers.Controllers
 
             var isOpponent1 = match.Opponent1 == userName;
 
-            if (isOpponent1)
-            {
+            
                 var readyForReset = false;
 
                 while (!readyForReset)
                 {
-                    db = new ApplicationDbContext();
-                    data = db.MatchData.FirstOrDefault(d => d.MatchId == matchId);
 
-                    if (data.rollReturnedOpponent2)
-                    {
+                db = new ApplicationDbContext();
+                data = db.MatchData.FirstOrDefault(d => d.MatchId == matchId);
+
+                if (isOpponent1) {
+                    if(data != null) { 
+                        if (data.rollReturnedOpponent2) {
+                         readyForReset = true;
                         //reset rolls and state
                         data.Opponent2Roll = 0;
                         data.Opponent1Roll = 0;
@@ -232,6 +234,17 @@ namespace cryptoGamblers.Controllers
                         data.MatchState = MatchState.ACCEPTED;
                         db.MatchData.AddOrUpdate(data);
                         db.SaveChanges();
+                        }   
+                    }
+                    else {
+                        readyForReset = true;
+                    }
+                }
+                else
+                {
+                    if(data.MatchState == MatchState.ACCEPTED)
+                    {
+                        readyForReset = true;
                     }
                 }
             }
@@ -345,7 +358,6 @@ namespace cryptoGamblers.Controllers
 
             if (data.MatchState == MatchState.ACCEPTED) { 
             Random rng = new Random();
-          //  var roll = rng.Next(1,6);
 
                 var hasOpponentRolled = false;
 
@@ -387,7 +399,7 @@ namespace cryptoGamblers.Controllers
 
                 } else {
 
-					data.Opponent2Roll = rng.Next(1, 10);
+                    data.Opponent2Roll = rng.Next(1, 10);
 					db.MatchData.AddOrUpdate(data);
                     db.SaveChanges();
 
