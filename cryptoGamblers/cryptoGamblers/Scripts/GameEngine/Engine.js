@@ -21,13 +21,13 @@
                         $(".proposedBet").val(result.Data.PrizePool);
                         $(".btnProposeBet").css("display", "none");
                         $(".proposedBet").prop('disabled', true);
-                        $(".btnRoll").prop('disabled', false);
+                        $(".btnRoll").prop('disabled', false).removeClass("inactive-button");
                         break;
                     case 3:
                         $(".proposedBet").val(result.Data.PrizePool);
                         $(".btnProposeBet").css("display", "none");
                         $(".proposedBet").prop('disabled', true);
-                        $(".btnRoll").prop('disabled', true);
+                        $(".btnRoll").prop('disabled', true).addClass("inactive-button");
                         $(".resetGame").prop('disabled', false);
                         break;
                     case 4:
@@ -68,7 +68,9 @@ $(".btnRoll").click(function () {
             $("#Opponent2Face").text(result.Opponent2Roll);
             if (result.Opponent1Roll === result.Opponent2Roll) {
                 resetRoll();
+                $(".btnRoll").prop('disabled', false).removeClass("inactive-button");
                 $("#Winner").text("Draw");
+
             } else {
                 $("#Winner").text(result.Winner);
                 setInterval(countDown, 1000);
